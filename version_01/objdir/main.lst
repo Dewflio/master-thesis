@@ -1,0 +1,401 @@
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 4
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"main.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.test_handle,"ax",%progbits
+  16              		.align	1
+  17              		.global	test_handle
+  18              		.arch armv7e-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu softvfp
+  24              	test_handle:
+  25              	.LVL0:
+  26              	.LFB4:
+  27              		.file 1 "main.c"
+   1:main.c        **** /*
+   2:main.c        ****  * SimpleSerial V2 Template C code
+   3:main.c        ****  * Can be freely used to implement ChipWhisperer target binaries.
+   4:main.c        ****  *
+   5:main.c        ****  * Date: 14th March 2021
+   6:main.c        ****  */
+   7:main.c        **** 
+   8:main.c        **** #include <stdint.h>
+   9:main.c        **** #include <stdlib.h>
+  10:main.c        **** #include <string.h>
+  11:main.c        **** #include "network.h"
+  12:main.c        **** 
+  13:main.c        **** 
+  14:main.c        **** //#ifndef DEBUGGING
+  15:main.c        **** #include "hal/hal.h"
+  16:main.c        **** #include "hal/stm32f3/stm32f3_hal.h"
+  17:main.c        **** //#endif
+  18:main.c        **** 
+  19:main.c        **** 
+  20:main.c        **** #define SS_VER SS_VER_2_1
+  21:main.c        **** 
+  22:main.c        **** #include "simpleserial/simpleserial.h"
+  23:main.c        **** 
+  24:main.c        **** /// This function will handle the 'p' command send from the capture board.
+  25:main.c        **** /// It returns the squared version of the scmd given.
+  26:main.c        **** /// It does this in approximately equal time, which allows us to see clear
+  27:main.c        **** /// differences between different scmd values.
+  28:main.c        **** uint8_t handle(uint8_t cmd, uint8_t scmd, uint8_t len, uint8_t *buf)
+  29:main.c        **** {
+  30:main.c        ****   int arr[6] = {7,5,4,3, 4, 5};
+  31:main.c        ****   network net = construct_network(5, 6, arr);
+  32:main.c        **** 
+  33:main.c        ****   //Change the input of the first neuron in the first layer to the provided number
+  34:main.c        ****   //convert to float
+  35:main.c        ****   float input_value;
+  36:main.c        ****   uint8_t input_buffer[4] = {buf[0], buf[1], buf[2], buf[3]};
+  37:main.c        ****   memcpy(&input_value, input_buffer, sizeof(float)); 
+  38:main.c        ****   net.layers[0].neurons[0].a = input_value;
+  39:main.c        **** 
+  40:main.c        ****   int ****random_indices = generate_random_indices(net);
+  41:main.c        ****   //int ***random_dummy_operations_indices = generate_random_dummy_operations(net);
+  42:main.c        ****   int ***random_dummy_operations_indices = NULL;
+  43:main.c        ****   // Start measurement.
+  44:main.c        ****   trigger_high();
+  45:main.c        **** 
+  46:main.c        ****   //#ifdef DEBUGGING
+  47:main.c        ****   //printf("Running foward...\n");
+  48:main.c        ****   //#endif
+  49:main.c        ****   forward(net, 0);
+  50:main.c        ****   //forward_shuffled(net);
+  51:main.c        ****   //forward_shuffled_NO(net, random_indices, 0);
+  52:main.c        ****   //forward_shuffled_NO_AAE(net, random_indices, 2);
+  53:main.c        ****   //forward_shuffled_NO_AAE_RDO(net, random_indices, random_dummy_operations_indices);
+  54:main.c        **** 
+  55:main.c        ****   // Stop measurement.
+  56:main.c        ****   trigger_low();
+  57:main.c        ****   
+  58:main.c        ****   
+  59:main.c        ****   simpleserial_put('r', len, buf);
+  60:main.c        **** 
+  61:main.c        ****   //free dynamically allocated memory
+  62:main.c        ****   free_network_memory(&net, random_indices);
+  63:main.c        **** 
+  64:main.c        ****   return 0;
+  65:main.c        **** }
+  66:main.c        **** 
+  67:main.c        **** uint8_t test_handle(uint8_t cmd, uint8_t scmd, uint8_t len, uint8_t *buf)
+  68:main.c        **** {
+  28              		.loc 1 68 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  69:main.c        ****   uint8_t *out_buf = buf;
+  32              		.loc 1 69 3 view .LVU1
+  70:main.c        **** 
+  71:main.c        ****   simpleserial_put('r', len, out_buf);
+  33              		.loc 1 71 3 view .LVU2
+  68:main.c        ****   uint8_t *out_buf = buf;
+  34              		.loc 1 68 1 is_stmt 0 view .LVU3
+  35 0000 08B5     		push	{r3, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 3, -8
+  39              		.cfi_offset 14, -4
+  68:main.c        ****   uint8_t *out_buf = buf;
+  40              		.loc 1 68 1 view .LVU4
+  41 0002 1146     		mov	r1, r2
+  42              	.LVL1:
+  43              		.loc 1 71 3 view .LVU5
+  44 0004 7220     		movs	r0, #114
+  45              	.LVL2:
+  46              		.loc 1 71 3 view .LVU6
+  47 0006 1A46     		mov	r2, r3
+  48              	.LVL3:
+  49              		.loc 1 71 3 view .LVU7
+  50 0008 FFF7FEFF 		bl	simpleserial_put
+  51              	.LVL4:
+  72:main.c        ****   return 0;
+  52              		.loc 1 72 3 is_stmt 1 view .LVU8
+  73:main.c        **** }
+  53              		.loc 1 73 1 is_stmt 0 view .LVU9
+  54 000c 0020     		movs	r0, #0
+  55 000e 08BD     		pop	{r3, pc}
+  56              		.cfi_endproc
+  57              	.LFE4:
+  59              		.section	.text.handle,"ax",%progbits
+  60              		.align	1
+  61              		.global	handle
+  62              		.syntax unified
+  63              		.thumb
+  64              		.thumb_func
+  65              		.fpu softvfp
+  67              	handle:
+  68              	.LVL5:
+  69              	.LFB3:
+  29:main.c        ****   int arr[6] = {7,5,4,3, 4, 5};
+  70              		.loc 1 29 1 is_stmt 1 view -0
+  71              		.cfi_startproc
+  72              		@ args = 0, pretend = 0, frame = 40
+  73              		@ frame_needed = 0, uses_anonymous_args = 0
+  30:main.c        ****   network net = construct_network(5, 6, arr);
+  74              		.loc 1 30 3 view .LVU11
+  29:main.c        ****   int arr[6] = {7,5,4,3, 4, 5};
+  75              		.loc 1 29 1 is_stmt 0 view .LVU12
+  76 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  77              	.LCFI1:
+  78              		.cfi_def_cfa_offset 20
+  79              		.cfi_offset 4, -20
+  80              		.cfi_offset 5, -16
+  81              		.cfi_offset 6, -12
+  82              		.cfi_offset 7, -8
+  83              		.cfi_offset 14, -4
+  30:main.c        ****   network net = construct_network(5, 6, arr);
+  84              		.loc 1 30 7 view .LVU13
+  85 0002 1E4D     		ldr	r5, .L3
+  29:main.c        ****   int arr[6] = {7,5,4,3, 4, 5};
+  86              		.loc 1 29 1 view .LVU14
+  87 0004 1E46     		mov	r6, r3
+  88 0006 1746     		mov	r7, r2
+  30:main.c        ****   network net = construct_network(5, 6, arr);
+  89              		.loc 1 30 7 view .LVU15
+  90 0008 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+  91              	.LVL6:
+  29:main.c        ****   int arr[6] = {7,5,4,3, 4, 5};
+  92              		.loc 1 29 1 view .LVU16
+  93 000a 8BB0     		sub	sp, sp, #44
+  94              	.LCFI2:
+  95              		.cfi_def_cfa_offset 64
+  30:main.c        ****   network net = construct_network(5, 6, arr);
+  96              		.loc 1 30 7 view .LVU17
+  97 000c 04AC     		add	r4, sp, #16
+  98 000e 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+  99 0010 95E80300 		ldm	r5, {r0, r1}
+ 100 0014 84E80300 		stm	r4, {r0, r1}
+  31:main.c        **** 
+ 101              		.loc 1 31 3 is_stmt 1 view .LVU18
+  31:main.c        **** 
+ 102              		.loc 1 31 17 is_stmt 0 view .LVU19
+ 103 0018 02AC     		add	r4, sp, #8
+ 104 001a 04AB     		add	r3, sp, #16
+ 105 001c 2046     		mov	r0, r4
+ 106 001e 0622     		movs	r2, #6
+ 107 0020 0521     		movs	r1, #5
+ 108 0022 FFF7FEFF 		bl	construct_network
+ 109              	.LVL7:
+  35:main.c        ****   uint8_t input_buffer[4] = {buf[0], buf[1], buf[2], buf[3]};
+ 110              		.loc 1 35 3 is_stmt 1 view .LVU20
+  36:main.c        ****   memcpy(&input_value, input_buffer, sizeof(float)); 
+ 111              		.loc 1 36 3 view .LVU21
+  36:main.c        ****   memcpy(&input_value, input_buffer, sizeof(float)); 
+ 112              		.loc 1 36 11 is_stmt 0 view .LVU22
+ 113 0026 3378     		ldrb	r3, [r6]	@ zero_extendqisi2
+ 114 0028 8DF80430 		strb	r3, [sp, #4]
+ 115 002c 7378     		ldrb	r3, [r6, #1]	@ zero_extendqisi2
+ 116 002e 8DF80530 		strb	r3, [sp, #5]
+ 117 0032 B378     		ldrb	r3, [r6, #2]	@ zero_extendqisi2
+ 118 0034 8DF80630 		strb	r3, [sp, #6]
+ 119 0038 F378     		ldrb	r3, [r6, #3]	@ zero_extendqisi2
+ 120 003a 8DF80730 		strb	r3, [sp, #7]
+  37:main.c        ****   net.layers[0].neurons[0].a = input_value;
+ 121              		.loc 1 37 3 is_stmt 1 view .LVU23
+  38:main.c        **** 
+ 122              		.loc 1 38 3 view .LVU24
+  38:main.c        **** 
+ 123              		.loc 1 38 16 is_stmt 0 view .LVU25
+ 124 003e 039B     		ldr	r3, [sp, #12]
+  38:main.c        **** 
+ 125              		.loc 1 38 30 view .LVU26
+ 126 0040 019A     		ldr	r2, [sp, #4]	@ float
+ 127 0042 5B68     		ldr	r3, [r3, #4]
+  40:main.c        ****   //int ***random_dummy_operations_indices = generate_random_dummy_operations(net);
+ 128              		.loc 1 40 28 view .LVU27
+ 129 0044 94E80300 		ldm	r4, {r0, r1}
+  38:main.c        **** 
+ 130              		.loc 1 38 30 view .LVU28
+ 131 0048 1A61     		str	r2, [r3, #16]	@ float
+  40:main.c        ****   //int ***random_dummy_operations_indices = generate_random_dummy_operations(net);
+ 132              		.loc 1 40 3 is_stmt 1 view .LVU29
+  40:main.c        ****   //int ***random_dummy_operations_indices = generate_random_dummy_operations(net);
+ 133              		.loc 1 40 28 is_stmt 0 view .LVU30
+ 134 004a FFF7FEFF 		bl	generate_random_indices
+ 135              	.LVL8:
+ 136 004e 0546     		mov	r5, r0
+ 137              	.LVL9:
+  42:main.c        ****   // Start measurement.
+ 138              		.loc 1 42 3 is_stmt 1 view .LVU31
+  44:main.c        **** 
+ 139              		.loc 1 44 3 view .LVU32
+ 140 0050 FFF7FEFF 		bl	trigger_high
+ 141              	.LVL10:
+  49:main.c        ****   //forward_shuffled(net);
+ 142              		.loc 1 49 3 view .LVU33
+ 143 0054 94E80300 		ldm	r4, {r0, r1}
+ 144 0058 0022     		movs	r2, #0
+ 145 005a FFF7FEFF 		bl	forward
+ 146              	.LVL11:
+  56:main.c        ****   
+ 147              		.loc 1 56 3 view .LVU34
+ 148 005e FFF7FEFF 		bl	trigger_low
+ 149              	.LVL12:
+  59:main.c        **** 
+ 150              		.loc 1 59 3 view .LVU35
+ 151 0062 3246     		mov	r2, r6
+ 152 0064 3946     		mov	r1, r7
+ 153 0066 7220     		movs	r0, #114
+ 154 0068 FFF7FEFF 		bl	simpleserial_put
+ 155              	.LVL13:
+  62:main.c        **** 
+ 156              		.loc 1 62 3 view .LVU36
+ 157 006c 2046     		mov	r0, r4
+ 158 006e 2946     		mov	r1, r5
+ 159 0070 FFF7FEFF 		bl	free_network_memory
+ 160              	.LVL14:
+  64:main.c        **** }
+ 161              		.loc 1 64 3 view .LVU37
+  65:main.c        **** 
+ 162              		.loc 1 65 1 is_stmt 0 view .LVU38
+ 163 0074 0020     		movs	r0, #0
+ 164 0076 0BB0     		add	sp, sp, #44
+ 165              	.LCFI3:
+ 166              		.cfi_def_cfa_offset 20
+ 167              		@ sp needed
+ 168 0078 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 169              	.LVL15:
+ 170              	.L4:
+  65:main.c        **** 
+ 171              		.loc 1 65 1 view .LVU39
+ 172 007a 00BF     		.align	2
+ 173              	.L3:
+ 174 007c 00000000 		.word	.LANCHOR0
+ 175              		.cfi_endproc
+ 176              	.LFE3:
+ 178              		.section	.text.startup.main,"ax",%progbits
+ 179              		.align	1
+ 180              		.global	main
+ 181              		.syntax unified
+ 182              		.thumb
+ 183              		.thumb_func
+ 184              		.fpu softvfp
+ 186              	main:
+ 187              	.LFB5:
+  74:main.c        **** 
+  75:main.c        **** int main(void) {
+ 188              		.loc 1 75 16 is_stmt 1 view -0
+ 189              		.cfi_startproc
+ 190              		@ Volatile: function does not return.
+ 191              		@ args = 0, pretend = 0, frame = 0
+ 192              		@ frame_needed = 0, uses_anonymous_args = 0
+  76:main.c        ****   // Setup the specific chipset.
+  77:main.c        ****   platform_init();
+ 193              		.loc 1 77 3 view .LVU41
+  75:main.c        ****   // Setup the specific chipset.
+ 194              		.loc 1 75 16 is_stmt 0 view .LVU42
+ 195 0000 08B5     		push	{r3, lr}
+ 196              	.LCFI4:
+ 197              		.cfi_def_cfa_offset 8
+ 198              		.cfi_offset 3, -8
+ 199              		.cfi_offset 14, -4
+ 200              		.loc 1 77 3 view .LVU43
+ 201 0002 FFF7FEFF 		bl	platform_init
+ 202              	.LVL16:
+  78:main.c        ****   // Setup serial communication line.
+  79:main.c        ****   init_uart();
+ 203              		.loc 1 79 3 is_stmt 1 view .LVU44
+ 204 0006 FFF7FEFF 		bl	init_uart
+ 205              	.LVL17:
+  80:main.c        ****   // Setup measurement trigger.
+  81:main.c        ****   trigger_setup();
+ 206              		.loc 1 81 3 view .LVU45
+ 207 000a FFF7FEFF 		bl	trigger_setup
+ 208              	.LVL18:
+  82:main.c        **** 
+  83:main.c        ****   simpleserial_init();
+ 209              		.loc 1 83 3 view .LVU46
+ 210 000e FFF7FEFF 		bl	simpleserial_init
+ 211              	.LVL19:
+  84:main.c        **** 
+  85:main.c        ****   // Insert your handlers here.
+  86:main.c        ****   simpleserial_addcmd('p', 16, handle);
+ 212              		.loc 1 86 3 view .LVU47
+ 213 0012 064A     		ldr	r2, .L7
+ 214 0014 1021     		movs	r1, #16
+ 215 0016 7020     		movs	r0, #112
+ 216 0018 FFF7FEFF 		bl	simpleserial_addcmd
+ 217              	.LVL20:
+  87:main.c        ****   simpleserial_addcmd('x', 16, test_handle);
+ 218              		.loc 1 87 3 view .LVU48
+ 219 001c 044A     		ldr	r2, .L7+4
+ 220 001e 1021     		movs	r1, #16
+ 221 0020 7820     		movs	r0, #120
+ 222 0022 FFF7FEFF 		bl	simpleserial_addcmd
+ 223              	.LVL21:
+ 224              	.L6:
+  88:main.c        **** 
+  89:main.c        ****   // What for the capture board to send commands and handle them.
+  90:main.c        ****   while (1)
+ 225              		.loc 1 90 3 discriminator 1 view .LVU49
+  91:main.c        ****     simpleserial_get();
+ 226              		.loc 1 91 5 discriminator 1 view .LVU50
+ 227 0026 FFF7FEFF 		bl	simpleserial_get
+ 228              	.LVL22:
+  90:main.c        ****     simpleserial_get();
+ 229              		.loc 1 90 9 discriminator 1 view .LVU51
+ 230 002a FCE7     		b	.L6
+ 231              	.L8:
+ 232              		.align	2
+ 233              	.L7:
+ 234 002c 00000000 		.word	handle
+ 235 0030 00000000 		.word	test_handle
+ 236              		.cfi_endproc
+ 237              	.LFE5:
+ 239              		.section	.rodata
+ 240              		.align	2
+ 241              		.set	.LANCHOR0,. + 0
+ 242              	.LC0:
+ 243 0000 07000000 		.word	7
+ 244 0004 05000000 		.word	5
+ 245 0008 04000000 		.word	4
+ 246 000c 03000000 		.word	3
+ 247 0010 04000000 		.word	4
+ 248 0014 05000000 		.word	5
+ 249              		.text
+ 250              	.Letext0:
+ 251              		.file 2 "c:\\users\\leonard\\chipwh~1\\cw\\home\\portable\\armgcc\\arm-none-eabi\\include\\machine
+ 252              		.file 3 "c:\\users\\leonard\\chipwh~1\\cw\\home\\portable\\armgcc\\arm-none-eabi\\include\\sys\\_s
+ 253              		.file 4 "network.h"
+ 254              		.file 5 "hal/hal.h"
+ 255              		.file 6 "hal/stm32f3/stm32f3_hal.h"
+ 256              		.file 7 "simpleserial/simpleserial.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\Leonard\AppData\Local\Temp\ccUocwgi.s:16     .text.test_handle:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccUocwgi.s:24     .text.test_handle:00000000 test_handle
+C:\Users\Leonard\AppData\Local\Temp\ccUocwgi.s:60     .text.handle:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccUocwgi.s:67     .text.handle:00000000 handle
+C:\Users\Leonard\AppData\Local\Temp\ccUocwgi.s:174    .text.handle:0000007c $d
+C:\Users\Leonard\AppData\Local\Temp\ccUocwgi.s:179    .text.startup.main:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccUocwgi.s:186    .text.startup.main:00000000 main
+C:\Users\Leonard\AppData\Local\Temp\ccUocwgi.s:234    .text.startup.main:0000002c $d
+C:\Users\Leonard\AppData\Local\Temp\ccUocwgi.s:240    .rodata:00000000 $d
+
+UNDEFINED SYMBOLS
+simpleserial_put
+construct_network
+generate_random_indices
+trigger_high
+forward
+trigger_low
+free_network_memory
+platform_init
+init_uart
+trigger_setup
+simpleserial_init
+simpleserial_addcmd
+simpleserial_get

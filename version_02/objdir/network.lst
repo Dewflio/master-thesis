@@ -1,0 +1,3579 @@
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 4
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"network.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.blakely,"ax",%progbits
+  16              		.align	1
+  17              		.global	blakely
+  18              		.arch armv7e-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu softvfp
+  24              	blakely:
+  25              	.LVL0:
+  26              	.LFB3:
+  27              		.file 1 "network.c"
+   1:network.c     **** #include "network.h"
+   2:network.c     **** #include <stdint.h>
+   3:network.c     **** #include <math.h>
+   4:network.c     **** 
+   5:network.c     **** unsigned int blakely(unsigned int a, unsigned int b, unsigned int n, unsigned int length) {
+  28              		.loc 1 5 91 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+   6:network.c     ****     unsigned int R = 0;
+  32              		.loc 1 6 5 view .LVU1
+   7:network.c     ****     for (int i = length - 1; i >= 0; i--) {
+  33              		.loc 1 7 5 view .LVU2
+  34              	.LBB27:
+  35              		.loc 1 7 10 view .LVU3
+  36              	.LBE27:
+   5:network.c     ****     unsigned int R = 0;
+  37              		.loc 1 5 91 is_stmt 0 view .LVU4
+  38 0000 30B5     		push	{r4, r5, lr}
+  39              	.LCFI0:
+  40              		.cfi_def_cfa_offset 12
+  41              		.cfi_offset 4, -12
+  42              		.cfi_offset 5, -8
+  43              		.cfi_offset 14, -4
+  44              	.LBB29:
+  45              		.loc 1 7 25 view .LVU5
+  46 0002 013B     		subs	r3, r3, #1
+  47              	.LVL1:
+  48              		.loc 1 7 25 view .LVU6
+  49              	.LBE29:
+   5:network.c     ****     unsigned int R = 0;
+  50              		.loc 1 5 91 view .LVU7
+  51 0004 0546     		mov	r5, r0
+   6:network.c     ****     unsigned int R = 0;
+  52              		.loc 1 6 18 view .LVU8
+  53 0006 0020     		movs	r0, #0
+  54              	.LVL2:
+  55              	.L2:
+  56              	.LBB30:
+  57              		.loc 1 7 30 is_stmt 1 discriminator 1 view .LVU9
+  58              		.loc 1 7 5 is_stmt 0 discriminator 1 view .LVU10
+  59 0008 002B     		cmp	r3, #0
+  60 000a 00DA     		bge	.L4
+  61              		.loc 1 7 5 discriminator 1 view .LVU11
+  62              	.LBE30:
+   8:network.c     ****         unsigned int ai = (a >> i) & 1;
+   9:network.c     ****         R = 2 * R + ai * b;
+  10:network.c     ****         if (R >= n) {
+  11:network.c     ****             R = R - n;
+  12:network.c     ****         }
+  13:network.c     ****         if (R >= n) {
+  14:network.c     ****             R = R - n;
+  15:network.c     ****         }
+  16:network.c     ****     }
+  17:network.c     ****     return R;
+  63              		.loc 1 17 5 is_stmt 1 view .LVU12
+  18:network.c     **** }
+  64              		.loc 1 18 1 is_stmt 0 view .LVU13
+  65 000c 30BD     		pop	{r4, r5, pc}
+  66              	.LVL3:
+  67              	.L4:
+  68              	.LBB31:
+  69              	.LBB28:
+   8:network.c     ****         unsigned int ai = (a >> i) & 1;
+  70              		.loc 1 8 9 is_stmt 1 view .LVU14
+   9:network.c     ****         if (R >= n) {
+  71              		.loc 1 9 9 view .LVU15
+   8:network.c     ****         unsigned int ai = (a >> i) & 1;
+  72              		.loc 1 8 30 is_stmt 0 view .LVU16
+  73 000e 25FA03F4 		lsr	r4, r5, r3
+   8:network.c     ****         unsigned int ai = (a >> i) & 1;
+  74              		.loc 1 8 22 view .LVU17
+  75 0012 04F00104 		and	r4, r4, #1
+  76              	.LVL4:
+   9:network.c     ****         if (R >= n) {
+  77              		.loc 1 9 24 view .LVU18
+  78 0016 4C43     		muls	r4, r1, r4
+  79              	.LVL5:
+   9:network.c     ****         if (R >= n) {
+  80              		.loc 1 9 11 view .LVU19
+  81 0018 04EB4000 		add	r0, r4, r0, lsl #1
+  82              	.LVL6:
+  10:network.c     ****             R = R - n;
+  83              		.loc 1 10 9 is_stmt 1 view .LVU20
+  10:network.c     ****             R = R - n;
+  84              		.loc 1 10 12 is_stmt 0 view .LVU21
+  85 001c 9042     		cmp	r0, r2
+  86 001e 03D3     		bcc	.L3
+  11:network.c     ****         }
+  87              		.loc 1 11 13 is_stmt 1 view .LVU22
+  11:network.c     ****         }
+  88              		.loc 1 11 15 is_stmt 0 view .LVU23
+  89 0020 801A     		subs	r0, r0, r2
+  90              	.LVL7:
+  13:network.c     ****             R = R - n;
+  91              		.loc 1 13 9 is_stmt 1 view .LVU24
+  13:network.c     ****             R = R - n;
+  92              		.loc 1 13 12 is_stmt 0 view .LVU25
+  93 0022 8242     		cmp	r2, r0
+  14:network.c     ****         }
+  94              		.loc 1 14 13 is_stmt 1 view .LVU26
+  14:network.c     ****         }
+  95              		.loc 1 14 15 is_stmt 0 view .LVU27
+  96 0024 98BF     		it	ls
+  97 0026 801A     		subls	r0, r0, r2
+  98              	.LVL8:
+  99              	.L3:
+  14:network.c     ****         }
+ 100              		.loc 1 14 15 view .LVU28
+ 101              	.LBE28:
+   7:network.c     ****         unsigned int ai = (a >> i) & 1;
+ 102              		.loc 1 7 38 is_stmt 1 discriminator 2 view .LVU29
+   7:network.c     ****         unsigned int ai = (a >> i) & 1;
+ 103              		.loc 1 7 39 is_stmt 0 discriminator 2 view .LVU30
+ 104 0028 013B     		subs	r3, r3, #1
+ 105              	.LVL9:
+   7:network.c     ****         unsigned int ai = (a >> i) & 1;
+ 106              		.loc 1 7 39 discriminator 2 view .LVU31
+ 107 002a EDE7     		b	.L2
+ 108              	.LBE31:
+ 109              		.cfi_endproc
+ 110              	.LFE3:
+ 112              		.section	.text.modulo_masked,"ax",%progbits
+ 113              		.align	1
+ 114              		.global	modulo_masked
+ 115              		.syntax unified
+ 116              		.thumb
+ 117              		.thumb_func
+ 118              		.fpu softvfp
+ 120              	modulo_masked:
+ 121              	.LVL10:
+ 122              	.LFB4:
+  19:network.c     **** 
+  20:network.c     **** unsigned int modulo_masked(int i, unsigned int s1[], unsigned int s2[], unsigned int length) {
+ 123              		.loc 1 20 94 is_stmt 1 view -0
+ 124              		.cfi_startproc
+ 125              		@ args = 0, pretend = 0, frame = 0
+ 126              		@ frame_needed = 0, uses_anonymous_args = 0
+  21:network.c     ****     unsigned int r1 = rand();
+ 127              		.loc 1 21 5 view .LVU33
+  20:network.c     ****     unsigned int r1 = rand();
+ 128              		.loc 1 20 94 is_stmt 0 view .LVU34
+ 129 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 130              	.LCFI1:
+ 131              		.cfi_def_cfa_offset 24
+ 132              		.cfi_offset 4, -24
+ 133              		.cfi_offset 5, -20
+ 134              		.cfi_offset 6, -16
+ 135              		.cfi_offset 7, -12
+ 136              		.cfi_offset 8, -8
+ 137              		.cfi_offset 14, -4
+  20:network.c     ****     unsigned int r1 = rand();
+ 138              		.loc 1 20 94 view .LVU35
+ 139 0004 0546     		mov	r5, r0
+ 140 0006 0C46     		mov	r4, r1
+ 141 0008 1646     		mov	r6, r2
+ 142 000a 1F46     		mov	r7, r3
+ 143              		.loc 1 21 23 view .LVU36
+ 144 000c FFF7FEFF 		bl	rand
+ 145              	.LVL11:
+ 146              		.loc 1 21 23 view .LVU37
+ 147 0010 8046     		mov	r8, r0
+ 148              	.LVL12:
+  22:network.c     ****     unsigned int r2 = rand();
+ 149              		.loc 1 22 5 is_stmt 1 view .LVU38
+ 150              		.loc 1 22 23 is_stmt 0 view .LVU39
+ 151 0012 FFF7FEFF 		bl	rand
+ 152              	.LVL13:
+  23:network.c     ****     unsigned int tmp = (r1 * s1[i] + r2 * (i + 1)) % (i + 1);
+ 153              		.loc 1 23 5 is_stmt 1 view .LVU40
+ 154              		.loc 1 23 28 is_stmt 0 view .LVU41
+ 155 0016 54F82530 		ldr	r3, [r4, r5, lsl #2]
+  24:network.c     ****     // Compute (tmp * s2[i]) % (i + 1)
+  25:network.c     ****     unsigned int j = blakely(tmp, s2[i], i + 1, length);
+ 156              		.loc 1 25 22 view .LVU42
+ 157 001a 56F82510 		ldr	r1, [r6, r5, lsl #2]
+  23:network.c     ****     unsigned int tmp = (r1 * s1[i] + r2 * (i + 1)) % (i + 1);
+ 158              		.loc 1 23 41 view .LVU43
+ 159 001e 05FB0004 		mla	r4, r5, r0, r0
+ 160              	.LVL14:
+  23:network.c     ****     unsigned int tmp = (r1 * s1[i] + r2 * (i + 1)) % (i + 1);
+ 161              		.loc 1 23 36 view .LVU44
+ 162 0022 03FB0844 		mla	r4, r3, r8, r4
+  23:network.c     ****     unsigned int tmp = (r1 * s1[i] + r2 * (i + 1)) % (i + 1);
+ 163              		.loc 1 23 46 view .LVU45
+ 164 0026 6A1C     		adds	r2, r5, #1
+ 165              	.LVL15:
+ 166              		.loc 1 25 5 is_stmt 1 view .LVU46
+ 167              		.loc 1 25 22 is_stmt 0 view .LVU47
+ 168 0028 3B46     		mov	r3, r7
+  23:network.c     ****     unsigned int tmp = (r1 * s1[i] + r2 * (i + 1)) % (i + 1);
+ 169              		.loc 1 23 18 view .LVU48
+ 170 002a B4FBF2F0 		udiv	r0, r4, r2
+ 171              	.LVL16:
+ 172              		.loc 1 25 22 view .LVU49
+ 173 002e 02FB1040 		mls	r0, r2, r0, r4
+  26:network.c     ****     return j;
+  27:network.c     **** }
+ 174              		.loc 1 27 1 view .LVU50
+ 175 0032 BDE8F041 		pop	{r4, r5, r6, r7, r8, lr}
+ 176              	.LCFI2:
+ 177              		.cfi_restore 14
+ 178              		.cfi_restore 8
+ 179              		.cfi_restore 7
+ 180              		.cfi_restore 6
+ 181              		.cfi_restore 5
+ 182              		.cfi_restore 4
+ 183              		.cfi_def_cfa_offset 0
+ 184              	.LVL17:
+  25:network.c     ****     return j;
+ 185              		.loc 1 25 22 view .LVU51
+ 186 0036 FFF7FEBF 		b	blakely
+ 187              	.LVL18:
+  25:network.c     ****     return j;
+ 188              		.loc 1 25 22 view .LVU52
+ 189              		.cfi_endproc
+ 190              	.LFE4:
+ 192              		.section	.text.fisher_yates_masked,"ax",%progbits
+ 193              		.align	1
+ 194              		.global	fisher_yates_masked
+ 195              		.syntax unified
+ 196              		.thumb
+ 197              		.thumb_func
+ 198              		.fpu softvfp
+ 200              	fisher_yates_masked:
+ 201              	.LVL19:
+ 202              	.LFB5:
+  28:network.c     **** 
+  29:network.c     **** void fisher_yates_masked(int arr[], unsigned int size, unsigned int s1[], unsigned int s2[], unsign
+ 203              		.loc 1 29 115 is_stmt 1 view -0
+ 204              		.cfi_startproc
+ 205              		@ args = 4, pretend = 0, frame = 0
+ 206              		@ frame_needed = 0, uses_anonymous_args = 0
+  30:network.c     ****     #ifdef DEBUGGING
+  31:network.c     ****     printf("arr: ");
+  32:network.c     ****     for (int i=0; i<size; i++)printf("%d", arr[i]);
+  33:network.c     ****     printf(" size: %d, s1: ", size);
+  34:network.c     ****     for (int i=0; i<size; i++)printf("%d", s1[i]);
+  35:network.c     ****     printf(" s2: ");
+  36:network.c     ****     for (int i=0; i<size; i++)printf("%d", s2[i]);
+  37:network.c     ****     printf(" length: %d Shuffled arr: ", length);
+  38:network.c     ****     #endif
+  39:network.c     ****     for (int i = size - 1; i >= 2; i--) {
+ 207              		.loc 1 39 5 view .LVU54
+ 208              	.LBB32:
+ 209              		.loc 1 39 10 view .LVU55
+ 210              	.LBE32:
+  29:network.c     ****     #ifdef DEBUGGING
+ 211              		.loc 1 29 115 is_stmt 0 view .LVU56
+ 212 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 213              	.LCFI3:
+ 214              		.cfi_def_cfa_offset 24
+ 215              		.cfi_offset 3, -24
+ 216              		.cfi_offset 4, -20
+ 217              		.cfi_offset 5, -16
+ 218              		.cfi_offset 6, -12
+ 219              		.cfi_offset 7, -8
+ 220              		.cfi_offset 14, -4
+  29:network.c     ****     #ifdef DEBUGGING
+ 221              		.loc 1 29 115 view .LVU57
+ 222 0002 0446     		mov	r4, r0
+ 223 0004 1646     		mov	r6, r2
+ 224 0006 1F46     		mov	r7, r3
+ 225              	.LBB34:
+ 226              		.loc 1 39 23 view .LVU58
+ 227 0008 4D1E     		subs	r5, r1, #1
+ 228              	.LVL20:
+ 229              	.L7:
+ 230              		.loc 1 39 28 is_stmt 1 discriminator 1 view .LVU59
+ 231              		.loc 1 39 5 is_stmt 0 discriminator 1 view .LVU60
+ 232 000a 012D     		cmp	r5, #1
+ 233 000c 0DDC     		bgt	.L8
+ 234              		.loc 1 39 5 discriminator 1 view .LVU61
+ 235              	.LBE34:
+  40:network.c     ****         unsigned int j = modulo_masked(i, s1, s2, length);
+  41:network.c     ****         unsigned int temp = arr[i];
+  42:network.c     ****         arr[i] = arr[j];
+  43:network.c     ****         arr[j] = temp;
+  44:network.c     ****     }
+  45:network.c     ****     unsigned int j = rand() % 2;
+ 236              		.loc 1 45 5 is_stmt 1 view .LVU62
+ 237              		.loc 1 45 22 is_stmt 0 view .LVU63
+ 238 000e FFF7FEFF 		bl	rand
+ 239              	.LVL21:
+  46:network.c     ****     unsigned int temp = arr[1];
+ 240              		.loc 1 46 5 is_stmt 1 view .LVU64
+  45:network.c     ****     unsigned int temp = arr[1];
+ 241              		.loc 1 45 29 is_stmt 0 view .LVU65
+ 242 0012 0028     		cmp	r0, #0
+  45:network.c     ****     unsigned int temp = arr[1];
+ 243              		.loc 1 45 29 view .LVU66
+ 244 0014 00F00100 		and	r0, r0, #1
+ 245              	.LVL22:
+  45:network.c     ****     unsigned int temp = arr[1];
+ 246              		.loc 1 45 29 view .LVU67
+ 247 0018 B8BF     		it	lt
+ 248 001a 4042     		rsblt	r0, r0, #0
+ 249              		.loc 1 46 28 view .LVU68
+ 250 001c 6368     		ldr	r3, [r4, #4]
+ 251              	.LVL23:
+  47:network.c     ****     arr[1] = arr[j];
+ 252              		.loc 1 47 5 is_stmt 1 view .LVU69
+ 253              		.loc 1 47 17 is_stmt 0 view .LVU70
+ 254 001e 54F82020 		ldr	r2, [r4, r0, lsl #2]
+ 255              		.loc 1 47 12 view .LVU71
+ 256 0022 6260     		str	r2, [r4, #4]
+  48:network.c     ****     arr[j] = temp;
+ 257              		.loc 1 48 5 is_stmt 1 view .LVU72
+ 258              		.loc 1 48 12 is_stmt 0 view .LVU73
+ 259 0024 44F82030 		str	r3, [r4, r0, lsl #2]
+  49:network.c     **** 
+  50:network.c     ****     #ifdef DEBUGGING
+  51:network.c     ****     for (int i=0; i<size; i++)printf("%d", arr[i]);
+  52:network.c     ****     printf("\n");
+  53:network.c     ****     #endif
+  54:network.c     **** }
+ 260              		.loc 1 54 1 view .LVU74
+ 261 0028 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 262              	.LVL24:
+ 263              	.L8:
+ 264              	.LBB35:
+ 265              	.LBB33:
+  40:network.c     ****         unsigned int temp = arr[i];
+ 266              		.loc 1 40 9 is_stmt 1 discriminator 3 view .LVU75
+  40:network.c     ****         unsigned int temp = arr[i];
+ 267              		.loc 1 40 26 is_stmt 0 discriminator 3 view .LVU76
+ 268 002a 069B     		ldr	r3, [sp, #24]
+ 269 002c 3A46     		mov	r2, r7
+ 270 002e 2846     		mov	r0, r5
+ 271 0030 3146     		mov	r1, r6
+ 272 0032 FFF7FEFF 		bl	modulo_masked
+ 273              	.LVL25:
+  41:network.c     ****         arr[i] = arr[j];
+ 274              		.loc 1 41 9 is_stmt 1 discriminator 3 view .LVU77
+  41:network.c     ****         arr[i] = arr[j];
+ 275              		.loc 1 41 32 is_stmt 0 discriminator 3 view .LVU78
+ 276 0036 54F82530 		ldr	r3, [r4, r5, lsl #2]
+ 277              	.LVL26:
+  42:network.c     ****         arr[j] = temp;
+ 278              		.loc 1 42 9 is_stmt 1 discriminator 3 view .LVU79
+  42:network.c     ****         arr[j] = temp;
+ 279              		.loc 1 42 21 is_stmt 0 discriminator 3 view .LVU80
+ 280 003a 54F82020 		ldr	r2, [r4, r0, lsl #2]
+  42:network.c     ****         arr[j] = temp;
+ 281              		.loc 1 42 16 discriminator 3 view .LVU81
+ 282 003e 44F82520 		str	r2, [r4, r5, lsl #2]
+  43:network.c     ****     }
+ 283              		.loc 1 43 9 is_stmt 1 discriminator 3 view .LVU82
+  43:network.c     ****     }
+ 284              		.loc 1 43 16 is_stmt 0 discriminator 3 view .LVU83
+ 285 0042 44F82030 		str	r3, [r4, r0, lsl #2]
+ 286              	.LBE33:
+  39:network.c     ****         unsigned int j = modulo_masked(i, s1, s2, length);
+ 287              		.loc 1 39 36 is_stmt 1 discriminator 3 view .LVU84
+  39:network.c     ****         unsigned int j = modulo_masked(i, s1, s2, length);
+ 288              		.loc 1 39 37 is_stmt 0 discriminator 3 view .LVU85
+ 289 0046 013D     		subs	r5, r5, #1
+ 290              	.LVL27:
+  39:network.c     ****         unsigned int j = modulo_masked(i, s1, s2, length);
+ 291              		.loc 1 39 37 discriminator 3 view .LVU86
+ 292 0048 DFE7     		b	.L7
+ 293              	.LBE35:
+ 294              		.cfi_endproc
+ 295              	.LFE5:
+ 297              		.section	.text.swap,"ax",%progbits
+ 298              		.align	1
+ 299              		.global	swap
+ 300              		.syntax unified
+ 301              		.thumb
+ 302              		.thumb_func
+ 303              		.fpu softvfp
+ 305              	swap:
+ 306              	.LVL28:
+ 307              	.LFB6:
+  55:network.c     **** 
+  56:network.c     **** void swap(int *a, int *b){
+ 308              		.loc 1 56 26 is_stmt 1 view -0
+ 309              		.cfi_startproc
+ 310              		@ args = 0, pretend = 0, frame = 0
+ 311              		@ frame_needed = 0, uses_anonymous_args = 0
+ 312              		@ link register save eliminated.
+  57:network.c     ****     int temp = *a;
+ 313              		.loc 1 57 5 view .LVU88
+ 314              		.loc 1 57 9 is_stmt 0 view .LVU89
+ 315 0000 0368     		ldr	r3, [r0]
+ 316              	.LVL29:
+  58:network.c     ****     *a = *b;
+ 317              		.loc 1 58 5 is_stmt 1 view .LVU90
+ 318              		.loc 1 58 10 is_stmt 0 view .LVU91
+ 319 0002 0A68     		ldr	r2, [r1]
+ 320              		.loc 1 58 8 view .LVU92
+ 321 0004 0260     		str	r2, [r0]
+  59:network.c     ****     *b = temp;
+ 322              		.loc 1 59 5 is_stmt 1 view .LVU93
+ 323              		.loc 1 59 8 is_stmt 0 view .LVU94
+ 324 0006 0B60     		str	r3, [r1]
+  60:network.c     **** }
+ 325              		.loc 1 60 1 view .LVU95
+ 326 0008 7047     		bx	lr
+ 327              		.cfi_endproc
+ 328              	.LFE6:
+ 330              		.section	.text.fisher_yates,"ax",%progbits
+ 331              		.align	1
+ 332              		.global	fisher_yates
+ 333              		.syntax unified
+ 334              		.thumb
+ 335              		.thumb_func
+ 336              		.fpu softvfp
+ 338              	fisher_yates:
+ 339              	.LVL30:
+ 340              	.LFB7:
+  61:network.c     **** /** 
+  62:network.c     **** * @brief
+  63:network.c     **** * Shuffles the array using the Fisher-Yates shuffle
+  64:network.c     **** */
+  65:network.c     **** void fisher_yates(int arr[], int size){
+ 341              		.loc 1 65 39 is_stmt 1 view -0
+ 342              		.cfi_startproc
+ 343              		@ args = 0, pretend = 0, frame = 0
+ 344              		@ frame_needed = 0, uses_anonymous_args = 0
+  66:network.c     ****     for (int i = size - 1; i > 0; i--) {
+ 345              		.loc 1 66 5 view .LVU97
+ 346              	.LBB36:
+ 347              		.loc 1 66 10 view .LVU98
+ 348              	.LBE36:
+  65:network.c     ****     for (int i = size - 1; i > 0; i--) {
+ 349              		.loc 1 65 39 is_stmt 0 view .LVU99
+ 350 0000 38B5     		push	{r3, r4, r5, lr}
+ 351              	.LCFI4:
+ 352              		.cfi_def_cfa_offset 16
+ 353              		.cfi_offset 3, -16
+ 354              		.cfi_offset 4, -12
+ 355              		.cfi_offset 5, -8
+ 356              		.cfi_offset 14, -4
+  65:network.c     ****     for (int i = size - 1; i > 0; i--) {
+ 357              		.loc 1 65 39 view .LVU100
+ 358 0002 0546     		mov	r5, r0
+ 359              	.LBB40:
+ 360              		.loc 1 66 14 view .LVU101
+ 361 0004 4C1E     		subs	r4, r1, #1
+ 362              	.LVL31:
+ 363              	.L11:
+ 364              		.loc 1 66 28 is_stmt 1 discriminator 1 view .LVU102
+ 365              		.loc 1 66 5 is_stmt 0 discriminator 1 view .LVU103
+ 366 0006 002C     		cmp	r4, #0
+ 367 0008 00DC     		bgt	.L12
+ 368              		.loc 1 66 5 discriminator 1 view .LVU104
+ 369              	.LBE40:
+  67:network.c     ****         int j = rand() % (i + 1);
+  68:network.c     ****         swap(&arr[i], &arr[j]);
+  69:network.c     ****     }
+  70:network.c     **** }
+ 370              		.loc 1 70 1 view .LVU105
+ 371 000a 38BD     		pop	{r3, r4, r5, pc}
+ 372              	.LVL32:
+ 373              	.L12:
+ 374              	.LBB41:
+ 375              	.LBB37:
+  67:network.c     ****         int j = rand() % (i + 1);
+ 376              		.loc 1 67 9 is_stmt 1 discriminator 3 view .LVU106
+  67:network.c     ****         int j = rand() % (i + 1);
+ 377              		.loc 1 67 17 is_stmt 0 discriminator 3 view .LVU107
+ 378 000c FFF7FEFF 		bl	rand
+ 379              	.LVL33:
+  68:network.c     ****     }
+ 380              		.loc 1 68 9 is_stmt 1 discriminator 3 view .LVU108
+  67:network.c     ****         int j = rand() % (i + 1);
+ 381              		.loc 1 67 13 is_stmt 0 discriminator 3 view .LVU109
+ 382 0010 631C     		adds	r3, r4, #1
+ 383 0012 90FBF3F2 		sdiv	r2, r0, r3
+ 384 0016 02FB1300 		mls	r0, r2, r3, r0
+ 385              	.LVL34:
+ 386              	.LBB38:
+ 387              	.LBI38:
+  56:network.c     ****     int temp = *a;
+ 388              		.loc 1 56 6 is_stmt 1 discriminator 3 view .LVU110
+ 389              	.LBB39:
+  57:network.c     ****     *a = *b;
+ 390              		.loc 1 57 5 discriminator 3 view .LVU111
+  57:network.c     ****     *a = *b;
+ 391              		.loc 1 57 9 is_stmt 0 discriminator 3 view .LVU112
+ 392 001a 55F82430 		ldr	r3, [r5, r4, lsl #2]
+ 393              	.LVL35:
+  58:network.c     ****     *b = temp;
+ 394              		.loc 1 58 5 is_stmt 1 discriminator 3 view .LVU113
+  58:network.c     ****     *b = temp;
+ 395              		.loc 1 58 10 is_stmt 0 discriminator 3 view .LVU114
+ 396 001e 55F82020 		ldr	r2, [r5, r0, lsl #2]
+  58:network.c     ****     *b = temp;
+ 397              		.loc 1 58 8 discriminator 3 view .LVU115
+ 398 0022 45F82420 		str	r2, [r5, r4, lsl #2]
+  59:network.c     **** }
+ 399              		.loc 1 59 5 is_stmt 1 discriminator 3 view .LVU116
+  59:network.c     **** }
+ 400              		.loc 1 59 8 is_stmt 0 discriminator 3 view .LVU117
+ 401 0026 45F82030 		str	r3, [r5, r0, lsl #2]
+ 402              	.LVL36:
+  59:network.c     **** }
+ 403              		.loc 1 59 8 discriminator 3 view .LVU118
+ 404              	.LBE39:
+ 405              	.LBE38:
+ 406              	.LBE37:
+  66:network.c     ****         int j = rand() % (i + 1);
+ 407              		.loc 1 66 35 is_stmt 1 discriminator 3 view .LVU119
+  66:network.c     ****         int j = rand() % (i + 1);
+ 408              		.loc 1 66 36 is_stmt 0 discriminator 3 view .LVU120
+ 409 002a 013C     		subs	r4, r4, #1
+ 410              	.LVL37:
+  66:network.c     ****         int j = rand() % (i + 1);
+ 411              		.loc 1 66 36 discriminator 3 view .LVU121
+ 412 002c EBE7     		b	.L11
+ 413              	.LBE41:
+ 414              		.cfi_endproc
+ 415              	.LFE7:
+ 417              		.section	.text.fisher_yates_deranged,"ax",%progbits
+ 418              		.align	1
+ 419              		.global	fisher_yates_deranged
+ 420              		.syntax unified
+ 421              		.thumb
+ 422              		.thumb_func
+ 423              		.fpu softvfp
+ 425              	fisher_yates_deranged:
+ 426              	.LVL38:
+ 427              	.LFB8:
+  71:network.c     **** 
+  72:network.c     **** void fisher_yates_deranged(int arr[], int size){
+ 428              		.loc 1 72 48 is_stmt 1 view -0
+ 429              		.cfi_startproc
+ 430              		@ args = 0, pretend = 0, frame = 0
+ 431              		@ frame_needed = 0, uses_anonymous_args = 0
+  73:network.c     ****     for (int i = size - 1; i > 0; i--) {
+ 432              		.loc 1 73 5 view .LVU123
+ 433              	.LBB57:
+ 434              		.loc 1 73 10 view .LVU124
+ 435              	.LBE57:
+  72:network.c     ****     for (int i = size - 1; i > 0; i--) {
+ 436              		.loc 1 72 48 is_stmt 0 view .LVU125
+ 437 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 438              	.LCFI5:
+ 439              		.cfi_def_cfa_offset 24
+ 440              		.cfi_offset 3, -24
+ 441              		.cfi_offset 4, -20
+ 442              		.cfi_offset 5, -16
+ 443              		.cfi_offset 6, -12
+ 444              		.cfi_offset 7, -8
+ 445              		.cfi_offset 14, -4
+  72:network.c     ****     for (int i = size - 1; i > 0; i--) {
+ 446              		.loc 1 72 48 view .LVU126
+ 447 0002 0446     		mov	r4, r0
+ 448 0004 0D46     		mov	r5, r1
+ 449              	.LBB61:
+ 450              		.loc 1 73 14 view .LVU127
+ 451 0006 4E1E     		subs	r6, r1, #1
+ 452              	.LVL39:
+ 453              	.L14:
+ 454              		.loc 1 73 28 is_stmt 1 discriminator 1 view .LVU128
+ 455              		.loc 1 73 5 is_stmt 0 discriminator 1 view .LVU129
+ 456 0008 002E     		cmp	r6, #0
+ 457 000a 19DC     		bgt	.L15
+ 458              		.loc 1 73 5 discriminator 1 view .LVU130
+ 459              	.LBE61:
+  74:network.c     ****         int j = rand() % (i + 1);
+  75:network.c     ****         swap(&arr[i], &arr[j]);
+  76:network.c     ****     }
+  77:network.c     **** 
+  78:network.c     ****     if (size > 2){
+ 460              		.loc 1 78 5 is_stmt 1 view .LVU131
+ 461              		.loc 1 78 8 is_stmt 0 view .LVU132
+ 462 000c 022D     		cmp	r5, #2
+ 463 000e 16DD     		ble	.L13
+ 464 0010 271F     		subs	r7, r4, #4
+ 465              	.LBB62:
+ 466              	.LBB63:
+  79:network.c     ****         for (int i = 0; i < size; i++){
+ 467              		.loc 1 79 18 view .LVU133
+ 468 0012 0026     		movs	r6, #0
+ 469              	.LVL40:
+ 470              	.L19:
+  80:network.c     ****             if (arr[i] == i) {
+ 471              		.loc 1 80 13 is_stmt 1 view .LVU134
+ 472              		.loc 1 80 16 is_stmt 0 view .LVU135
+ 473 0014 57F8043F 		ldr	r3, [r7, #4]!
+ 474 0018 B342     		cmp	r3, r6
+ 475 001a 0DD1     		bne	.L17
+ 476              	.L18:
+ 477              	.LBB64:
+  81:network.c     **** 
+  82:network.c     ****                 int swap_index = -1;
+  83:network.c     ****                 do {
+ 478              		.loc 1 83 17 is_stmt 1 view .LVU136
+  84:network.c     ****                     swap_index = rand() % size;
+ 479              		.loc 1 84 21 view .LVU137
+ 480              		.loc 1 84 34 is_stmt 0 view .LVU138
+ 481 001c FFF7FEFF 		bl	rand
+ 482              	.LVL41:
+ 483              		.loc 1 84 32 view .LVU139
+ 484 0020 90FBF5F3 		sdiv	r3, r0, r5
+ 485 0024 03FB1500 		mls	r0, r3, r5, r0
+ 486              	.LVL42:
+  85:network.c     ****                 } while (swap_index == i);
+ 487              		.loc 1 85 25 is_stmt 1 view .LVU140
+ 488              		.loc 1 85 17 is_stmt 0 view .LVU141
+ 489 0028 B042     		cmp	r0, r6
+ 490 002a F7D0     		beq	.L18
+  86:network.c     **** 
+  87:network.c     ****                 swap(&arr[i], &arr[swap_index]);
+ 491              		.loc 1 87 17 is_stmt 1 view .LVU142
+ 492              	.LVL43:
+ 493              	.LBB65:
+ 494              	.LBI65:
+  56:network.c     ****     int temp = *a;
+ 495              		.loc 1 56 6 view .LVU143
+ 496              	.LBB66:
+  57:network.c     ****     *a = *b;
+ 497              		.loc 1 57 5 view .LVU144
+  57:network.c     ****     *a = *b;
+ 498              		.loc 1 57 9 is_stmt 0 view .LVU145
+ 499 002c 3B68     		ldr	r3, [r7]
+ 500              	.LVL44:
+  58:network.c     ****     *b = temp;
+ 501              		.loc 1 58 5 is_stmt 1 view .LVU146
+  58:network.c     ****     *b = temp;
+ 502              		.loc 1 58 10 is_stmt 0 view .LVU147
+ 503 002e 54F82020 		ldr	r2, [r4, r0, lsl #2]
+  58:network.c     ****     *b = temp;
+ 504              		.loc 1 58 8 view .LVU148
+ 505 0032 3A60     		str	r2, [r7]
+  59:network.c     **** }
+ 506              		.loc 1 59 5 is_stmt 1 view .LVU149
+  59:network.c     **** }
+ 507              		.loc 1 59 8 is_stmt 0 view .LVU150
+ 508 0034 44F82030 		str	r3, [r4, r0, lsl #2]
+ 509              	.LVL45:
+ 510              	.L17:
+  59:network.c     **** }
+ 511              		.loc 1 59 8 view .LVU151
+ 512              	.LBE66:
+ 513              	.LBE65:
+ 514              	.LBE64:
+  79:network.c     ****             if (arr[i] == i) {
+ 515              		.loc 1 79 35 is_stmt 1 view .LVU152
+  79:network.c     ****             if (arr[i] == i) {
+ 516              		.loc 1 79 36 is_stmt 0 view .LVU153
+ 517 0038 0136     		adds	r6, r6, #1
+ 518              	.LVL46:
+  79:network.c     ****             if (arr[i] == i) {
+ 519              		.loc 1 79 25 is_stmt 1 view .LVU154
+  79:network.c     ****             if (arr[i] == i) {
+ 520              		.loc 1 79 9 is_stmt 0 view .LVU155
+ 521 003a B542     		cmp	r5, r6
+ 522 003c EAD1     		bne	.L19
+ 523              	.LVL47:
+ 524              	.L13:
+  79:network.c     ****             if (arr[i] == i) {
+ 525              		.loc 1 79 9 view .LVU156
+ 526              	.LBE63:
+ 527              	.LBE62:
+  88:network.c     ****             }
+  89:network.c     ****         }
+  90:network.c     ****     }
+  91:network.c     **** }
+ 528              		.loc 1 91 1 view .LVU157
+ 529 003e F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 530              	.LVL48:
+ 531              	.L15:
+ 532              	.LBB67:
+ 533              	.LBB58:
+  74:network.c     ****         swap(&arr[i], &arr[j]);
+ 534              		.loc 1 74 9 is_stmt 1 discriminator 3 view .LVU158
+  74:network.c     ****         swap(&arr[i], &arr[j]);
+ 535              		.loc 1 74 17 is_stmt 0 discriminator 3 view .LVU159
+ 536 0040 FFF7FEFF 		bl	rand
+ 537              	.LVL49:
+  75:network.c     ****     }
+ 538              		.loc 1 75 9 is_stmt 1 discriminator 3 view .LVU160
+  74:network.c     ****         swap(&arr[i], &arr[j]);
+ 539              		.loc 1 74 13 is_stmt 0 discriminator 3 view .LVU161
+ 540 0044 731C     		adds	r3, r6, #1
+ 541 0046 90FBF3F2 		sdiv	r2, r0, r3
+ 542 004a 02FB1300 		mls	r0, r2, r3, r0
+ 543              	.LVL50:
+ 544              	.LBB59:
+ 545              	.LBI59:
+  56:network.c     ****     int temp = *a;
+ 546              		.loc 1 56 6 is_stmt 1 discriminator 3 view .LVU162
+ 547              	.LBB60:
+  57:network.c     ****     *a = *b;
+ 548              		.loc 1 57 5 discriminator 3 view .LVU163
+  57:network.c     ****     *a = *b;
+ 549              		.loc 1 57 9 is_stmt 0 discriminator 3 view .LVU164
+ 550 004e 54F82630 		ldr	r3, [r4, r6, lsl #2]
+ 551              	.LVL51:
+  58:network.c     ****     *b = temp;
+ 552              		.loc 1 58 5 is_stmt 1 discriminator 3 view .LVU165
+  58:network.c     ****     *b = temp;
+ 553              		.loc 1 58 10 is_stmt 0 discriminator 3 view .LVU166
+ 554 0052 54F82020 		ldr	r2, [r4, r0, lsl #2]
+  58:network.c     ****     *b = temp;
+ 555              		.loc 1 58 8 discriminator 3 view .LVU167
+ 556 0056 44F82620 		str	r2, [r4, r6, lsl #2]
+  59:network.c     **** }
+ 557              		.loc 1 59 5 is_stmt 1 discriminator 3 view .LVU168
+  59:network.c     **** }
+ 558              		.loc 1 59 8 is_stmt 0 discriminator 3 view .LVU169
+ 559 005a 44F82030 		str	r3, [r4, r0, lsl #2]
+ 560              	.LVL52:
+  59:network.c     **** }
+ 561              		.loc 1 59 8 discriminator 3 view .LVU170
+ 562              	.LBE60:
+ 563              	.LBE59:
+ 564              	.LBE58:
+  73:network.c     ****         int j = rand() % (i + 1);
+ 565              		.loc 1 73 35 is_stmt 1 discriminator 3 view .LVU171
+  73:network.c     ****         int j = rand() % (i + 1);
+ 566              		.loc 1 73 36 is_stmt 0 discriminator 3 view .LVU172
+ 567 005e 013E     		subs	r6, r6, #1
+ 568              	.LVL53:
+  73:network.c     ****         int j = rand() % (i + 1);
+ 569              		.loc 1 73 36 discriminator 3 view .LVU173
+ 570 0060 D2E7     		b	.L14
+ 571              	.LBE67:
+ 572              		.cfi_endproc
+ 573              	.LFE8:
+ 575              		.section	.text.get_random_indices,"ax",%progbits
+ 576              		.align	1
+ 577              		.global	get_random_indices
+ 578              		.syntax unified
+ 579              		.thumb
+ 580              		.thumb_func
+ 581              		.fpu softvfp
+ 583              	get_random_indices:
+ 584              	.LVL54:
+ 585              	.LFB9:
+  92:network.c     **** 
+  93:network.c     **** int* get_random_indices(int size){
+ 586              		.loc 1 93 34 is_stmt 1 view -0
+ 587              		.cfi_startproc
+ 588              		@ args = 0, pretend = 0, frame = 0
+ 589              		@ frame_needed = 0, uses_anonymous_args = 0
+  94:network.c     ****     int *arr = malloc(size * sizeof(int));
+ 590              		.loc 1 94 5 view .LVU175
+  93:network.c     ****     int *arr = malloc(size * sizeof(int));
+ 591              		.loc 1 93 34 is_stmt 0 view .LVU176
+ 592 0000 38B5     		push	{r3, r4, r5, lr}
+ 593              	.LCFI6:
+ 594              		.cfi_def_cfa_offset 16
+ 595              		.cfi_offset 3, -16
+ 596              		.cfi_offset 4, -12
+ 597              		.cfi_offset 5, -8
+ 598              		.cfi_offset 14, -4
+  93:network.c     ****     int *arr = malloc(size * sizeof(int));
+ 599              		.loc 1 93 34 view .LVU177
+ 600 0002 0546     		mov	r5, r0
+ 601              		.loc 1 94 16 view .LVU178
+ 602 0004 8000     		lsls	r0, r0, #2
+ 603              	.LVL55:
+ 604              		.loc 1 94 16 view .LVU179
+ 605 0006 FFF7FEFF 		bl	malloc
+ 606              	.LVL56:
+ 607              	.LBB68:
+  95:network.c     ****     for (int i=0; i<size; i++){
+ 608              		.loc 1 95 14 view .LVU180
+ 609 000a 0023     		movs	r3, #0
+ 610              	.LBE68:
+  94:network.c     ****     int *arr = malloc(size * sizeof(int));
+ 611              		.loc 1 94 16 view .LVU181
+ 612 000c 0446     		mov	r4, r0
+ 613              	.LVL57:
+ 614              		.loc 1 95 5 is_stmt 1 view .LVU182
+ 615              	.LBB69:
+ 616              		.loc 1 95 10 view .LVU183
+ 617              	.L23:
+ 618              		.loc 1 95 19 discriminator 1 view .LVU184
+ 619              		.loc 1 95 5 is_stmt 0 discriminator 1 view .LVU185
+ 620 000e AB42     		cmp	r3, r5
+ 621 0010 05DB     		blt	.L24
+ 622              	.LBE69:
+  96:network.c     ****         arr[i] = i;
+  97:network.c     ****     }
+  98:network.c     ****     fisher_yates(arr, size);
+ 623              		.loc 1 98 5 is_stmt 1 view .LVU186
+ 624 0012 2046     		mov	r0, r4
+ 625              	.LVL58:
+ 626              		.loc 1 98 5 is_stmt 0 view .LVU187
+ 627 0014 2946     		mov	r1, r5
+ 628 0016 FFF7FEFF 		bl	fisher_yates
+ 629              	.LVL59:
+  99:network.c     ****     return arr;
+ 630              		.loc 1 99 5 is_stmt 1 view .LVU188
+ 100:network.c     **** }
+ 631              		.loc 1 100 1 is_stmt 0 view .LVU189
+ 632 001a 2046     		mov	r0, r4
+ 633 001c 38BD     		pop	{r3, r4, r5, pc}
+ 634              	.LVL60:
+ 635              	.L24:
+ 636              	.LBB70:
+  96:network.c     ****         arr[i] = i;
+ 637              		.loc 1 96 9 is_stmt 1 discriminator 3 view .LVU190
+  96:network.c     ****         arr[i] = i;
+ 638              		.loc 1 96 16 is_stmt 0 discriminator 3 view .LVU191
+ 639 001e 44F82330 		str	r3, [r4, r3, lsl #2]
+  95:network.c     ****         arr[i] = i;
+ 640              		.loc 1 95 27 is_stmt 1 discriminator 3 view .LVU192
+  95:network.c     ****         arr[i] = i;
+ 641              		.loc 1 95 28 is_stmt 0 discriminator 3 view .LVU193
+ 642 0022 0133     		adds	r3, r3, #1
+ 643              	.LVL61:
+  95:network.c     ****         arr[i] = i;
+ 644              		.loc 1 95 28 discriminator 3 view .LVU194
+ 645 0024 F3E7     		b	.L23
+ 646              	.LBE70:
+ 647              		.cfi_endproc
+ 648              	.LFE9:
+ 650              		.section	.text.free_network,"ax",%progbits
+ 651              		.align	1
+ 652              		.global	free_network
+ 653              		.syntax unified
+ 654              		.thumb
+ 655              		.thumb_func
+ 656              		.fpu softvfp
+ 658              	free_network:
+ 659              	.LVL62:
+ 660              	.LFB10:
+ 101:network.c     **** 
+ 102:network.c     **** void free_network(network *net){
+ 661              		.loc 1 102 32 is_stmt 1 view -0
+ 662              		.cfi_startproc
+ 663              		@ args = 0, pretend = 0, frame = 0
+ 664              		@ frame_needed = 0, uses_anonymous_args = 0
+ 103:network.c     ****     // free the dynamically allocated fields inside the network struct
+ 104:network.c     ****     for (int i=0; i < net->num_layers; i++){
+ 665              		.loc 1 104 5 view .LVU196
+ 666              	.LBB71:
+ 667              		.loc 1 104 10 view .LVU197
+ 668              		.loc 1 104 10 is_stmt 0 view .LVU198
+ 669              	.LBE71:
+ 102:network.c     ****     // free the dynamically allocated fields inside the network struct
+ 670              		.loc 1 102 32 view .LVU199
+ 671 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 672              	.LCFI7:
+ 673              		.cfi_def_cfa_offset 32
+ 674              		.cfi_offset 3, -32
+ 675              		.cfi_offset 4, -28
+ 676              		.cfi_offset 5, -24
+ 677              		.cfi_offset 6, -20
+ 678              		.cfi_offset 7, -16
+ 679              		.cfi_offset 8, -12
+ 680              		.cfi_offset 9, -8
+ 681              		.cfi_offset 14, -4
+ 102:network.c     ****     // free the dynamically allocated fields inside the network struct
+ 682              		.loc 1 102 32 view .LVU200
+ 683 0004 0446     		mov	r4, r0
+ 684              	.LBB73:
+ 685              		.loc 1 104 14 view .LVU201
+ 686 0006 0026     		movs	r6, #0
+ 687 0008 4FF01808 		mov	r8, #24
+ 688              	.LVL63:
+ 689              	.L26:
+ 690              		.loc 1 104 19 is_stmt 1 discriminator 1 view .LVU202
+ 691              		.loc 1 104 5 is_stmt 0 discriminator 1 view .LVU203
+ 692 000c 2368     		ldr	r3, [r4]
+ 693 000e B342     		cmp	r3, r6
+ 694 0010 1CDD     		ble	.L30
+ 695 0012 F700     		lsls	r7, r6, #3
+ 696              	.LBB72:
+ 105:network.c     ****         for(int j=0; j< net->layers[i].num_neurons; j++){
+ 697              		.loc 1 105 17 view .LVU204
+ 698 0014 0025     		movs	r5, #0
+ 699 0016 0FE0     		b	.L31
+ 700              	.LVL64:
+ 701              	.L29:
+ 106:network.c     ****             if (net->layers[i].neurons[j].weights != NULL) free(net->layers[i].neurons[j].weights);
+ 702              		.loc 1 106 13 is_stmt 1 view .LVU205
+ 703 0018 08FB05F9 		mul	r9, r8, r5
+ 704              		.loc 1 106 42 is_stmt 0 view .LVU206
+ 705 001c 4844     		add	r0, r0, r9
+ 706 001e 4068     		ldr	r0, [r0, #4]
+ 707              		.loc 1 106 16 view .LVU207
+ 708 0020 08B1     		cbz	r0, .L27
+ 709              		.loc 1 106 60 is_stmt 1 discriminator 1 view .LVU208
+ 710 0022 FFF7FEFF 		bl	free
+ 711              	.LVL65:
+ 712              	.L27:
+ 107:network.c     ****             if (net->layers[i].neurons[j].mul_indices != NULL) free(net->layers[i].neurons[j].mul_i
+ 713              		.loc 1 107 13 view .LVU209
+ 714              		.loc 1 107 31 is_stmt 0 view .LVU210
+ 715 0026 6268     		ldr	r2, [r4, #4]
+ 716              		.loc 1 107 42 view .LVU211
+ 717 0028 3A44     		add	r2, r2, r7
+ 718 002a 5368     		ldr	r3, [r2, #4]
+ 719 002c 4B44     		add	r3, r3, r9
+ 720 002e 5869     		ldr	r0, [r3, #20]
+ 721              		.loc 1 107 16 view .LVU212
+ 722 0030 08B1     		cbz	r0, .L28
+ 723              		.loc 1 107 64 is_stmt 1 discriminator 1 view .LVU213
+ 724 0032 FFF7FEFF 		bl	free
+ 725              	.LVL66:
+ 726              	.L28:
+ 105:network.c     ****         for(int j=0; j< net->layers[i].num_neurons; j++){
+ 727              		.loc 1 105 53 discriminator 2 view .LVU214
+ 105:network.c     ****         for(int j=0; j< net->layers[i].num_neurons; j++){
+ 728              		.loc 1 105 54 is_stmt 0 discriminator 2 view .LVU215
+ 729 0036 0135     		adds	r5, r5, #1
+ 730              	.LVL67:
+ 731              	.L31:
+ 105:network.c     ****         for(int j=0; j< net->layers[i].num_neurons; j++){
+ 732              		.loc 1 105 22 is_stmt 1 discriminator 1 view .LVU216
+ 105:network.c     ****         for(int j=0; j< net->layers[i].num_neurons; j++){
+ 733              		.loc 1 105 36 is_stmt 0 discriminator 1 view .LVU217
+ 734 0038 6368     		ldr	r3, [r4, #4]
+ 735 003a DA19     		adds	r2, r3, r7
+ 105:network.c     ****         for(int j=0; j< net->layers[i].num_neurons; j++){
+ 736              		.loc 1 105 9 discriminator 1 view .LVU218
+ 737 003c DB59     		ldr	r3, [r3, r7]
+ 106:network.c     ****             if (net->layers[i].neurons[j].weights != NULL) free(net->layers[i].neurons[j].weights);
+ 738              		.loc 1 106 31 discriminator 1 view .LVU219
+ 739 003e 5068     		ldr	r0, [r2, #4]
+ 105:network.c     ****         for(int j=0; j< net->layers[i].num_neurons; j++){
+ 740              		.loc 1 105 9 discriminator 1 view .LVU220
+ 741 0040 AB42     		cmp	r3, r5
+ 742 0042 E9DC     		bgt	.L29
+ 743              	.LBE72:
+ 108:network.c     ****         }
+ 109:network.c     ****         free(net->layers[i].neurons);
+ 744              		.loc 1 109 9 is_stmt 1 discriminator 2 view .LVU221
+ 745 0044 FFF7FEFF 		bl	free
+ 746              	.LVL68:
+ 104:network.c     ****         for(int j=0; j< net->layers[i].num_neurons; j++){
+ 747              		.loc 1 104 40 discriminator 2 view .LVU222
+ 104:network.c     ****         for(int j=0; j< net->layers[i].num_neurons; j++){
+ 748              		.loc 1 104 41 is_stmt 0 discriminator 2 view .LVU223
+ 749 0048 0136     		adds	r6, r6, #1
+ 750              	.LVL69:
+ 104:network.c     ****         for(int j=0; j< net->layers[i].num_neurons; j++){
+ 751              		.loc 1 104 41 discriminator 2 view .LVU224
+ 752 004a DFE7     		b	.L26
+ 753              	.LVL70:
+ 754              	.L30:
+ 104:network.c     ****         for(int j=0; j< net->layers[i].num_neurons; j++){
+ 755              		.loc 1 104 41 discriminator 2 view .LVU225
+ 756              	.LBE73:
+ 110:network.c     ****     }
+ 111:network.c     ****     free(net->layers);
+ 757              		.loc 1 111 5 is_stmt 1 view .LVU226
+ 758 004c 6068     		ldr	r0, [r4, #4]
+ 112:network.c     **** }
+ 759              		.loc 1 112 1 is_stmt 0 view .LVU227
+ 760 004e BDE8F843 		pop	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 761              	.LCFI8:
+ 762              		.cfi_restore 14
+ 763              		.cfi_restore 9
+ 764              		.cfi_restore 8
+ 765              		.cfi_restore 7
+ 766              		.cfi_restore 6
+ 767              		.cfi_restore 5
+ 768              		.cfi_restore 4
+ 769              		.cfi_restore 3
+ 770              		.cfi_def_cfa_offset 0
+ 771              	.LVL71:
+ 111:network.c     **** }
+ 772              		.loc 1 111 5 view .LVU228
+ 773 0052 FFF7FEBF 		b	free
+ 774              	.LVL72:
+ 775              		.cfi_endproc
+ 776              	.LFE10:
+ 778              		.section	.rodata.str1.1,"aMS",%progbits,1
+ 779              	.LC2:
+ 780 0000 2D2D2D2D 		.ascii	"---------------------------------------------------"
+ 780      2D2D2D2D 
+ 780      2D2D2D2D 
+ 780      2D2D2D2D 
+ 780      2D2D2D2D 
+ 781 0033 2D2D2D2D 		.ascii	"---------------------------------------------------"
+ 781      2D2D2D2D 
+ 781      2D2D2D2D 
+ 781      2D2D2D2D 
+ 781      2D2D2D2D 
+ 782 0066 2D2D2D2D 		.ascii	"---------------------------------------------------"
+ 782      2D2D2D2D 
+ 782      2D2D2D2D 
+ 782      2D2D2D2D 
+ 782      2D2D2D2D 
+ 783 0099 2D2D2D2D 		.ascii	"--------\000"
+ 783      2D2D2D2D 
+ 783      00
+ 784              	.LC3:
+ 785 00a2 4E657477 		.ascii	"Network - num_layers = %d\012\000"
+ 785      6F726B20 
+ 785      2D206E75 
+ 785      6D5F6C61 
+ 785      79657273 
+ 786              	.LC4:
+ 787 00bd 4C617965 		.ascii	"Layer %d:\012\000"
+ 787      72202564 
+ 787      3A0A00
+ 788              		.global	__aeabi_f2d
+ 789              	.LC5:
+ 790 00c8 094E6575 		.ascii	"\011Neuron %d | a=%f z=%f\011| \000"
+ 790      726F6E20 
+ 790      2564207C 
+ 790      20613D25 
+ 790      66207A3D 
+ 791              	.LC6:
+ 792 00e2 4D756C20 		.ascii	"Mul Indices: \000"
+ 792      496E6469 
+ 792      6365733A 
+ 792      2000
+ 793              	.LC7:
+ 794 00f0 256400   		.ascii	"%d\000"
+ 795              	.LC8:
+ 796 00f3 09576569 		.ascii	"\011Weights: {\000"
+ 796      67687473 
+ 796      3A207B00 
+ 797              	.LC9:
+ 798 00ff 256600   		.ascii	"%f\000"
+ 799              	.LC10:
+ 800 0102 2C2000   		.ascii	", \000"
+ 801              		.section	.text.print_network,"ax",%progbits
+ 802              		.align	1
+ 803              		.global	print_network
+ 804              		.syntax unified
+ 805              		.thumb
+ 806              		.thumb_func
+ 807              		.fpu softvfp
+ 809              	print_network:
+ 810              	.LFB11:
+ 113:network.c     **** 
+ 114:network.c     **** /*
+ 115:network.c     **** * Prints out the values contained withing the network - number of layers, and then for each layer p
+ 116:network.c     **** * for each neuron this prints out the a value, the z value, and the weight values (an array of size
+ 117:network.c     **** */
+ 118:network.c     **** void print_network(network net){
+ 811              		.loc 1 118 32 is_stmt 1 view -0
+ 812              		.cfi_startproc
+ 813              		@ args = 0, pretend = 0, frame = 8
+ 814              		@ frame_needed = 0, uses_anonymous_args = 0
+ 815 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 816              	.LCFI9:
+ 817              		.cfi_def_cfa_offset 36
+ 818              		.cfi_offset 4, -36
+ 819              		.cfi_offset 5, -32
+ 820              		.cfi_offset 6, -28
+ 821              		.cfi_offset 7, -24
+ 822              		.cfi_offset 8, -20
+ 823              		.cfi_offset 9, -16
+ 824              		.cfi_offset 10, -12
+ 825              		.cfi_offset 11, -8
+ 826              		.cfi_offset 14, -4
+ 827 0004 85B0     		sub	sp, sp, #20
+ 828              	.LCFI10:
+ 829              		.cfi_def_cfa_offset 56
+ 830              		.loc 1 118 32 is_stmt 0 view .LVU230
+ 831 0006 04AB     		add	r3, sp, #16
+ 832 0008 03E90300 		stmdb	r3, {r0, r1}
+ 833 000c 8146     		mov	r9, r0
+ 834              	.LVL73:
+ 119:network.c     ****     printf("\n");
+ 835              		.loc 1 119 5 view .LVU231
+ 836 000e 0A20     		movs	r0, #10
+ 837              	.LVL74:
+ 838              		.loc 1 119 5 view .LVU232
+ 839 0010 0C46     		mov	r4, r1
+ 840              	.LVL75:
+ 841              		.loc 1 119 5 is_stmt 1 view .LVU233
+ 842 0012 FFF7FEFF 		bl	putchar
+ 843              	.LVL76:
+ 120:network.c     ****     printf("---------------------------------------------------------------------------------------
+ 844              		.loc 1 120 5 view .LVU234
+ 845 0016 3748     		ldr	r0, .L51
+ 846 0018 FFF7FEFF 		bl	puts
+ 847              	.LVL77:
+ 121:network.c     ****     printf("Network - num_layers = %d\n", net.num_layers);
+ 848              		.loc 1 121 5 view .LVU235
+ 849 001c 3648     		ldr	r0, .L51+4
+ 850 001e 4946     		mov	r1, r9
+ 851 0020 FFF7FEFF 		bl	printf
+ 852              	.LVL78:
+ 122:network.c     ****     for (int i = 0; i < net.num_layers; i++){
+ 853              		.loc 1 122 5 view .LVU236
+ 854              	.LBB74:
+ 855              		.loc 1 122 10 view .LVU237
+ 856              		.loc 1 122 14 is_stmt 0 view .LVU238
+ 857 0024 0025     		movs	r5, #0
+ 858              	.LVL79:
+ 859              	.L39:
+ 860              		.loc 1 122 21 is_stmt 1 discriminator 1 view .LVU239
+ 861              		.loc 1 122 5 is_stmt 0 discriminator 1 view .LVU240
+ 862 0026 4D45     		cmp	r5, r9
+ 863 0028 05DB     		blt	.L50
+ 864              	.LBE74:
+ 123:network.c     ****         printf("Layer %d:\n", i);
+ 124:network.c     ****         for (int j = 0; j < net.layers[i].num_neurons; j++){
+ 125:network.c     ****             printf("\tNeuron %d | a=%f z=%f\t| ", j, net.layers[i].neurons[j].a,  net.layers[i].neu
+ 126:network.c     ****             if (i >= 1){
+ 127:network.c     ****                 printf("Mul Indices: ");
+ 128:network.c     ****                 for (int k = 0; k < net.layers[i - 1].num_neurons; k++){
+ 129:network.c     ****                     printf("%d", net.layers[i].neurons[j].mul_indices[k]);
+ 130:network.c     ****                 }
+ 131:network.c     ****                 printf("\tWeights: {");
+ 132:network.c     ****                 for (int k = 0; k < net.layers[i - 1].num_neurons; k++){
+ 133:network.c     ****                     printf("%f", net.layers[i].neurons[j].weights[k]);
+ 134:network.c     ****                     if (k < net.layers[i - 1].num_neurons - 1)
+ 135:network.c     ****                     printf(", ");
+ 136:network.c     ****                     else
+ 137:network.c     ****                     printf("}");
+ 138:network.c     ****                 }
+ 139:network.c     ****             }
+ 140:network.c     ****             printf("\n");
+ 141:network.c     ****         }
+ 142:network.c     ****     }
+ 143:network.c     ****     printf("---------------------------------------------------------------------------------------
+ 865              		.loc 1 143 5 is_stmt 1 view .LVU241
+ 866 002a 3248     		ldr	r0, .L51
+ 144:network.c     **** }
+ 867              		.loc 1 144 1 is_stmt 0 view .LVU242
+ 868 002c 05B0     		add	sp, sp, #20
+ 869              	.LCFI11:
+ 870              		.cfi_remember_state
+ 871              		.cfi_def_cfa_offset 36
+ 872              		@ sp needed
+ 873 002e BDE8F04F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 874              	.LCFI12:
+ 875              		.cfi_restore 14
+ 876              		.cfi_restore 11
+ 877              		.cfi_restore 10
+ 878              		.cfi_restore 9
+ 879              		.cfi_restore 8
+ 880              		.cfi_restore 7
+ 881              		.cfi_restore 6
+ 882              		.cfi_restore 5
+ 883              		.cfi_restore 4
+ 884              		.cfi_def_cfa_offset 0
+ 885              	.LVL80:
+ 143:network.c     **** }
+ 886              		.loc 1 143 5 view .LVU243
+ 887 0032 FFF7FEBF 		b	puts
+ 888              	.LVL81:
+ 889              	.L50:
+ 890              	.LCFI13:
+ 891              		.cfi_restore_state
+ 892              	.LBB82:
+ 123:network.c     ****         printf("Layer %d:\n", i);
+ 893              		.loc 1 123 9 is_stmt 1 view .LVU244
+ 894 0036 3148     		ldr	r0, .L51+8
+ 895 0038 2946     		mov	r1, r5
+ 896 003a FFF7FEFF 		bl	printf
+ 897              	.LVL82:
+ 124:network.c     ****             printf("\tNeuron %d | a=%f z=%f\t| ", j, net.layers[i].neurons[j].a,  net.layers[i].neu
+ 898              		.loc 1 124 9 view .LVU245
+ 899              	.LBB75:
+ 124:network.c     ****             printf("\tNeuron %d | a=%f z=%f\t| ", j, net.layers[i].neurons[j].a,  net.layers[i].neu
+ 900              		.loc 1 124 14 view .LVU246
+ 124:network.c     ****             printf("\tNeuron %d | a=%f z=%f\t| ", j, net.layers[i].neurons[j].a,  net.layers[i].neu
+ 901              		.loc 1 124 18 is_stmt 0 view .LVU247
+ 902 003e 0026     		movs	r6, #0
+ 903              	.LVL83:
+ 904              	.L40:
+ 124:network.c     ****             printf("\tNeuron %d | a=%f z=%f\t| ", j, net.layers[i].neurons[j].a,  net.layers[i].neu
+ 905              		.loc 1 124 25 is_stmt 1 discriminator 1 view .LVU248
+ 124:network.c     ****             printf("\tNeuron %d | a=%f z=%f\t| ", j, net.layers[i].neurons[j].a,  net.layers[i].neu
+ 906              		.loc 1 124 9 is_stmt 0 discriminator 1 view .LVU249
+ 907 0040 2368     		ldr	r3, [r4]
+ 908 0042 B342     		cmp	r3, r6
+ 909 0044 02DC     		bgt	.L49
+ 910              	.LBE75:
+ 122:network.c     ****         printf("Layer %d:\n", i);
+ 911              		.loc 1 122 41 is_stmt 1 discriminator 2 view .LVU250
+ 122:network.c     ****         printf("Layer %d:\n", i);
+ 912              		.loc 1 122 42 is_stmt 0 discriminator 2 view .LVU251
+ 913 0046 0135     		adds	r5, r5, #1
+ 914              	.LVL84:
+ 122:network.c     ****         printf("Layer %d:\n", i);
+ 915              		.loc 1 122 42 discriminator 2 view .LVU252
+ 916 0048 0834     		adds	r4, r4, #8
+ 917 004a ECE7     		b	.L39
+ 918              	.L49:
+ 919              	.LBB81:
+ 125:network.c     ****             if (i >= 1){
+ 920              		.loc 1 125 13 is_stmt 1 view .LVU253
+ 125:network.c     ****             if (i >= 1){
+ 921              		.loc 1 125 75 is_stmt 0 view .LVU254
+ 922 004c 6768     		ldr	r7, [r4, #4]
+ 923 004e 4FF01808 		mov	r8, #24
+ 924 0052 08FB06F8 		mul	r8, r8, r6
+ 925 0056 4744     		add	r7, r7, r8
+ 125:network.c     ****             if (i >= 1){
+ 926              		.loc 1 125 13 view .LVU255
+ 927 0058 3869     		ldr	r0, [r7, #16]	@ float
+ 928 005a FFF7FEFF 		bl	__aeabi_f2d
+ 929              	.LVL85:
+ 930 005e 8246     		mov	r10, r0
+ 931 0060 F868     		ldr	r0, [r7, #12]	@ float
+ 932 0062 8B46     		mov	fp, r1
+ 933 0064 FFF7FEFF 		bl	__aeabi_f2d
+ 934              	.LVL86:
+ 935 0068 5246     		mov	r2, r10
+ 936 006a CDE90001 		strd	r0, [sp]
+ 937 006e 5B46     		mov	r3, fp
+ 938 0070 2348     		ldr	r0, .L51+12
+ 939 0072 3146     		mov	r1, r6
+ 940 0074 FFF7FEFF 		bl	printf
+ 941              	.LVL87:
+ 126:network.c     ****                 printf("Mul Indices: ");
+ 942              		.loc 1 126 13 is_stmt 1 view .LVU256
+ 126:network.c     ****                 printf("Mul Indices: ");
+ 943              		.loc 1 126 16 is_stmt 0 view .LVU257
+ 944 0078 25B9     		cbnz	r5, .L41
+ 945              	.L48:
+ 140:network.c     ****         }
+ 946              		.loc 1 140 13 is_stmt 1 view .LVU258
+ 947 007a 0A20     		movs	r0, #10
+ 948 007c FFF7FEFF 		bl	putchar
+ 949              	.LVL88:
+ 124:network.c     ****             printf("\tNeuron %d | a=%f z=%f\t| ", j, net.layers[i].neurons[j].a,  net.layers[i].neu
+ 950              		.loc 1 124 56 view .LVU259
+ 124:network.c     ****             printf("\tNeuron %d | a=%f z=%f\t| ", j, net.layers[i].neurons[j].a,  net.layers[i].neu
+ 951              		.loc 1 124 57 is_stmt 0 view .LVU260
+ 952 0080 0136     		adds	r6, r6, #1
+ 953              	.LVL89:
+ 124:network.c     ****             printf("\tNeuron %d | a=%f z=%f\t| ", j, net.layers[i].neurons[j].a,  net.layers[i].neu
+ 954              		.loc 1 124 57 view .LVU261
+ 955 0082 DDE7     		b	.L40
+ 956              	.L41:
+ 127:network.c     ****                 for (int k = 0; k < net.layers[i - 1].num_neurons; k++){
+ 957              		.loc 1 127 17 is_stmt 1 view .LVU262
+ 958 0084 1F48     		ldr	r0, .L51+16
+ 959 0086 FFF7FEFF 		bl	printf
+ 960              	.LVL90:
+ 128:network.c     ****                     printf("%d", net.layers[i].neurons[j].mul_indices[k]);
+ 961              		.loc 1 128 17 view .LVU263
+ 962              	.LBB76:
+ 128:network.c     ****                     printf("%d", net.layers[i].neurons[j].mul_indices[k]);
+ 963              		.loc 1 128 22 view .LVU264
+ 128:network.c     ****                     printf("%d", net.layers[i].neurons[j].mul_indices[k]);
+ 964              		.loc 1 128 26 is_stmt 0 view .LVU265
+ 965 008a 0027     		movs	r7, #0
+ 966              	.LVL91:
+ 967              	.L42:
+ 128:network.c     ****                     printf("%d", net.layers[i].neurons[j].mul_indices[k]);
+ 968              		.loc 1 128 33 is_stmt 1 discriminator 1 view .LVU266
+ 128:network.c     ****                     printf("%d", net.layers[i].neurons[j].mul_indices[k]);
+ 969              		.loc 1 128 17 is_stmt 0 discriminator 1 view .LVU267
+ 970 008c 54F8083C 		ldr	r3, [r4, #-8]
+ 971 0090 BB42     		cmp	r3, r7
+ 972 0092 21DC     		bgt	.L43
+ 973              	.LBE76:
+ 131:network.c     ****                 for (int k = 0; k < net.layers[i - 1].num_neurons; k++){
+ 974              		.loc 1 131 17 is_stmt 1 view .LVU268
+ 975 0094 1C48     		ldr	r0, .L51+20
+ 976              	.LBB77:
+ 133:network.c     ****                     if (k < net.layers[i - 1].num_neurons - 1)
+ 977              		.loc 1 133 21 is_stmt 0 view .LVU269
+ 978 0096 DFF874A0 		ldr	r10, .L51+24
+ 135:network.c     ****                     else
+ 979              		.loc 1 135 21 view .LVU270
+ 980 009a DFF874B0 		ldr	fp, .L51+28
+ 981              	.LBE77:
+ 131:network.c     ****                 for (int k = 0; k < net.layers[i - 1].num_neurons; k++){
+ 982              		.loc 1 131 17 view .LVU271
+ 983 009e FFF7FEFF 		bl	printf
+ 984              	.LVL92:
+ 132:network.c     ****                     printf("%f", net.layers[i].neurons[j].weights[k]);
+ 985              		.loc 1 132 17 is_stmt 1 view .LVU272
+ 986              	.LBB78:
+ 132:network.c     ****                     printf("%f", net.layers[i].neurons[j].weights[k]);
+ 987              		.loc 1 132 22 view .LVU273
+ 132:network.c     ****                     printf("%f", net.layers[i].neurons[j].weights[k]);
+ 988              		.loc 1 132 26 is_stmt 0 view .LVU274
+ 989 00a2 0027     		movs	r7, #0
+ 990              	.LVL93:
+ 991              	.L44:
+ 132:network.c     ****                     printf("%f", net.layers[i].neurons[j].weights[k]);
+ 992              		.loc 1 132 33 is_stmt 1 discriminator 1 view .LVU275
+ 132:network.c     ****                     printf("%f", net.layers[i].neurons[j].weights[k]);
+ 993              		.loc 1 132 17 is_stmt 0 discriminator 1 view .LVU276
+ 994 00a4 54F8083C 		ldr	r3, [r4, #-8]
+ 995 00a8 BB42     		cmp	r3, r7
+ 996 00aa E6DD     		ble	.L48
+ 133:network.c     ****                     if (k < net.layers[i - 1].num_neurons - 1)
+ 997              		.loc 1 133 21 is_stmt 1 view .LVU277
+ 133:network.c     ****                     if (k < net.layers[i - 1].num_neurons - 1)
+ 998              		.loc 1 133 58 is_stmt 0 view .LVU278
+ 999 00ac 6368     		ldr	r3, [r4, #4]
+ 133:network.c     ****                     if (k < net.layers[i - 1].num_neurons - 1)
+ 1000              		.loc 1 133 66 view .LVU279
+ 1001 00ae 4344     		add	r3, r3, r8
+ 1002 00b0 5B68     		ldr	r3, [r3, #4]
+ 133:network.c     ****                     if (k < net.layers[i - 1].num_neurons - 1)
+ 1003              		.loc 1 133 21 view .LVU280
+ 1004 00b2 53F82700 		ldr	r0, [r3, r7, lsl #2]	@ float
+ 1005 00b6 FFF7FEFF 		bl	__aeabi_f2d
+ 1006              	.LVL94:
+ 1007 00ba 0246     		mov	r2, r0
+ 1008 00bc 0B46     		mov	r3, r1
+ 1009 00be 5046     		mov	r0, r10
+ 1010 00c0 FFF7FEFF 		bl	printf
+ 1011              	.LVL95:
+ 134:network.c     ****                     printf(", ");
+ 1012              		.loc 1 134 21 is_stmt 1 view .LVU281
+ 134:network.c     ****                     printf(", ");
+ 1013              		.loc 1 134 59 is_stmt 0 view .LVU282
+ 1014 00c4 54F8083C 		ldr	r3, [r4, #-8]
+ 1015 00c8 013B     		subs	r3, r3, #1
+ 134:network.c     ****                     printf(", ");
+ 1016              		.loc 1 134 24 view .LVU283
+ 1017 00ca BB42     		cmp	r3, r7
+ 1018 00cc 0EDD     		ble	.L45
+ 135:network.c     ****                     else
+ 1019              		.loc 1 135 21 is_stmt 1 view .LVU284
+ 1020 00ce 5846     		mov	r0, fp
+ 1021 00d0 FFF7FEFF 		bl	printf
+ 1022              	.LVL96:
+ 1023              	.L46:
+ 132:network.c     ****                     printf("%f", net.layers[i].neurons[j].weights[k]);
+ 1024              		.loc 1 132 68 discriminator 2 view .LVU285
+ 132:network.c     ****                     printf("%f", net.layers[i].neurons[j].weights[k]);
+ 1025              		.loc 1 132 69 is_stmt 0 discriminator 2 view .LVU286
+ 1026 00d4 0137     		adds	r7, r7, #1
+ 1027              	.LVL97:
+ 132:network.c     ****                     printf("%f", net.layers[i].neurons[j].weights[k]);
+ 1028              		.loc 1 132 69 discriminator 2 view .LVU287
+ 1029 00d6 E5E7     		b	.L44
+ 1030              	.LVL98:
+ 1031              	.L43:
+ 132:network.c     ****                     printf("%f", net.layers[i].neurons[j].weights[k]);
+ 1032              		.loc 1 132 69 discriminator 2 view .LVU288
+ 1033              	.LBE78:
+ 1034              	.LBB79:
+ 129:network.c     ****                 }
+ 1035              		.loc 1 129 21 is_stmt 1 discriminator 3 view .LVU289
+ 129:network.c     ****                 }
+ 1036              		.loc 1 129 58 is_stmt 0 discriminator 3 view .LVU290
+ 1037 00d8 6368     		ldr	r3, [r4, #4]
+ 129:network.c     ****                 }
+ 1038              		.loc 1 129 21 discriminator 3 view .LVU291
+ 1039 00da 0E48     		ldr	r0, .L51+32
+ 1040 00dc 4344     		add	r3, r3, r8
+ 1041 00de 5B69     		ldr	r3, [r3, #20]
+ 1042 00e0 53F82710 		ldr	r1, [r3, r7, lsl #2]
+ 1043 00e4 FFF7FEFF 		bl	printf
+ 1044              	.LVL99:
+ 128:network.c     ****                     printf("%d", net.layers[i].neurons[j].mul_indices[k]);
+ 1045              		.loc 1 128 68 is_stmt 1 discriminator 3 view .LVU292
+ 128:network.c     ****                     printf("%d", net.layers[i].neurons[j].mul_indices[k]);
+ 1046              		.loc 1 128 69 is_stmt 0 discriminator 3 view .LVU293
+ 1047 00e8 0137     		adds	r7, r7, #1
+ 1048              	.LVL100:
+ 128:network.c     ****                     printf("%d", net.layers[i].neurons[j].mul_indices[k]);
+ 1049              		.loc 1 128 69 discriminator 3 view .LVU294
+ 1050 00ea CFE7     		b	.L42
+ 1051              	.LVL101:
+ 1052              	.L45:
+ 128:network.c     ****                     printf("%d", net.layers[i].neurons[j].mul_indices[k]);
+ 1053              		.loc 1 128 69 discriminator 3 view .LVU295
+ 1054              	.LBE79:
+ 1055              	.LBB80:
+ 137:network.c     ****                 }
+ 1056              		.loc 1 137 21 is_stmt 1 view .LVU296
+ 1057 00ec 7D20     		movs	r0, #125
+ 1058 00ee FFF7FEFF 		bl	putchar
+ 1059              	.LVL102:
+ 1060 00f2 EFE7     		b	.L46
+ 1061              	.L52:
+ 1062              		.align	2
+ 1063              	.L51:
+ 1064 00f4 00000000 		.word	.LC2
+ 1065 00f8 A2000000 		.word	.LC3
+ 1066 00fc BD000000 		.word	.LC4
+ 1067 0100 C8000000 		.word	.LC5
+ 1068 0104 E2000000 		.word	.LC6
+ 1069 0108 F3000000 		.word	.LC8
+ 1070 010c FF000000 		.word	.LC9
+ 1071 0110 02010000 		.word	.LC10
+ 1072 0114 F0000000 		.word	.LC7
+ 1073              	.LBE80:
+ 1074              	.LBE81:
+ 1075              	.LBE82:
+ 1076              		.cfi_endproc
+ 1077              	.LFE11:
+ 1079              		.section	.text.create_neuron,"ax",%progbits
+ 1080              		.align	1
+ 1081              		.global	create_neuron
+ 1082              		.syntax unified
+ 1083              		.thumb
+ 1084              		.thumb_func
+ 1085              		.fpu softvfp
+ 1087              	create_neuron:
+ 1088              	.LVL103:
+ 1089              	.LFB12:
+ 145:network.c     **** 
+ 146:network.c     **** 
+ 147:network.c     **** neuron create_neuron(void* weights, int num_in_weights, int layer_idx, int neuron_idx){
+ 1090              		.loc 1 147 87 view -0
+ 1091              		.cfi_startproc
+ 1092              		@ args = 4, pretend = 0, frame = 0
+ 1093              		@ frame_needed = 0, uses_anonymous_args = 0
+ 148:network.c     ****     neuron new_neuron;
+ 1094              		.loc 1 148 5 view .LVU298
+ 149:network.c     ****     new_neuron.a = 0.0;
+ 1095              		.loc 1 149 5 view .LVU299
+ 150:network.c     ****     new_neuron.z = 0.0;
+ 1096              		.loc 1 150 5 view .LVU300
+ 151:network.c     ****     new_neuron.bias = 0.0;
+ 1097              		.loc 1 151 5 view .LVU301
+ 152:network.c     ****     new_neuron.num_weights = num_in_weights;
+ 1098              		.loc 1 152 5 view .LVU302
+ 153:network.c     **** 
+ 154:network.c     ****     if (num_in_weights > 0) {
+ 1099              		.loc 1 154 5 view .LVU303
+ 147:network.c     ****     neuron new_neuron;
+ 1100              		.loc 1 147 87 is_stmt 0 view .LVU304
+ 1101 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 1102              	.LCFI14:
+ 1103              		.cfi_def_cfa_offset 32
+ 1104              		.cfi_offset 3, -32
+ 1105              		.cfi_offset 4, -28
+ 1106              		.cfi_offset 5, -24
+ 1107              		.cfi_offset 6, -20
+ 1108              		.cfi_offset 7, -16
+ 1109              		.cfi_offset 8, -12
+ 1110              		.cfi_offset 9, -8
+ 1111              		.cfi_offset 14, -4
+ 1112              		.loc 1 154 8 view .LVU305
+ 1113 0004 151E     		subs	r5, r2, #0
+ 147:network.c     ****     neuron new_neuron;
+ 1114              		.loc 1 147 87 view .LVU306
+ 1115 0006 0446     		mov	r4, r0
+ 1116 0008 0F46     		mov	r7, r1
+ 1117 000a 9846     		mov	r8, r3
+ 1118              		.loc 1 154 8 view .LVU307
+ 1119 000c 24DD     		ble	.L56
+ 155:network.c     ****         new_neuron.weights = (float*) malloc(num_in_weights * sizeof(float));
+ 1120              		.loc 1 155 9 is_stmt 1 view .LVU308
+ 1121              		.loc 1 155 39 is_stmt 0 view .LVU309
+ 1122 000e 4FEA8509 		lsl	r9, r5, #2
+ 1123 0012 4846     		mov	r0, r9
+ 1124              	.LVL104:
+ 1125              		.loc 1 155 39 view .LVU310
+ 1126 0014 FFF7FEFF 		bl	malloc
+ 1127              	.LVL105:
+ 1128              		.loc 1 155 39 view .LVU311
+ 1129 0018 0646     		mov	r6, r0
+ 1130              	.LVL106:
+ 156:network.c     ****         new_neuron.mul_indices = (int*) malloc(num_in_weights * sizeof(int));
+ 1131              		.loc 1 156 9 is_stmt 1 view .LVU312
+ 1132              		.loc 1 156 41 is_stmt 0 view .LVU313
+ 1133 001a 4846     		mov	r0, r9
+ 1134              	.LVL107:
+ 1135              		.loc 1 156 41 view .LVU314
+ 1136 001c FFF7FEFF 		bl	malloc
+ 1137              	.LVL108:
+ 157:network.c     ****     } else {
+ 158:network.c     ****         new_neuron.weights = NULL;
+ 159:network.c     ****         new_neuron.mul_indices = NULL;
+ 160:network.c     ****     }
+ 161:network.c     ****     if (weights != NULL && num_in_weights > 0){
+ 1138              		.loc 1 161 5 is_stmt 1 view .LVU315
+ 1139              		.loc 1 161 8 is_stmt 0 view .LVU316
+ 1140 0020 87B1     		cbz	r7, .L54
+ 1141              	.LBB83:
+ 162:network.c     ****         //TODO: Dont question it... it works.
+ 163:network.c     ****         float (*layer_weights)[num_in_weights] = ((float (*)[num_in_weights])((float**)weights)[lay
+ 1142              		.loc 1 163 9 is_stmt 1 view .LVU317
+ 1143              	.LVL109:
+ 164:network.c     ****         for (int i=0; i<num_in_weights; i++){
+ 1144              		.loc 1 164 9 view .LVU318
+ 1145              	.LBB84:
+ 1146              		.loc 1 164 14 view .LVU319
+ 1147              		.loc 1 164 23 view .LVU320
+ 165:network.c     ****             new_neuron.weights[i] = layer_weights[neuron_idx][i];
+ 1148              		.loc 1 165 50 is_stmt 0 view .LVU321
+ 1149 0022 089A     		ldr	r2, [sp, #32]
+ 1150 0024 05FB02F1 		mul	r1, r5, r2
+ 1151 0028 57F82820 		ldr	r2, [r7, r8, lsl #2]
+ 164:network.c     ****         for (int i=0; i<num_in_weights; i++){
+ 1152              		.loc 1 164 18 view .LVU322
+ 1153 002c 0023     		movs	r3, #0
+ 1154              		.loc 1 165 50 view .LVU323
+ 1155 002e 02EB8102 		add	r2, r2, r1, lsl #2
+ 1156              	.LVL110:
+ 1157              	.L55:
+ 1158              		.loc 1 165 13 is_stmt 1 discriminator 3 view .LVU324
+ 1159              		.loc 1 165 62 is_stmt 0 discriminator 3 view .LVU325
+ 1160 0032 52F82310 		ldr	r1, [r2, r3, lsl #2]	@ float
+ 1161              		.loc 1 165 35 discriminator 3 view .LVU326
+ 1162 0036 46F82310 		str	r1, [r6, r3, lsl #2]	@ float
+ 166:network.c     ****             new_neuron.mul_indices[i] = i;
+ 1163              		.loc 1 166 13 is_stmt 1 discriminator 3 view .LVU327
+ 1164              		.loc 1 166 39 is_stmt 0 discriminator 3 view .LVU328
+ 1165 003a 40F82330 		str	r3, [r0, r3, lsl #2]
+ 164:network.c     ****         for (int i=0; i<num_in_weights; i++){
+ 1166              		.loc 1 164 41 is_stmt 1 discriminator 3 view .LVU329
+ 164:network.c     ****         for (int i=0; i<num_in_weights; i++){
+ 1167              		.loc 1 164 42 is_stmt 0 discriminator 3 view .LVU330
+ 1168 003e 0133     		adds	r3, r3, #1
+ 1169              	.LVL111:
+ 164:network.c     ****         for (int i=0; i<num_in_weights; i++){
+ 1170              		.loc 1 164 23 is_stmt 1 discriminator 3 view .LVU331
+ 164:network.c     ****         for (int i=0; i<num_in_weights; i++){
+ 1171              		.loc 1 164 9 is_stmt 0 discriminator 3 view .LVU332
+ 1172 0040 9D42     		cmp	r5, r3
+ 1173 0042 F6D1     		bne	.L55
+ 1174              	.LVL112:
+ 1175              	.L54:
+ 164:network.c     ****         for (int i=0; i<num_in_weights; i++){
+ 1176              		.loc 1 164 9 discriminator 3 view .LVU333
+ 1177              	.LBE84:
+ 1178              	.LBE83:
+ 167:network.c     ****         }
+ 168:network.c     ****     }
+ 169:network.c     ****     return new_neuron;
+ 1179              		.loc 1 169 5 is_stmt 1 view .LVU334
+ 1180              		.loc 1 169 12 is_stmt 0 view .LVU335
+ 1181 0044 0023     		movs	r3, #0
+ 1182 0046 6061     		str	r0, [r4, #20]
+ 1183              	.LVL113:
+ 1184              		.loc 1 169 12 view .LVU336
+ 1185 0048 C4E90056 		strd	r5, r6, [r4]
+ 1186 004c A360     		str	r3, [r4, #8]	@ float
+ 1187 004e E360     		str	r3, [r4, #12]	@ float
+ 1188 0050 2361     		str	r3, [r4, #16]	@ float
+ 170:network.c     **** }
+ 1189              		.loc 1 170 1 view .LVU337
+ 1190 0052 2046     		mov	r0, r4
+ 1191 0054 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 1192              	.LVL114:
+ 1193              	.L56:
+ 159:network.c     ****     }
+ 1194              		.loc 1 159 32 view .LVU338
+ 1195 0058 0020     		movs	r0, #0
+ 1196              	.LVL115:
+ 158:network.c     ****         new_neuron.mul_indices = NULL;
+ 1197              		.loc 1 158 28 view .LVU339
+ 1198 005a 0646     		mov	r6, r0
+ 1199 005c F2E7     		b	.L54
+ 1200              		.cfi_endproc
+ 1201              	.LFE12:
+ 1203              		.section	.text.create_layer,"ax",%progbits
+ 1204              		.align	1
+ 1205              		.global	create_layer
+ 1206              		.syntax unified
+ 1207              		.thumb
+ 1208              		.thumb_func
+ 1209              		.fpu softvfp
+ 1211              	create_layer:
+ 1212              	.LVL116:
+ 1213              	.LFB13:
+ 171:network.c     **** 
+ 172:network.c     **** layer create_layer(int num_neurons){
+ 1214              		.loc 1 172 36 is_stmt 1 view -0
+ 1215              		.cfi_startproc
+ 1216              		@ args = 0, pretend = 0, frame = 0
+ 1217              		@ frame_needed = 0, uses_anonymous_args = 0
+ 173:network.c     ****     layer lay;
+ 1218              		.loc 1 173 5 view .LVU341
+ 174:network.c     ****     lay.num_neurons = num_neurons;
+ 1219              		.loc 1 174 5 view .LVU342
+ 175:network.c     ****     lay.neurons = (neuron*) malloc(num_neurons * sizeof(neuron));
+ 1220              		.loc 1 175 5 view .LVU343
+ 172:network.c     ****     layer lay;
+ 1221              		.loc 1 172 36 is_stmt 0 view .LVU344
+ 1222 0000 38B5     		push	{r3, r4, r5, lr}
+ 1223              	.LCFI15:
+ 1224              		.cfi_def_cfa_offset 16
+ 1225              		.cfi_offset 3, -16
+ 1226              		.cfi_offset 4, -12
+ 1227              		.cfi_offset 5, -8
+ 1228              		.cfi_offset 14, -4
+ 172:network.c     ****     layer lay;
+ 1229              		.loc 1 172 36 view .LVU345
+ 1230 0002 0446     		mov	r4, r0
+ 1231              		.loc 1 175 29 view .LVU346
+ 1232 0004 1820     		movs	r0, #24
+ 1233              	.LVL117:
+ 1234              		.loc 1 175 29 view .LVU347
+ 1235 0006 4843     		muls	r0, r1, r0
+ 172:network.c     ****     layer lay;
+ 1236              		.loc 1 172 36 view .LVU348
+ 1237 0008 0D46     		mov	r5, r1
+ 1238              		.loc 1 175 29 view .LVU349
+ 1239 000a FFF7FEFF 		bl	malloc
+ 1240              	.LVL118:
+ 176:network.c     ****     return lay;
+ 1241              		.loc 1 176 5 is_stmt 1 view .LVU350
+ 1242              		.loc 1 176 12 is_stmt 0 view .LVU351
+ 1243 000e C4E90050 		strd	r5, r0, [r4]
+ 1244              	.LVL119:
+ 177:network.c     **** }
+ 1245              		.loc 1 177 1 view .LVU352
+ 1246 0012 2046     		mov	r0, r4
+ 1247 0014 38BD     		pop	{r3, r4, r5, pc}
+ 1248              		.loc 1 177 1 view .LVU353
+ 1249              		.cfi_endproc
+ 1250              	.LFE13:
+ 1252              		.section	.text.create_network,"ax",%progbits
+ 1253              		.align	1
+ 1254              		.global	create_network
+ 1255              		.syntax unified
+ 1256              		.thumb
+ 1257              		.thumb_func
+ 1258              		.fpu softvfp
+ 1260              	create_network:
+ 1261              	.LVL120:
+ 1262              	.LFB14:
+ 178:network.c     **** 
+ 179:network.c     **** network create_network(int num_layers){
+ 1263              		.loc 1 179 39 is_stmt 1 view -0
+ 1264              		.cfi_startproc
+ 1265              		@ args = 0, pretend = 0, frame = 0
+ 1266              		@ frame_needed = 0, uses_anonymous_args = 0
+ 180:network.c     ****     network net;
+ 1267              		.loc 1 180 5 view .LVU355
+ 181:network.c     ****     net.num_layers = num_layers;
+ 1268              		.loc 1 181 5 view .LVU356
+ 182:network.c     ****     net.layers = (layer*) malloc(num_layers * sizeof(layer));
+ 1269              		.loc 1 182 5 view .LVU357
+ 179:network.c     ****     network net;
+ 1270              		.loc 1 179 39 is_stmt 0 view .LVU358
+ 1271 0000 38B5     		push	{r3, r4, r5, lr}
+ 1272              	.LCFI16:
+ 1273              		.cfi_def_cfa_offset 16
+ 1274              		.cfi_offset 3, -16
+ 1275              		.cfi_offset 4, -12
+ 1276              		.cfi_offset 5, -8
+ 1277              		.cfi_offset 14, -4
+ 179:network.c     ****     network net;
+ 1278              		.loc 1 179 39 view .LVU359
+ 1279 0002 0446     		mov	r4, r0
+ 1280              		.loc 1 182 27 view .LVU360
+ 1281 0004 C800     		lsls	r0, r1, #3
+ 1282              	.LVL121:
+ 179:network.c     ****     network net;
+ 1283              		.loc 1 179 39 view .LVU361
+ 1284 0006 0D46     		mov	r5, r1
+ 1285              		.loc 1 182 27 view .LVU362
+ 1286 0008 FFF7FEFF 		bl	malloc
+ 1287              	.LVL122:
+ 183:network.c     ****     return net;
+ 1288              		.loc 1 183 5 is_stmt 1 view .LVU363
+ 1289              		.loc 1 183 12 is_stmt 0 view .LVU364
+ 1290 000c C4E90050 		strd	r5, r0, [r4]
+ 1291              	.LVL123:
+ 184:network.c     **** }
+ 1292              		.loc 1 184 1 view .LVU365
+ 1293 0010 2046     		mov	r0, r4
+ 1294 0012 38BD     		pop	{r3, r4, r5, pc}
+ 1295              		.loc 1 184 1 view .LVU366
+ 1296              		.cfi_endproc
+ 1297              	.LFE14:
+ 1299              		.section	.text.init_network,"ax",%progbits
+ 1300              		.align	1
+ 1301              		.global	init_network
+ 1302              		.syntax unified
+ 1303              		.thumb
+ 1304              		.thumb_func
+ 1305              		.fpu softvfp
+ 1307              	init_network:
+ 1308              	.LVL124:
+ 1309              	.LFB15:
+ 185:network.c     **** 
+ 186:network.c     **** network init_network(int num_layers, int *num_neurons, void* weights) {
+ 1310              		.loc 1 186 71 is_stmt 1 view -0
+ 1311              		.cfi_startproc
+ 1312              		@ args = 0, pretend = 0, frame = 32
+ 1313              		@ frame_needed = 0, uses_anonymous_args = 0
+ 187:network.c     ****     network net = create_network(num_layers);
+ 1314              		.loc 1 187 5 view .LVU368
+ 186:network.c     ****     network net = create_network(num_layers);
+ 1315              		.loc 1 186 71 is_stmt 0 view .LVU369
+ 1316 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 1317              	.LCFI17:
+ 1318              		.cfi_def_cfa_offset 36
+ 1319              		.cfi_offset 4, -36
+ 1320              		.cfi_offset 5, -32
+ 1321              		.cfi_offset 6, -28
+ 1322              		.cfi_offset 7, -24
+ 1323              		.cfi_offset 8, -20
+ 1324              		.cfi_offset 9, -16
+ 1325              		.cfi_offset 10, -12
+ 1326              		.cfi_offset 11, -8
+ 1327              		.cfi_offset 14, -4
+ 1328 0004 0746     		mov	r7, r0
+ 1329 0006 8BB0     		sub	sp, sp, #44
+ 1330              	.LCFI18:
+ 1331              		.cfi_def_cfa_offset 80
+ 186:network.c     ****     network net = create_network(num_layers);
+ 1332              		.loc 1 186 71 view .LVU370
+ 1333 0008 8846     		mov	r8, r1
+ 1334 000a 1646     		mov	r6, r2
+ 1335 000c 9A46     		mov	r10, r3
+ 1336              		.loc 1 187 19 view .LVU371
+ 1337 000e FFF7FEFF 		bl	create_network
+ 1338              	.LVL125:
+ 1339              		.loc 1 187 19 view .LVU372
+ 1340 0012 7D68     		ldr	r5, [r7, #4]
+ 1341              	.LVL126:
+ 188:network.c     ****     int curr_layer_idx, curr_neuron_idx;
+ 1342              		.loc 1 188 5 is_stmt 1 view .LVU373
+ 189:network.c     ****     for (curr_layer_idx = 0; curr_layer_idx < num_layers; curr_layer_idx++){
+ 1343              		.loc 1 189 5 view .LVU374
+ 1344              		.loc 1 189 25 is_stmt 0 view .LVU375
+ 1345 0014 0024     		movs	r4, #0
+ 190:network.c     ****         net.layers[ curr_layer_idx ] = create_layer(num_neurons[ curr_layer_idx ]);
+ 1346              		.loc 1 190 40 view .LVU376
+ 1347 0016 0DF12009 		add	r9, sp, #32
+ 1348              	.LVL127:
+ 1349              	.L64:
+ 189:network.c     ****     for (curr_layer_idx = 0; curr_layer_idx < num_layers; curr_layer_idx++){
+ 1350              		.loc 1 189 30 is_stmt 1 discriminator 1 view .LVU377
+ 189:network.c     ****     for (curr_layer_idx = 0; curr_layer_idx < num_layers; curr_layer_idx++){
+ 1351              		.loc 1 189 5 is_stmt 0 discriminator 1 view .LVU378
+ 1352 001a 4445     		cmp	r4, r8
+ 1353 001c 12DB     		blt	.L65
+ 191:network.c     ****     }
+ 192:network.c     ****     // create neurons for the first (input) layer - they dont have weights
+ 193:network.c     ****     for (curr_neuron_idx = 0; curr_neuron_idx < net.layers[0].num_neurons; curr_neuron_idx++){
+ 1354              		.loc 1 193 26 view .LVU379
+ 1355 001e 0023     		movs	r3, #0
+ 1356              		.loc 1 193 62 view .LVU380
+ 1357 0020 D5F800C0 		ldr	ip, [r5]
+ 194:network.c     ****         net.layers[0].neurons[ curr_neuron_idx ] = create_neuron(NULL, 0, 0, curr_neuron_idx);
+ 1358              		.loc 1 194 30 view .LVU381
+ 1359 0024 4FF0180E 		mov	lr, #24
+ 1360              		.loc 1 194 52 view .LVU382
+ 1361 0028 1946     		mov	r1, r3
+ 1362 002a 0020     		movs	r0, #0
+ 1363              	.LVL128:
+ 1364              	.L66:
+ 193:network.c     ****         net.layers[0].neurons[ curr_neuron_idx ] = create_neuron(NULL, 0, 0, curr_neuron_idx);
+ 1365              		.loc 1 193 31 is_stmt 1 discriminator 1 view .LVU383
+ 193:network.c     ****         net.layers[0].neurons[ curr_neuron_idx ] = create_neuron(NULL, 0, 0, curr_neuron_idx);
+ 1366              		.loc 1 193 5 is_stmt 0 discriminator 1 view .LVU384
+ 1367 002c 9C45     		cmp	ip, r3
+ 1368 002e 16DC     		bgt	.L67
+ 195:network.c     ****     }
+ 196:network.c     ****     // For each following layer create neurons with number of weights eqaual to the number of neuro
+ 197:network.c     ****     for (curr_layer_idx = 1; curr_layer_idx < num_layers; curr_layer_idx++){
+ 1369              		.loc 1 197 25 view .LVU385
+ 1370 0030 4FF00109 		mov	r9, #1
+ 1371              	.LBB85:
+ 198:network.c     ****         int prev_layer_idx = curr_layer_idx - 1;
+ 199:network.c     ****         for (curr_neuron_idx = 0; curr_neuron_idx <net.layers[ curr_layer_idx ].num_neurons; curr_n
+ 200:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ] = create_neuron(weights, net.la
+ 1372              		.loc 1 200 71 view .LVU386
+ 1373 0034 4FF0180B 		mov	fp, #24
+ 1374              	.LVL129:
+ 1375              	.L68:
+ 1376              		.loc 1 200 71 view .LVU387
+ 1377              	.LBE85:
+ 197:network.c     ****         int prev_layer_idx = curr_layer_idx - 1;
+ 1378              		.loc 1 197 30 is_stmt 1 discriminator 1 view .LVU388
+ 197:network.c     ****         int prev_layer_idx = curr_layer_idx - 1;
+ 1379              		.loc 1 197 5 is_stmt 0 discriminator 1 view .LVU389
+ 1380 0038 C145     		cmp	r9, r8
+ 1381 003a 37DB     		blt	.L71
+ 201:network.c     ****         }
+ 202:network.c     ****     }
+ 203:network.c     ****     return net;
+ 1382              		.loc 1 203 5 is_stmt 1 view .LVU390
+ 204:network.c     **** }
+ 1383              		.loc 1 204 1 is_stmt 0 view .LVU391
+ 1384 003c 3846     		mov	r0, r7
+ 1385 003e 0BB0     		add	sp, sp, #44
+ 1386              	.LCFI19:
+ 1387              		.cfi_remember_state
+ 1388              		.cfi_def_cfa_offset 36
+ 1389              		@ sp needed
+ 1390 0040 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1391              	.LVL130:
+ 1392              	.L65:
+ 1393              	.LCFI20:
+ 1394              		.cfi_restore_state
+ 190:network.c     ****     }
+ 1395              		.loc 1 190 9 is_stmt 1 discriminator 3 view .LVU392
+ 190:network.c     ****     }
+ 1396              		.loc 1 190 40 is_stmt 0 discriminator 3 view .LVU393
+ 1397 0044 56F82410 		ldr	r1, [r6, r4, lsl #2]
+ 1398 0048 4846     		mov	r0, r9
+ 1399 004a FFF7FEFF 		bl	create_layer
+ 1400              	.LVL131:
+ 1401 004e 99E80300 		ldm	r9, {r0, r1}
+ 1402 0052 05EBC403 		add	r3, r5, r4, lsl #3
+ 1403 0056 83E80300 		stm	r3, {r0, r1}
+ 189:network.c     ****         net.layers[ curr_layer_idx ] = create_layer(num_neurons[ curr_layer_idx ]);
+ 1404              		.loc 1 189 59 is_stmt 1 discriminator 3 view .LVU394
+ 189:network.c     ****         net.layers[ curr_layer_idx ] = create_layer(num_neurons[ curr_layer_idx ]);
+ 1405              		.loc 1 189 73 is_stmt 0 discriminator 3 view .LVU395
+ 1406 005a 0134     		adds	r4, r4, #1
+ 1407              	.LVL132:
+ 189:network.c     ****         net.layers[ curr_layer_idx ] = create_layer(num_neurons[ curr_layer_idx ]);
+ 1408              		.loc 1 189 73 discriminator 3 view .LVU396
+ 1409 005c DDE7     		b	.L64
+ 1410              	.LVL133:
+ 1411              	.L67:
+ 194:network.c     ****     }
+ 1412              		.loc 1 194 9 is_stmt 1 discriminator 3 view .LVU397
+ 194:network.c     ****     }
+ 1413              		.loc 1 194 30 is_stmt 0 discriminator 3 view .LVU398
+ 1414 005e 6E68     		ldr	r6, [r5, #4]
+ 1415 0060 0EFB03F4 		mul	r4, lr, r3
+ 1416 0064 3219     		adds	r2, r6, r4
+ 1417              	.LVL134:
+ 1418              	.LBB86:
+ 1419              	.LBI86:
+ 147:network.c     ****     neuron new_neuron;
+ 1420              		.loc 1 147 8 is_stmt 1 discriminator 3 view .LVU399
+ 1421              	.LBB87:
+ 148:network.c     ****     new_neuron.a = 0.0;
+ 1422              		.loc 1 148 5 discriminator 3 view .LVU400
+ 149:network.c     ****     new_neuron.z = 0.0;
+ 1423              		.loc 1 149 5 discriminator 3 view .LVU401
+ 150:network.c     ****     new_neuron.bias = 0.0;
+ 1424              		.loc 1 150 5 discriminator 3 view .LVU402
+ 151:network.c     ****     new_neuron.num_weights = num_in_weights;
+ 1425              		.loc 1 151 5 discriminator 3 view .LVU403
+ 152:network.c     **** 
+ 1426              		.loc 1 152 5 discriminator 3 view .LVU404
+ 154:network.c     ****         new_neuron.weights = (float*) malloc(num_in_weights * sizeof(float));
+ 1427              		.loc 1 154 5 discriminator 3 view .LVU405
+ 161:network.c     ****         //TODO: Dont question it... it works.
+ 1428              		.loc 1 161 5 discriminator 3 view .LVU406
+ 169:network.c     **** }
+ 1429              		.loc 1 169 5 discriminator 3 view .LVU407
+ 169:network.c     **** }
+ 1430              		.loc 1 169 5 is_stmt 0 discriminator 3 view .LVU408
+ 1431              	.LBE87:
+ 1432              	.LBE86:
+ 194:network.c     ****     }
+ 1433              		.loc 1 194 52 discriminator 3 view .LVU409
+ 1434 0066 3151     		str	r1, [r6, r4]
+ 193:network.c     ****         net.layers[0].neurons[ curr_neuron_idx ] = create_neuron(NULL, 0, 0, curr_neuron_idx);
+ 1435              		.loc 1 193 91 discriminator 3 view .LVU410
+ 1436 0068 0133     		adds	r3, r3, #1
+ 1437              	.LVL135:
+ 194:network.c     ****     }
+ 1438              		.loc 1 194 52 discriminator 3 view .LVU411
+ 1439 006a 5160     		str	r1, [r2, #4]
+ 1440 006c 9060     		str	r0, [r2, #8]	@ float
+ 1441 006e D060     		str	r0, [r2, #12]	@ float
+ 1442 0070 1061     		str	r0, [r2, #16]	@ float
+ 1443 0072 5161     		str	r1, [r2, #20]
+ 193:network.c     ****         net.layers[0].neurons[ curr_neuron_idx ] = create_neuron(NULL, 0, 0, curr_neuron_idx);
+ 1444              		.loc 1 193 76 is_stmt 1 discriminator 3 view .LVU412
+ 1445              	.LVL136:
+ 193:network.c     ****         net.layers[0].neurons[ curr_neuron_idx ] = create_neuron(NULL, 0, 0, curr_neuron_idx);
+ 1446              		.loc 1 193 76 is_stmt 0 discriminator 3 view .LVU413
+ 1447 0074 DAE7     		b	.L66
+ 1448              	.LVL137:
+ 1449              	.L69:
+ 1450              	.LBB88:
+ 200:network.c     ****         }
+ 1451              		.loc 1 200 13 is_stmt 1 discriminator 3 view .LVU414
+ 200:network.c     ****         }
+ 1452              		.loc 1 200 71 is_stmt 0 discriminator 3 view .LVU415
+ 1453 0076 EC68     		ldr	r4, [r5, #12]
+ 1454 0078 0096     		str	r6, [sp]
+ 1455 007a 2A68     		ldr	r2, [r5]
+ 1456 007c 4B46     		mov	r3, r9
+ 1457 007e 5146     		mov	r1, r10
+ 1458 0080 02A8     		add	r0, sp, #8
+ 1459 0082 FFF7FEFF 		bl	create_neuron
+ 1460              	.LVL138:
+ 1461 0086 0DF1080C 		add	ip, sp, #8
+ 1462 008a BCE80F00 		ldmia	ip!, {r0, r1, r2, r3}
+ 1463 008e 0BFB0644 		mla	r4, fp, r6, r4
+ 1464 0092 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 1465 0094 9CE80300 		ldm	ip, {r0, r1}
+ 1466 0098 84E80300 		stm	r4, {r0, r1}
+ 199:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ] = create_neuron(weights, net.la
+ 1467              		.loc 1 199 94 is_stmt 1 discriminator 3 view .LVU416
+ 199:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ] = create_neuron(weights, net.la
+ 1468              		.loc 1 199 109 is_stmt 0 discriminator 3 view .LVU417
+ 1469 009c 0136     		adds	r6, r6, #1
+ 1470              	.LVL139:
+ 1471              	.L70:
+ 199:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ] = create_neuron(weights, net.la
+ 1472              		.loc 1 199 35 is_stmt 1 discriminator 1 view .LVU418
+ 199:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ] = create_neuron(weights, net.la
+ 1473              		.loc 1 199 9 is_stmt 0 discriminator 1 view .LVU419
+ 1474 009e AB68     		ldr	r3, [r5, #8]
+ 1475 00a0 B342     		cmp	r3, r6
+ 1476 00a2 E8DC     		bgt	.L69
+ 1477              	.LBE88:
+ 197:network.c     ****         int prev_layer_idx = curr_layer_idx - 1;
+ 1478              		.loc 1 197 59 is_stmt 1 discriminator 2 view .LVU420
+ 197:network.c     ****         int prev_layer_idx = curr_layer_idx - 1;
+ 1479              		.loc 1 197 73 is_stmt 0 discriminator 2 view .LVU421
+ 1480 00a4 09F10109 		add	r9, r9, #1
+ 1481              	.LVL140:
+ 197:network.c     ****         int prev_layer_idx = curr_layer_idx - 1;
+ 1482              		.loc 1 197 73 discriminator 2 view .LVU422
+ 1483 00a8 0835     		adds	r5, r5, #8
+ 1484 00aa C5E7     		b	.L68
+ 1485              	.LVL141:
+ 1486              	.L71:
+ 1487              	.LBB89:
+ 199:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ] = create_neuron(weights, net.la
+ 1488              		.loc 1 199 30 view .LVU423
+ 1489 00ac 0026     		movs	r6, #0
+ 1490 00ae F6E7     		b	.L70
+ 1491              	.LBE89:
+ 1492              		.cfi_endproc
+ 1493              	.LFE15:
+ 1495              		.section	.text.shuffle_mul_indices_masked,"ax",%progbits
+ 1496              		.align	1
+ 1497              		.global	shuffle_mul_indices_masked
+ 1498              		.syntax unified
+ 1499              		.thumb
+ 1500              		.thumb_func
+ 1501              		.fpu softvfp
+ 1503              	shuffle_mul_indices_masked:
+ 1504              	.LVL142:
+ 1505              	.LFB16:
+ 205:network.c     **** 
+ 206:network.c     **** network shuffle_mul_indices_masked(network net, int layer_idx) {
+ 1506              		.loc 1 206 64 is_stmt 1 view -0
+ 1507              		.cfi_startproc
+ 1508              		@ args = 0, pretend = 0, frame = 64
+ 1509              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1510              		.loc 1 206 64 is_stmt 0 view .LVU425
+ 1511 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 1512              	.LCFI21:
+ 1513              		.cfi_def_cfa_offset 28
+ 1514              		.cfi_offset 4, -28
+ 1515              		.cfi_offset 5, -24
+ 1516              		.cfi_offset 6, -20
+ 1517              		.cfi_offset 7, -16
+ 1518              		.cfi_offset 8, -12
+ 1519              		.cfi_offset 9, -8
+ 1520              		.cfi_offset 14, -4
+ 207:network.c     ****     unsigned int s1[7] = {1, 1, 1, 3, 2, 1, 4};
+ 1521              		.loc 1 207 18 view .LVU426
+ 1522 0004 224C     		ldr	r4, .L81
+ 206:network.c     ****     unsigned int s1[7] = {1, 1, 1, 3, 2, 1, 4};
+ 1523              		.loc 1 206 64 view .LVU427
+ 1524 0006 93B0     		sub	sp, sp, #76
+ 1525              	.LCFI22:
+ 1526              		.cfi_def_cfa_offset 104
+ 206:network.c     ****     unsigned int s1[7] = {1, 1, 1, 3, 2, 1, 4};
+ 1527              		.loc 1 206 64 view .LVU428
+ 1528 0008 02AF     		add	r7, sp, #8
+ 1529 000a 9C46     		mov	ip, r3
+ 1530 000c 9646     		mov	lr, r2
+ 1531              	.LVL143:
+ 1532              		.loc 1 207 5 is_stmt 1 view .LVU429
+ 206:network.c     ****     unsigned int s1[7] = {1, 1, 1, 3, 2, 1, 4};
+ 1533              		.loc 1 206 64 is_stmt 0 view .LVU430
+ 1534 000e 87E80600 		stm	r7, {r1, r2}
+ 1535 0012 0646     		mov	r6, r0
+ 1536              		.loc 1 207 18 view .LVU431
+ 1537 0014 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
+ 1538              	.LVL144:
+ 1539              		.loc 1 207 18 view .LVU432
+ 1540 0016 04AD     		add	r5, sp, #16
+ 1541 0018 0FC5     		stmia	r5!, {r0, r1, r2, r3}
+ 1542 001a 94E80700 		ldm	r4, {r0, r1, r2}
+ 208:network.c     ****     unsigned int s2[7] = {1, 1, 1, 3, 3, 1, 2};
+ 1543              		.loc 1 208 18 view .LVU433
+ 1544 001e 0C34     		adds	r4, r4, #12
+ 207:network.c     ****     unsigned int s1[7] = {1, 1, 1, 3, 2, 1, 4};
+ 1545              		.loc 1 207 18 view .LVU434
+ 1546 0020 85E80700 		stm	r5, {r0, r1, r2}
+ 1547              		.loc 1 208 5 is_stmt 1 view .LVU435
+ 1548              		.loc 1 208 18 is_stmt 0 view .LVU436
+ 1549 0024 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
+ 1550 0026 0BAD     		add	r5, sp, #44
+ 1551 0028 0FC5     		stmia	r5!, {r0, r1, r2, r3}
+ 1552 002a 94E80700 		ldm	r4, {r0, r1, r2}
+ 209:network.c     ****     unsigned int length = 0;
+ 210:network.c     ****     unsigned int num_of_neurons = net.layers[ layer_idx ].num_neurons; 
+ 1553              		.loc 1 210 18 view .LVU437
+ 1554 002e 5EF83C40 		ldr	r4, [lr, ip, lsl #3]
+ 208:network.c     ****     unsigned int s2[7] = {1, 1, 1, 3, 3, 1, 2};
+ 1555              		.loc 1 208 18 view .LVU438
+ 1556 0032 85E80700 		stm	r5, {r0, r1, r2}
+ 209:network.c     ****     unsigned int length = 0;
+ 1557              		.loc 1 209 5 is_stmt 1 view .LVU439
+ 1558              	.LVL145:
+ 1559              		.loc 1 210 5 view .LVU440
+ 211:network.c     ****     while (num_of_neurons > 0) {
+ 1560              		.loc 1 211 5 view .LVU441
+ 210:network.c     ****     while (num_of_neurons > 0) {
+ 1561              		.loc 1 210 45 is_stmt 0 view .LVU442
+ 1562 0036 0EEBCC08 		add	r8, lr, ip, lsl #3
+ 209:network.c     ****     unsigned int length = 0;
+ 1563              		.loc 1 209 18 view .LVU443
+ 1564 003a 0025     		movs	r5, #0
+ 1565              	.LVL146:
+ 1566              	.L73:
+ 1567              		.loc 1 211 11 is_stmt 1 view .LVU444
+ 1568 003c 6CB9     		cbnz	r4, .L74
+ 212:network.c     ****         num_of_neurons >>= 1;
+ 213:network.c     ****         length++;
+ 214:network.c     ****     }
+ 215:network.c     ****     if (layer_idx > 0 && layer_idx < net.num_layers) {
+ 1569              		.loc 1 215 5 view .LVU445
+ 1570              		.loc 1 215 8 is_stmt 0 view .LVU446
+ 1571 003e BCF1000F 		cmp	ip, #0
+ 1572 0042 02DD     		ble	.L77
+ 1573              		.loc 1 215 23 discriminator 1 view .LVU447
+ 1574 0044 029B     		ldr	r3, [sp, #8]
+ 1575 0046 6345     		cmp	r3, ip
+ 1576 0048 1EDC     		bgt	.L79
+ 1577              	.LVL147:
+ 1578              	.L77:
+ 216:network.c     ****         for (int i = 0; i < net.layers[ layer_idx ].num_neurons; i++){
+ 217:network.c     ****             fisher_yates_masked(net.layers[ layer_idx ].neurons[ i ].mul_indices, net.layers[ layer
+ 218:network.c     ****         }
+ 219:network.c     ****     }
+ 220:network.c     ****     return net;
+ 1579              		.loc 1 220 5 is_stmt 1 view .LVU448
+ 1580              		.loc 1 220 12 is_stmt 0 view .LVU449
+ 1581 004a 97E80300 		ldm	r7, {r0, r1}
+ 1582 004e 86E80300 		stm	r6, {r0, r1}
+ 221:network.c     **** }
+ 1583              		.loc 1 221 1 view .LVU450
+ 1584 0052 3046     		mov	r0, r6
+ 1585 0054 13B0     		add	sp, sp, #76
+ 1586              	.LCFI23:
+ 1587              		.cfi_remember_state
+ 1588              		.cfi_def_cfa_offset 28
+ 1589              		@ sp needed
+ 1590 0056 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 1591              	.LVL148:
+ 1592              	.L74:
+ 1593              	.LCFI24:
+ 1594              		.cfi_restore_state
+ 212:network.c     ****         num_of_neurons >>= 1;
+ 1595              		.loc 1 212 9 is_stmt 1 view .LVU451
+ 212:network.c     ****         num_of_neurons >>= 1;
+ 1596              		.loc 1 212 24 is_stmt 0 view .LVU452
+ 1597 005a 6408     		lsrs	r4, r4, #1
+ 1598              	.LVL149:
+ 213:network.c     ****     }
+ 1599              		.loc 1 213 9 is_stmt 1 view .LVU453
+ 213:network.c     ****     }
+ 1600              		.loc 1 213 15 is_stmt 0 view .LVU454
+ 1601 005c 0135     		adds	r5, r5, #1
+ 1602              	.LVL150:
+ 213:network.c     ****     }
+ 1603              		.loc 1 213 15 view .LVU455
+ 1604 005e EDE7     		b	.L73
+ 1605              	.LVL151:
+ 1606              	.L78:
+ 1607              	.LBB90:
+ 217:network.c     ****         }
+ 1608              		.loc 1 217 13 is_stmt 1 discriminator 3 view .LVU456
+ 217:network.c     ****         }
+ 1609              		.loc 1 217 64 is_stmt 0 discriminator 3 view .LVU457
+ 1610 0060 D8F80400 		ldr	r0, [r8, #4]
+ 217:network.c     ****         }
+ 1611              		.loc 1 217 13 discriminator 3 view .LVU458
+ 1612 0064 0095     		str	r5, [sp]
+ 217:network.c     ****         }
+ 1613              		.loc 1 217 64 discriminator 3 view .LVU459
+ 1614 0066 09FB04F1 		mul	r1, r9, r4
+ 1615 006a 00EB010C 		add	ip, r0, r1
+ 217:network.c     ****         }
+ 1616              		.loc 1 217 13 discriminator 3 view .LVU460
+ 1617 006e 0BAB     		add	r3, sp, #44
+ 1618 0070 4158     		ldr	r1, [r0, r1]
+ 1619 0072 DCF81400 		ldr	r0, [ip, #20]
+ 1620 0076 04AA     		add	r2, sp, #16
+ 1621 0078 FFF7FEFF 		bl	fisher_yates_masked
+ 1622              	.LVL152:
+ 216:network.c     ****             fisher_yates_masked(net.layers[ layer_idx ].neurons[ i ].mul_indices, net.layers[ layer
+ 1623              		.loc 1 216 66 is_stmt 1 discriminator 3 view .LVU461
+ 216:network.c     ****             fisher_yates_masked(net.layers[ layer_idx ].neurons[ i ].mul_indices, net.layers[ layer
+ 1624              		.loc 1 216 67 is_stmt 0 discriminator 3 view .LVU462
+ 1625 007c 0134     		adds	r4, r4, #1
+ 1626              	.LVL153:
+ 1627              	.L76:
+ 216:network.c     ****             fisher_yates_masked(net.layers[ layer_idx ].neurons[ i ].mul_indices, net.layers[ layer
+ 1628              		.loc 1 216 25 is_stmt 1 discriminator 1 view .LVU463
+ 216:network.c     ****             fisher_yates_masked(net.layers[ layer_idx ].neurons[ i ].mul_indices, net.layers[ layer
+ 1629              		.loc 1 216 9 is_stmt 0 discriminator 1 view .LVU464
+ 1630 007e D8F80030 		ldr	r3, [r8]
+ 1631 0082 A342     		cmp	r3, r4
+ 1632 0084 ECDC     		bgt	.L78
+ 1633 0086 E0E7     		b	.L77
+ 1634              	.LVL154:
+ 1635              	.L79:
+ 217:network.c     ****         }
+ 1636              		.loc 1 217 64 view .LVU465
+ 1637 0088 4FF01809 		mov	r9, #24
+ 1638 008c F7E7     		b	.L76
+ 1639              	.L82:
+ 1640 008e 00BF     		.align	2
+ 1641              	.L81:
+ 1642 0090 00000000 		.word	.LANCHOR0
+ 1643              	.LBE90:
+ 1644              		.cfi_endproc
+ 1645              	.LFE16:
+ 1647              		.section	.text.shuffle_mul_indices,"ax",%progbits
+ 1648              		.align	1
+ 1649              		.global	shuffle_mul_indices
+ 1650              		.syntax unified
+ 1651              		.thumb
+ 1652              		.thumb_func
+ 1653              		.fpu softvfp
+ 1655              	shuffle_mul_indices:
+ 1656              	.LVL155:
+ 1657              	.LFB17:
+ 222:network.c     **** 
+ 223:network.c     **** network shuffle_mul_indices(network net, int layer_idx) {
+ 1658              		.loc 1 223 57 is_stmt 1 view -0
+ 1659              		.cfi_startproc
+ 1660              		@ args = 0, pretend = 0, frame = 8
+ 1661              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1662              		.loc 1 223 57 is_stmt 0 view .LVU467
+ 1663 0000 2DE9F341 		push	{r0, r1, r4, r5, r6, r7, r8, lr}
+ 1664              	.LCFI25:
+ 1665              		.cfi_def_cfa_offset 32
+ 1666              		.cfi_offset 4, -24
+ 1667              		.cfi_offset 5, -20
+ 1668              		.cfi_offset 6, -16
+ 1669              		.cfi_offset 7, -12
+ 1670              		.cfi_offset 8, -8
+ 1671              		.cfi_offset 14, -4
+ 1672              	.LVL156:
+ 224:network.c     ****     if (layer_idx > 0 && layer_idx < net.num_layers) {
+ 1673              		.loc 1 224 5 is_stmt 1 view .LVU468
+ 1674              		.loc 1 224 8 is_stmt 0 view .LVU469
+ 1675 0004 002B     		cmp	r3, #0
+ 223:network.c     ****     if (layer_idx > 0 && layer_idx < net.num_layers) {
+ 1676              		.loc 1 223 57 view .LVU470
+ 1677 0006 6D46     		mov	r5, sp
+ 1678 0008 85E80600 		stm	r5, {r1, r2}
+ 1679              	.LVL157:
+ 223:network.c     ****     if (layer_idx > 0 && layer_idx < net.num_layers) {
+ 1680              		.loc 1 223 57 view .LVU471
+ 1681 000c 0446     		mov	r4, r0
+ 1682              		.loc 1 224 8 view .LVU472
+ 1683 000e 0ADD     		ble	.L85
+ 1684              		.loc 1 224 23 discriminator 1 view .LVU473
+ 1685 0010 9942     		cmp	r1, r3
+ 1686 0012 08DD     		ble	.L85
+ 1687              	.LBB91:
+ 225:network.c     ****         for (int i = 0; i < net.layers[ layer_idx ].num_neurons; i++){
+ 1688              		.loc 1 225 39 view .LVU474
+ 1689 0014 019F     		ldr	r7, [sp, #4]
+ 1690              		.loc 1 225 18 view .LVU475
+ 1691 0016 0026     		movs	r6, #0
+ 1692              		.loc 1 225 39 view .LVU476
+ 1693 0018 07EBC307 		add	r7, r7, r3, lsl #3
+ 226:network.c     ****             fisher_yates(net.layers[ layer_idx ].neurons[ i ].mul_indices, net.layers[ layer_idx ].
+ 1694              		.loc 1 226 57 view .LVU477
+ 1695 001c 4FF01808 		mov	r8, #24
+ 1696              	.LVL158:
+ 1697              	.L86:
+ 225:network.c     ****         for (int i = 0; i < net.layers[ layer_idx ].num_neurons; i++){
+ 1698              		.loc 1 225 25 is_stmt 1 discriminator 1 view .LVU478
+ 225:network.c     ****         for (int i = 0; i < net.layers[ layer_idx ].num_neurons; i++){
+ 1699              		.loc 1 225 9 is_stmt 0 discriminator 1 view .LVU479
+ 1700 0020 3B68     		ldr	r3, [r7]
+ 1701 0022 B342     		cmp	r3, r6
+ 1702 0024 07DC     		bgt	.L87
+ 1703              	.LVL159:
+ 1704              	.L85:
+ 225:network.c     ****         for (int i = 0; i < net.layers[ layer_idx ].num_neurons; i++){
+ 1705              		.loc 1 225 9 discriminator 1 view .LVU480
+ 1706              	.LBE91:
+ 227:network.c     ****         }
+ 228:network.c     ****     }
+ 229:network.c     ****     return net;
+ 1707              		.loc 1 229 5 is_stmt 1 view .LVU481
+ 1708              		.loc 1 229 12 is_stmt 0 view .LVU482
+ 1709 0026 95E80300 		ldm	r5, {r0, r1}
+ 1710 002a 84E80300 		stm	r4, {r0, r1}
+ 230:network.c     **** }
+ 1711              		.loc 1 230 1 view .LVU483
+ 1712 002e 2046     		mov	r0, r4
+ 1713 0030 02B0     		add	sp, sp, #8
+ 1714              	.LCFI26:
+ 1715              		.cfi_remember_state
+ 1716              		.cfi_def_cfa_offset 24
+ 1717              		@ sp needed
+ 1718 0032 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1719              	.LVL160:
+ 1720              	.L87:
+ 1721              	.LCFI27:
+ 1722              		.cfi_restore_state
+ 1723              	.LBB92:
+ 226:network.c     ****             fisher_yates(net.layers[ layer_idx ].neurons[ i ].mul_indices, net.layers[ layer_idx ].
+ 1724              		.loc 1 226 13 is_stmt 1 discriminator 3 view .LVU484
+ 226:network.c     ****             fisher_yates(net.layers[ layer_idx ].neurons[ i ].mul_indices, net.layers[ layer_idx ].
+ 1725              		.loc 1 226 57 is_stmt 0 discriminator 3 view .LVU485
+ 1726 0036 7A68     		ldr	r2, [r7, #4]
+ 1727 0038 08FB06F3 		mul	r3, r8, r6
+ 1728 003c D018     		adds	r0, r2, r3
+ 226:network.c     ****             fisher_yates(net.layers[ layer_idx ].neurons[ i ].mul_indices, net.layers[ layer_idx ].
+ 1729              		.loc 1 226 13 discriminator 3 view .LVU486
+ 1730 003e D158     		ldr	r1, [r2, r3]
+ 1731 0040 4069     		ldr	r0, [r0, #20]
+ 1732 0042 FFF7FEFF 		bl	fisher_yates
+ 1733              	.LVL161:
+ 225:network.c     ****             fisher_yates(net.layers[ layer_idx ].neurons[ i ].mul_indices, net.layers[ layer_idx ].
+ 1734              		.loc 1 225 66 is_stmt 1 discriminator 3 view .LVU487
+ 225:network.c     ****             fisher_yates(net.layers[ layer_idx ].neurons[ i ].mul_indices, net.layers[ layer_idx ].
+ 1735              		.loc 1 225 67 is_stmt 0 discriminator 3 view .LVU488
+ 1736 0046 0136     		adds	r6, r6, #1
+ 1737              	.LVL162:
+ 225:network.c     ****             fisher_yates(net.layers[ layer_idx ].neurons[ i ].mul_indices, net.layers[ layer_idx ].
+ 1738              		.loc 1 225 67 discriminator 3 view .LVU489
+ 1739 0048 EAE7     		b	.L86
+ 1740              	.LBE92:
+ 1741              		.cfi_endproc
+ 1742              	.LFE17:
+ 1744              		.section	.text.shuffle_mul_indices_deranged,"ax",%progbits
+ 1745              		.align	1
+ 1746              		.global	shuffle_mul_indices_deranged
+ 1747              		.syntax unified
+ 1748              		.thumb
+ 1749              		.thumb_func
+ 1750              		.fpu softvfp
+ 1752              	shuffle_mul_indices_deranged:
+ 1753              	.LVL163:
+ 1754              	.LFB18:
+ 231:network.c     **** 
+ 232:network.c     **** network shuffle_mul_indices_deranged(network net, int layer_idx) {
+ 1755              		.loc 1 232 66 is_stmt 1 view -0
+ 1756              		.cfi_startproc
+ 1757              		@ args = 0, pretend = 0, frame = 8
+ 1758              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1759              		.loc 1 232 66 is_stmt 0 view .LVU491
+ 1760 0000 2DE9F341 		push	{r0, r1, r4, r5, r6, r7, r8, lr}
+ 1761              	.LCFI28:
+ 1762              		.cfi_def_cfa_offset 32
+ 1763              		.cfi_offset 4, -24
+ 1764              		.cfi_offset 5, -20
+ 1765              		.cfi_offset 6, -16
+ 1766              		.cfi_offset 7, -12
+ 1767              		.cfi_offset 8, -8
+ 1768              		.cfi_offset 14, -4
+ 1769              	.LVL164:
+ 233:network.c     ****     if (layer_idx > 0 && layer_idx < net.num_layers) {
+ 1770              		.loc 1 233 5 is_stmt 1 view .LVU492
+ 1771              		.loc 1 233 8 is_stmt 0 view .LVU493
+ 1772 0004 002B     		cmp	r3, #0
+ 232:network.c     ****     if (layer_idx > 0 && layer_idx < net.num_layers) {
+ 1773              		.loc 1 232 66 view .LVU494
+ 1774 0006 6D46     		mov	r5, sp
+ 1775 0008 85E80600 		stm	r5, {r1, r2}
+ 1776              	.LVL165:
+ 232:network.c     ****     if (layer_idx > 0 && layer_idx < net.num_layers) {
+ 1777              		.loc 1 232 66 view .LVU495
+ 1778 000c 0446     		mov	r4, r0
+ 1779              		.loc 1 233 8 view .LVU496
+ 1780 000e 0ADD     		ble	.L91
+ 1781              		.loc 1 233 23 discriminator 1 view .LVU497
+ 1782 0010 9942     		cmp	r1, r3
+ 1783 0012 08DD     		ble	.L91
+ 1784              	.LBB93:
+ 234:network.c     ****         for (int i = 0; i < net.layers[ layer_idx ].num_neurons; i++){
+ 1785              		.loc 1 234 39 view .LVU498
+ 1786 0014 019F     		ldr	r7, [sp, #4]
+ 1787              		.loc 1 234 18 view .LVU499
+ 1788 0016 0026     		movs	r6, #0
+ 1789              		.loc 1 234 39 view .LVU500
+ 1790 0018 07EBC307 		add	r7, r7, r3, lsl #3
+ 235:network.c     ****             fisher_yates_deranged(net.layers[ layer_idx ].neurons[ i ].mul_indices, net.layers[ lay
+ 1791              		.loc 1 235 66 view .LVU501
+ 1792 001c 4FF01808 		mov	r8, #24
+ 1793              	.LVL166:
+ 1794              	.L92:
+ 234:network.c     ****         for (int i = 0; i < net.layers[ layer_idx ].num_neurons; i++){
+ 1795              		.loc 1 234 25 is_stmt 1 discriminator 1 view .LVU502
+ 234:network.c     ****         for (int i = 0; i < net.layers[ layer_idx ].num_neurons; i++){
+ 1796              		.loc 1 234 9 is_stmt 0 discriminator 1 view .LVU503
+ 1797 0020 3B68     		ldr	r3, [r7]
+ 1798 0022 B342     		cmp	r3, r6
+ 1799 0024 07DC     		bgt	.L93
+ 1800              	.LVL167:
+ 1801              	.L91:
+ 234:network.c     ****         for (int i = 0; i < net.layers[ layer_idx ].num_neurons; i++){
+ 1802              		.loc 1 234 9 discriminator 1 view .LVU504
+ 1803              	.LBE93:
+ 236:network.c     ****         }
+ 237:network.c     ****     }
+ 238:network.c     ****     return net;
+ 1804              		.loc 1 238 5 is_stmt 1 view .LVU505
+ 1805              		.loc 1 238 12 is_stmt 0 view .LVU506
+ 1806 0026 95E80300 		ldm	r5, {r0, r1}
+ 1807 002a 84E80300 		stm	r4, {r0, r1}
+ 239:network.c     **** }
+ 1808              		.loc 1 239 1 view .LVU507
+ 1809 002e 2046     		mov	r0, r4
+ 1810 0030 02B0     		add	sp, sp, #8
+ 1811              	.LCFI29:
+ 1812              		.cfi_remember_state
+ 1813              		.cfi_def_cfa_offset 24
+ 1814              		@ sp needed
+ 1815 0032 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1816              	.LVL168:
+ 1817              	.L93:
+ 1818              	.LCFI30:
+ 1819              		.cfi_restore_state
+ 1820              	.LBB94:
+ 235:network.c     ****             fisher_yates_deranged(net.layers[ layer_idx ].neurons[ i ].mul_indices, net.layers[ lay
+ 1821              		.loc 1 235 13 is_stmt 1 discriminator 3 view .LVU508
+ 235:network.c     ****             fisher_yates_deranged(net.layers[ layer_idx ].neurons[ i ].mul_indices, net.layers[ lay
+ 1822              		.loc 1 235 66 is_stmt 0 discriminator 3 view .LVU509
+ 1823 0036 7A68     		ldr	r2, [r7, #4]
+ 1824 0038 08FB06F3 		mul	r3, r8, r6
+ 1825 003c D018     		adds	r0, r2, r3
+ 235:network.c     ****             fisher_yates_deranged(net.layers[ layer_idx ].neurons[ i ].mul_indices, net.layers[ lay
+ 1826              		.loc 1 235 13 discriminator 3 view .LVU510
+ 1827 003e D158     		ldr	r1, [r2, r3]
+ 1828 0040 4069     		ldr	r0, [r0, #20]
+ 1829 0042 FFF7FEFF 		bl	fisher_yates_deranged
+ 1830              	.LVL169:
+ 234:network.c     ****             fisher_yates_deranged(net.layers[ layer_idx ].neurons[ i ].mul_indices, net.layers[ lay
+ 1831              		.loc 1 234 66 is_stmt 1 discriminator 3 view .LVU511
+ 234:network.c     ****             fisher_yates_deranged(net.layers[ layer_idx ].neurons[ i ].mul_indices, net.layers[ lay
+ 1832              		.loc 1 234 67 is_stmt 0 discriminator 3 view .LVU512
+ 1833 0046 0136     		adds	r6, r6, #1
+ 1834              	.LVL170:
+ 234:network.c     ****             fisher_yates_deranged(net.layers[ layer_idx ].neurons[ i ].mul_indices, net.layers[ lay
+ 1835              		.loc 1 234 67 discriminator 3 view .LVU513
+ 1836 0048 EAE7     		b	.L92
+ 1837              	.LBE94:
+ 1838              		.cfi_endproc
+ 1839              	.LFE18:
+ 1841              		.global	__aeabi_fmul
+ 1842              		.global	__aeabi_fadd
+ 1843              		.global	__aeabi_fcmplt
+ 1844              		.global	__aeabi_dadd
+ 1845              		.global	__aeabi_ddiv
+ 1846              		.global	__aeabi_d2f
+ 1847              		.section	.text.forward,"ax",%progbits
+ 1848              		.align	1
+ 1849              		.global	forward
+ 1850              		.syntax unified
+ 1851              		.thumb
+ 1852              		.thumb_func
+ 1853              		.fpu softvfp
+ 1855              	forward:
+ 1856              	.LVL171:
+ 1857              	.LFB19:
+ 240:network.c     **** 
+ 241:network.c     **** network forward(network net){
+ 1858              		.loc 1 241 29 is_stmt 1 view -0
+ 1859              		.cfi_startproc
+ 1860              		@ args = 0, pretend = 0, frame = 32
+ 1861              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1862              		.loc 1 241 29 is_stmt 0 view .LVU515
+ 1863 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 1864              	.LCFI31:
+ 1865              		.cfi_def_cfa_offset 36
+ 1866              		.cfi_offset 4, -36
+ 1867              		.cfi_offset 5, -32
+ 1868              		.cfi_offset 6, -28
+ 1869              		.cfi_offset 7, -24
+ 1870              		.cfi_offset 8, -20
+ 1871              		.cfi_offset 9, -16
+ 1872              		.cfi_offset 10, -12
+ 1873              		.cfi_offset 11, -8
+ 1874              		.cfi_offset 14, -4
+ 1875 0004 89B0     		sub	sp, sp, #36
+ 1876              	.LCFI32:
+ 1877              		.cfi_def_cfa_offset 72
+ 1878              		.loc 1 241 29 view .LVU516
+ 1879 0006 02AB     		add	r3, sp, #8
+ 1880 0008 83E80600 		stm	r3, {r1, r2}
+ 242:network.c     ****     volatile int curr_layer_idx, curr_neuron_idx, prev_layer_neuron_idx;
+ 243:network.c     ****     // for each layer
+ 244:network.c     ****     for (curr_layer_idx=1; curr_layer_idx < net.num_layers; curr_layer_idx++){
+ 1881              		.loc 1 244 24 view .LVU517
+ 1882 000c 0123     		movs	r3, #1
+ 241:network.c     ****     volatile int curr_layer_idx, curr_neuron_idx, prev_layer_neuron_idx;
+ 1883              		.loc 1 241 29 view .LVU518
+ 1884 000e 0746     		mov	r7, r0
+ 1885 0010 8846     		mov	r8, r1
+ 1886              	.LVL172:
+ 241:network.c     ****     volatile int curr_layer_idx, curr_neuron_idx, prev_layer_neuron_idx;
+ 1887              		.loc 1 241 29 view .LVU519
+ 1888 0012 1446     		mov	r4, r2
+ 1889              	.LVL173:
+ 242:network.c     ****     volatile int curr_layer_idx, curr_neuron_idx, prev_layer_neuron_idx;
+ 1890              		.loc 1 242 5 is_stmt 1 view .LVU520
+ 1891              		.loc 1 244 5 view .LVU521
+ 1892              		.loc 1 244 24 is_stmt 0 view .LVU522
+ 1893 0014 0593     		str	r3, [sp, #20]
+ 1894              	.LBB95:
+ 245:network.c     ****         
+ 246:network.c     ****         int prev_layer_idx = curr_layer_idx - 1;
+ 247:network.c     ****         // for each neuron in this layer
+ 248:network.c     ****         for (curr_neuron_idx=0; curr_neuron_idx < net.layers[ curr_layer_idx ].num_neurons; curr_ne
+ 249:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z = net.layers[ curr_layer_idx 
+ 250:network.c     **** 
+ 251:network.c     ****             // for all neurons on the previous layer
+ 252:network.c     ****             for (prev_layer_neuron_idx = 0; prev_layer_neuron_idx <net.layers[ prev_layer_idx ].num
+ 253:network.c     ****                 net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z =
+ 254:network.c     ****                     net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z
+ 255:network.c     ****                     +
+ 256:network.c     ****                     (
+ 257:network.c     ****                         (net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].weights[ prev_laye
+ 258:network.c     ****                         *
+ 259:network.c     ****                         (net.layers[ prev_layer_idx ].neurons[ prev_layer_neuron_idx ].a)
+ 260:network.c     ****                     );
+ 261:network.c     ****                 // We are looking for THIS MULTIPLICATION
+ 262:network.c     ****             }
+ 263:network.c     ****             //get a values
+ 264:network.c     ****             net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer_idx].ne
+ 265:network.c     ****             //apply relu
+ 266:network.c     ****             if(curr_layer_idx < net.num_layers-1){
+ 267:network.c     ****                 if((net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].z) < 0)
+ 1895              		.loc 1 267 19 view .LVU523
+ 1896 0016 4FF0000B 		mov	fp, #0
+ 1897              	.LVL174:
+ 1898              	.L96:
+ 1899              		.loc 1 267 19 view .LVU524
+ 1900              	.LBE95:
+ 244:network.c     ****         
+ 1901              		.loc 1 244 28 is_stmt 1 discriminator 1 view .LVU525
+ 244:network.c     ****         
+ 1902              		.loc 1 244 43 is_stmt 0 discriminator 1 view .LVU526
+ 1903 001a 059B     		ldr	r3, [sp, #20]
+ 244:network.c     ****         
+ 1904              		.loc 1 244 5 discriminator 1 view .LVU527
+ 1905 001c 4345     		cmp	r3, r8
+ 1906 001e 05DB     		blt	.L105
+ 268:network.c     ****                 {
+ 269:network.c     ****                     net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = 0;
+ 270:network.c     ****                 }
+ 271:network.c     ****                 else
+ 272:network.c     ****                 {
+ 273:network.c     ****                     net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer
+ 274:network.c     ****                 }
+ 275:network.c     ****             }
+ 276:network.c     ****             //apply sigmoid to the last layer
+ 277:network.c     ****             else{
+ 278:network.c     ****                 net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = 1/(1+exp(-net.layers[curr
+ 279:network.c     ****             }
+ 280:network.c     ****         }
+ 281:network.c     ****     }
+ 282:network.c     ****     return net;
+ 1907              		.loc 1 282 5 is_stmt 1 view .LVU528
+ 283:network.c     **** }
+ 1908              		.loc 1 283 1 is_stmt 0 view .LVU529
+ 1909 0020 3846     		mov	r0, r7
+ 282:network.c     **** }
+ 1910              		.loc 1 282 12 view .LVU530
+ 1911 0022 C7E90084 		strd	r8, r4, [r7]
+ 1912              		.loc 1 283 1 view .LVU531
+ 1913 0026 09B0     		add	sp, sp, #36
+ 1914              	.LCFI33:
+ 1915              		.cfi_remember_state
+ 1916              		.cfi_def_cfa_offset 36
+ 1917              		@ sp needed
+ 1918 0028 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1919              	.LVL175:
+ 1920              	.L105:
+ 1921              	.LCFI34:
+ 1922              		.cfi_restore_state
+ 1923              	.LBB96:
+ 246:network.c     ****         // for each neuron in this layer
+ 1924              		.loc 1 246 9 is_stmt 1 view .LVU532
+ 246:network.c     ****         // for each neuron in this layer
+ 1925              		.loc 1 246 45 is_stmt 0 view .LVU533
+ 1926 002c 059E     		ldr	r6, [sp, #20]
+ 1927              	.LVL176:
+ 248:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z = net.layers[ curr_layer_idx 
+ 1928              		.loc 1 248 9 is_stmt 1 view .LVU534
+ 248:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z = net.layers[ curr_layer_idx 
+ 1929              		.loc 1 248 29 is_stmt 0 view .LVU535
+ 1930 002e 0023     		movs	r3, #0
+ 246:network.c     ****         // for each neuron in this layer
+ 1931              		.loc 1 246 13 view .LVU536
+ 1932 0030 013E     		subs	r6, r6, #1
+ 1933              	.LVL177:
+ 248:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z = net.layers[ curr_layer_idx 
+ 1934              		.loc 1 248 29 view .LVU537
+ 1935 0032 0693     		str	r3, [sp, #24]
+ 252:network.c     ****                 net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z =
+ 1936              		.loc 1 252 78 view .LVU538
+ 1937 0034 04EBC606 		add	r6, r4, r6, lsl #3
+ 1938              	.LVL178:
+ 249:network.c     **** 
+ 1939              		.loc 1 249 71 view .LVU539
+ 1940 0038 1825     		movs	r5, #24
+ 1941              	.L97:
+ 248:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z = net.layers[ curr_layer_idx 
+ 1942              		.loc 1 248 33 is_stmt 1 discriminator 1 view .LVU540
+ 248:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z = net.layers[ curr_layer_idx 
+ 1943              		.loc 1 248 61 is_stmt 0 discriminator 1 view .LVU541
+ 1944 003a 059A     		ldr	r2, [sp, #20]
+ 248:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z = net.layers[ curr_layer_idx 
+ 1945              		.loc 1 248 49 discriminator 1 view .LVU542
+ 1946 003c 069B     		ldr	r3, [sp, #24]
+ 248:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z = net.layers[ curr_layer_idx 
+ 1947              		.loc 1 248 9 discriminator 1 view .LVU543
+ 1948 003e 54F83220 		ldr	r2, [r4, r2, lsl #3]
+ 1949 0042 9A42     		cmp	r2, r3
+ 1950 0044 03DC     		bgt	.L104
+ 1951              	.LBE96:
+ 244:network.c     ****         
+ 1952              		.loc 1 244 61 is_stmt 1 discriminator 2 view .LVU544
+ 244:network.c     ****         
+ 1953              		.loc 1 244 75 is_stmt 0 discriminator 2 view .LVU545
+ 1954 0046 059B     		ldr	r3, [sp, #20]
+ 1955 0048 0133     		adds	r3, r3, #1
+ 1956 004a 0593     		str	r3, [sp, #20]
+ 1957 004c E5E7     		b	.L96
+ 1958              	.L104:
+ 1959              	.LBB97:
+ 249:network.c     **** 
+ 1960              		.loc 1 249 13 is_stmt 1 view .LVU546
+ 249:network.c     **** 
+ 1961              		.loc 1 249 83 is_stmt 0 view .LVU547
+ 1962 004e 0599     		ldr	r1, [sp, #20]
+ 249:network.c     **** 
+ 1963              		.loc 1 249 109 view .LVU548
+ 1964 0050 DDF818C0 		ldr	ip, [sp, #24]
+ 249:network.c     **** 
+ 1965              		.loc 1 249 23 view .LVU549
+ 1966 0054 0598     		ldr	r0, [sp, #20]
+ 249:network.c     **** 
+ 1967              		.loc 1 249 49 view .LVU550
+ 1968 0056 069A     		ldr	r2, [sp, #24]
+ 249:network.c     **** 
+ 1969              		.loc 1 249 71 view .LVU551
+ 1970 0058 04EBC000 		add	r0, r4, r0, lsl #3
+ 249:network.c     **** 
+ 1971              		.loc 1 249 128 view .LVU552
+ 1972 005c 04EBC101 		add	r1, r4, r1, lsl #3
+ 249:network.c     **** 
+ 1973              		.loc 1 249 71 view .LVU553
+ 1974 0060 4368     		ldr	r3, [r0, #4]
+ 1975 0062 05FB0233 		mla	r3, r5, r2, r3
+ 249:network.c     **** 
+ 1976              		.loc 1 249 128 view .LVU554
+ 1977 0066 4A68     		ldr	r2, [r1, #4]
+ 1978 0068 05FB0C22 		mla	r2, r5, ip, r2
+ 249:network.c     **** 
+ 1979              		.loc 1 249 71 view .LVU555
+ 1980 006c 9268     		ldr	r2, [r2, #8]	@ float
+ 1981 006e DA60     		str	r2, [r3, #12]	@ float
+ 252:network.c     ****                 net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z =
+ 1982              		.loc 1 252 13 is_stmt 1 view .LVU556
+ 252:network.c     ****                 net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z =
+ 1983              		.loc 1 252 40 is_stmt 0 view .LVU557
+ 1984 0070 0023     		movs	r3, #0
+ 1985 0072 0793     		str	r3, [sp, #28]
+ 252:network.c     ****                 net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z =
+ 1986              		.loc 1 252 96 view .LVU558
+ 1987 0074 3368     		ldr	r3, [r6]
+ 1988 0076 0193     		str	r3, [sp, #4]
+ 1989              	.L98:
+ 252:network.c     ****                 net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z =
+ 1990              		.loc 1 252 45 is_stmt 1 discriminator 1 view .LVU559
+ 252:network.c     ****                 net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z =
+ 1991              		.loc 1 252 67 is_stmt 0 discriminator 1 view .LVU560
+ 1992 0078 079B     		ldr	r3, [sp, #28]
+ 252:network.c     ****                 net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z =
+ 1993              		.loc 1 252 13 discriminator 1 view .LVU561
+ 1994 007a 019A     		ldr	r2, [sp, #4]
+ 1995 007c 9A42     		cmp	r2, r3
+ 1996 007e 2FDC     		bgt	.L99
+ 264:network.c     ****             //apply relu
+ 1997              		.loc 1 264 13 is_stmt 1 view .LVU562
+ 264:network.c     ****             //apply relu
+ 1998              		.loc 1 264 81 is_stmt 0 view .LVU563
+ 1999 0080 0599     		ldr	r1, [sp, #20]
+ 264:network.c     ****             //apply relu
+ 2000              		.loc 1 264 105 view .LVU564
+ 2001 0082 DDF818C0 		ldr	ip, [sp, #24]
+ 264:network.c     ****             //apply relu
+ 2002              		.loc 1 264 23 view .LVU565
+ 2003 0086 0598     		ldr	r0, [sp, #20]
+ 264:network.c     ****             //apply relu
+ 2004              		.loc 1 264 47 view .LVU566
+ 2005 0088 069A     		ldr	r2, [sp, #24]
+ 264:network.c     ****             //apply relu
+ 2006              		.loc 1 264 69 view .LVU567
+ 2007 008a 04EBC000 		add	r0, r4, r0, lsl #3
+ 264:network.c     ****             //apply relu
+ 2008              		.loc 1 264 124 view .LVU568
+ 2009 008e 04EBC101 		add	r1, r4, r1, lsl #3
+ 264:network.c     ****             //apply relu
+ 2010              		.loc 1 264 69 view .LVU569
+ 2011 0092 4368     		ldr	r3, [r0, #4]
+ 2012 0094 05FB0233 		mla	r3, r5, r2, r3
+ 264:network.c     ****             //apply relu
+ 2013              		.loc 1 264 124 view .LVU570
+ 2014 0098 4A68     		ldr	r2, [r1, #4]
+ 2015 009a 05FB0C22 		mla	r2, r5, ip, r2
+ 264:network.c     ****             //apply relu
+ 2016              		.loc 1 264 69 view .LVU571
+ 2017 009e D268     		ldr	r2, [r2, #12]	@ float
+ 2018 00a0 1A61     		str	r2, [r3, #16]	@ float
+ 266:network.c     ****                 if((net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].z) < 0)
+ 2019              		.loc 1 266 13 is_stmt 1 view .LVU572
+ 266:network.c     ****                 if((net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].z) < 0)
+ 2020              		.loc 1 266 31 is_stmt 0 view .LVU573
+ 2021 00a2 059B     		ldr	r3, [sp, #20]
+ 266:network.c     ****                 if((net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].z) < 0)
+ 2022              		.loc 1 266 47 view .LVU574
+ 2023 00a4 08F1FF32 		add	r2, r8, #-1
+ 266:network.c     ****                 if((net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].z) < 0)
+ 2024              		.loc 1 266 15 view .LVU575
+ 2025 00a8 9A42     		cmp	r2, r3
+ 267:network.c     ****                 {
+ 2026              		.loc 1 267 31 view .LVU576
+ 2027 00aa 059A     		ldr	r2, [sp, #20]
+ 267:network.c     ****                 {
+ 2028              		.loc 1 267 55 view .LVU577
+ 2029 00ac 0699     		ldr	r1, [sp, #24]
+ 267:network.c     ****                 {
+ 2030              		.loc 1 267 74 view .LVU578
+ 2031 00ae 04EBC202 		add	r2, r4, r2, lsl #3
+ 2032 00b2 5368     		ldr	r3, [r2, #4]
+ 2033 00b4 05FB0133 		mla	r3, r5, r1, r3
+ 266:network.c     ****                 if((net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].z) < 0)
+ 2034              		.loc 1 266 15 view .LVU579
+ 2035 00b8 53DD     		ble	.L100
+ 267:network.c     ****                 {
+ 2036              		.loc 1 267 17 is_stmt 1 view .LVU580
+ 267:network.c     ****                 {
+ 2037              		.loc 1 267 19 is_stmt 0 view .LVU581
+ 2038 00ba D868     		ldr	r0, [r3, #12]	@ float
+ 2039 00bc 5946     		mov	r1, fp
+ 2040 00be FFF7FEFF 		bl	__aeabi_fcmplt
+ 2041              	.LVL179:
+ 2042 00c2 0028     		cmp	r0, #0
+ 2043 00c4 3BD0     		beq	.L107
+ 269:network.c     ****                 }
+ 2044              		.loc 1 269 21 is_stmt 1 view .LVU582
+ 269:network.c     ****                 }
+ 2045              		.loc 1 269 31 is_stmt 0 view .LVU583
+ 2046 00c6 059A     		ldr	r2, [sp, #20]
+ 269:network.c     ****                 }
+ 2047              		.loc 1 269 55 view .LVU584
+ 2048 00c8 0699     		ldr	r1, [sp, #24]
+ 269:network.c     ****                 }
+ 2049              		.loc 1 269 77 view .LVU585
+ 2050 00ca 04EBC202 		add	r2, r4, r2, lsl #3
+ 2051 00ce 5368     		ldr	r3, [r2, #4]
+ 2052 00d0 05FB0133 		mla	r3, r5, r1, r3
+ 2053 00d4 C3F810B0 		str	fp, [r3, #16]	@ float
+ 2054              	.L103:
+ 248:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z = net.layers[ curr_layer_idx 
+ 2055              		.loc 1 248 93 is_stmt 1 discriminator 2 view .LVU586
+ 248:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z = net.layers[ curr_layer_idx 
+ 2056              		.loc 1 248 108 is_stmt 0 discriminator 2 view .LVU587
+ 2057 00d8 069B     		ldr	r3, [sp, #24]
+ 2058 00da 0133     		adds	r3, r3, #1
+ 2059 00dc 0693     		str	r3, [sp, #24]
+ 2060 00de ACE7     		b	.L97
+ 2061              	.L99:
+ 253:network.c     ****                     net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z
+ 2062              		.loc 1 253 17 is_stmt 1 discriminator 3 view .LVU588
+ 254:network.c     ****                     +
+ 2063              		.loc 1 254 31 is_stmt 0 discriminator 3 view .LVU589
+ 2064 00e0 DDF814A0 		ldr	r10, [sp, #20]
+ 254:network.c     ****                     +
+ 2065              		.loc 1 254 57 discriminator 3 view .LVU590
+ 2066 00e4 069B     		ldr	r3, [sp, #24]
+ 257:network.c     ****                         *
+ 2067              		.loc 1 257 36 discriminator 3 view .LVU591
+ 2068 00e6 0599     		ldr	r1, [sp, #20]
+ 254:network.c     ****                     +
+ 2069              		.loc 1 254 57 discriminator 3 view .LVU592
+ 2070 00e8 0093     		str	r3, [sp]
+ 257:network.c     ****                         *
+ 2071              		.loc 1 257 81 discriminator 3 view .LVU593
+ 2072 00ea 04EBC101 		add	r1, r4, r1, lsl #3
+ 257:network.c     ****                         *
+ 2073              		.loc 1 257 62 discriminator 3 view .LVU594
+ 2074 00ee 069B     		ldr	r3, [sp, #24]
+ 257:network.c     ****                         *
+ 2075              		.loc 1 257 89 discriminator 3 view .LVU595
+ 2076 00f0 079A     		ldr	r2, [sp, #28]
+ 259:network.c     ****                     );
+ 2077              		.loc 1 259 62 discriminator 3 view .LVU596
+ 2078 00f2 DDF81CE0 		ldr	lr, [sp, #28]
+ 253:network.c     ****                     net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z
+ 2079              		.loc 1 253 27 discriminator 3 view .LVU597
+ 2080 00f6 0598     		ldr	r0, [sp, #20]
+ 257:network.c     ****                         *
+ 2081              		.loc 1 257 81 discriminator 3 view .LVU598
+ 2082 00f8 4968     		ldr	r1, [r1, #4]
+ 253:network.c     ****                     net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z
+ 2083              		.loc 1 253 53 discriminator 3 view .LVU599
+ 2084 00fa DDF81890 		ldr	r9, [sp, #24]
+ 253:network.c     ****                     net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z
+ 2085              		.loc 1 253 75 discriminator 3 view .LVU600
+ 2086 00fe 04EBC000 		add	r0, r4, r0, lsl #3
+ 257:network.c     ****                         *
+ 2087              		.loc 1 257 81 discriminator 3 view .LVU601
+ 2088 0102 05FB0313 		mla	r3, r5, r3, r1
+ 253:network.c     ****                     net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z
+ 2089              		.loc 1 253 75 discriminator 3 view .LVU602
+ 2090 0106 4068     		ldr	r0, [r0, #4]
+ 2091 0108 05FB0909 		mla	r9, r5, r9, r0
+ 257:network.c     ****                         *
+ 2092              		.loc 1 257 89 discriminator 3 view .LVU603
+ 2093 010c 5868     		ldr	r0, [r3, #4]
+ 259:network.c     ****                     );
+ 2094              		.loc 1 259 87 discriminator 3 view .LVU604
+ 2095 010e 7368     		ldr	r3, [r6, #4]
+ 258:network.c     ****                         (net.layers[ prev_layer_idx ].neurons[ prev_layer_neuron_idx ].a)
+ 2096              		.loc 1 258 25 discriminator 3 view .LVU605
+ 2097 0110 50F82200 		ldr	r0, [r0, r2, lsl #2]	@ float
+ 259:network.c     ****                     );
+ 2098              		.loc 1 259 87 discriminator 3 view .LVU606
+ 2099 0114 05FB0E33 		mla	r3, r5, lr, r3
+ 254:network.c     ****                     +
+ 2100              		.loc 1 254 76 discriminator 3 view .LVU607
+ 2101 0118 04EBCA0A 		add	r10, r4, r10, lsl #3
+ 258:network.c     ****                         (net.layers[ prev_layer_idx ].neurons[ prev_layer_neuron_idx ].a)
+ 2102              		.loc 1 258 25 discriminator 3 view .LVU608
+ 2103 011c 1969     		ldr	r1, [r3, #16]	@ float
+ 2104 011e FFF7FEFF 		bl	__aeabi_fmul
+ 2105              	.LVL180:
+ 254:network.c     ****                     +
+ 2106              		.loc 1 254 76 discriminator 3 view .LVU609
+ 2107 0122 DAF80430 		ldr	r3, [r10, #4]
+ 2108 0126 009A     		ldr	r2, [sp]
+ 2109 0128 05FB0232 		mla	r2, r5, r2, r3
+ 255:network.c     ****                     (
+ 2110              		.loc 1 255 21 discriminator 3 view .LVU610
+ 2111 012c D168     		ldr	r1, [r2, #12]	@ float
+ 2112 012e FFF7FEFF 		bl	__aeabi_fadd
+ 2113              	.LVL181:
+ 252:network.c     ****                 net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z =
+ 2114              		.loc 1 252 131 discriminator 3 view .LVU611
+ 2115 0132 079B     		ldr	r3, [sp, #28]
+ 253:network.c     ****                     net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z
+ 2116              		.loc 1 253 75 discriminator 3 view .LVU612
+ 2117 0134 C9F80C00 		str	r0, [r9, #12]	@ float
+ 252:network.c     ****                 net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z =
+ 2118              		.loc 1 252 110 is_stmt 1 discriminator 3 view .LVU613
+ 252:network.c     ****                 net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z =
+ 2119              		.loc 1 252 131 is_stmt 0 discriminator 3 view .LVU614
+ 2120 0138 0133     		adds	r3, r3, #1
+ 2121 013a 0793     		str	r3, [sp, #28]
+ 2122 013c 9CE7     		b	.L98
+ 2123              	.L107:
+ 273:network.c     ****                 }
+ 2124              		.loc 1 273 21 is_stmt 1 view .LVU615
+ 273:network.c     ****                 }
+ 2125              		.loc 1 273 89 is_stmt 0 view .LVU616
+ 2126 013e 0599     		ldr	r1, [sp, #20]
+ 273:network.c     ****                 }
+ 2127              		.loc 1 273 113 view .LVU617
+ 2128 0140 DDF818C0 		ldr	ip, [sp, #24]
+ 273:network.c     ****                 }
+ 2129              		.loc 1 273 31 view .LVU618
+ 2130 0144 0598     		ldr	r0, [sp, #20]
+ 273:network.c     ****                 }
+ 2131              		.loc 1 273 55 view .LVU619
+ 2132 0146 069A     		ldr	r2, [sp, #24]
+ 273:network.c     ****                 }
+ 2133              		.loc 1 273 77 view .LVU620
+ 2134 0148 04EBC000 		add	r0, r4, r0, lsl #3
+ 273:network.c     ****                 }
+ 2135              		.loc 1 273 132 view .LVU621
+ 2136 014c 04EBC101 		add	r1, r4, r1, lsl #3
+ 273:network.c     ****                 }
+ 2137              		.loc 1 273 77 view .LVU622
+ 2138 0150 4368     		ldr	r3, [r0, #4]
+ 2139 0152 05FB0233 		mla	r3, r5, r2, r3
+ 273:network.c     ****                 }
+ 2140              		.loc 1 273 132 view .LVU623
+ 2141 0156 4A68     		ldr	r2, [r1, #4]
+ 2142 0158 05FB0C22 		mla	r2, r5, ip, r2
+ 273:network.c     ****                 }
+ 2143              		.loc 1 273 77 view .LVU624
+ 2144 015c D268     		ldr	r2, [r2, #12]	@ float
+ 2145 015e 1A61     		str	r2, [r3, #16]	@ float
+ 2146 0160 BAE7     		b	.L103
+ 2147              	.L100:
+ 278:network.c     ****             }
+ 2148              		.loc 1 278 17 is_stmt 1 view .LVU625
+ 278:network.c     ****             }
+ 2149              		.loc 1 278 84 is_stmt 0 view .LVU626
+ 2150 0162 D868     		ldr	r0, [r3, #12]
+ 2151 0164 00F10040 		add	r0, r0, #-2147483648
+ 278:network.c     ****             }
+ 2152              		.loc 1 278 80 view .LVU627
+ 2153 0168 FFF7FEFF 		bl	__aeabi_f2d
+ 2154              	.LVL182:
+ 2155 016c FFF7FEFF 		bl	exp
+ 2156              	.LVL183:
+ 278:network.c     ****             }
+ 2157              		.loc 1 278 27 view .LVU628
+ 2158 0170 059B     		ldr	r3, [sp, #20]
+ 278:network.c     ****             }
+ 2159              		.loc 1 278 51 view .LVU629
+ 2160 0172 069A     		ldr	r2, [sp, #24]
+ 278:network.c     ****             }
+ 2161              		.loc 1 278 73 view .LVU630
+ 2162 0174 04EBC303 		add	r3, r4, r3, lsl #3
+ 2163 0178 5B68     		ldr	r3, [r3, #4]
+ 2164 017a 05FB0239 		mla	r9, r5, r2, r3
+ 278:network.c     ****             }
+ 2165              		.loc 1 278 79 view .LVU631
+ 2166 017e 074B     		ldr	r3, .L108
+ 2167 0180 0022     		movs	r2, #0
+ 2168 0182 FFF7FEFF 		bl	__aeabi_dadd
+ 2169              	.LVL184:
+ 2170 0186 0246     		mov	r2, r0
+ 2171 0188 0B46     		mov	r3, r1
+ 278:network.c     ****             }
+ 2172              		.loc 1 278 76 view .LVU632
+ 2173 018a 0020     		movs	r0, #0
+ 2174 018c 0349     		ldr	r1, .L108
+ 2175 018e FFF7FEFF 		bl	__aeabi_ddiv
+ 2176              	.LVL185:
+ 2177 0192 FFF7FEFF 		bl	__aeabi_d2f
+ 2178              	.LVL186:
+ 2179 0196 C9F81000 		str	r0, [r9, #16]	@ float
+ 2180 019a 9DE7     		b	.L103
+ 2181              	.L109:
+ 2182              		.align	2
+ 2183              	.L108:
+ 2184 019c 0000F03F 		.word	1072693248
+ 2185              	.LBE97:
+ 2186              		.cfi_endproc
+ 2187              	.LFE19:
+ 2189              		.section	.text.forward_shuffled,"ax",%progbits
+ 2190              		.align	1
+ 2191              		.global	forward_shuffled
+ 2192              		.syntax unified
+ 2193              		.thumb
+ 2194              		.thumb_func
+ 2195              		.fpu softvfp
+ 2197              	forward_shuffled:
+ 2198              	.LVL187:
+ 2199              	.LFB20:
+ 284:network.c     **** 
+ 285:network.c     **** network forward_shuffled(network net) {
+ 2200              		.loc 1 285 39 is_stmt 1 view -0
+ 2201              		.cfi_startproc
+ 2202              		@ args = 0, pretend = 0, frame = 40
+ 2203              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2204              		.loc 1 285 39 is_stmt 0 view .LVU634
+ 2205 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 2206              	.LCFI35:
+ 2207              		.cfi_def_cfa_offset 36
+ 2208              		.cfi_offset 4, -36
+ 2209              		.cfi_offset 5, -32
+ 2210              		.cfi_offset 6, -28
+ 2211              		.cfi_offset 7, -24
+ 2212              		.cfi_offset 8, -20
+ 2213              		.cfi_offset 9, -16
+ 2214              		.cfi_offset 10, -12
+ 2215              		.cfi_offset 11, -8
+ 2216              		.cfi_offset 14, -4
+ 2217 0004 8BB0     		sub	sp, sp, #44
+ 2218              	.LCFI36:
+ 2219              		.cfi_def_cfa_offset 80
+ 2220              		.loc 1 285 39 view .LVU635
+ 2221 0006 02AB     		add	r3, sp, #8
+ 2222 0008 83E80600 		stm	r3, {r1, r2}
+ 286:network.c     ****     volatile int curr_layer_idx, curr_neuron_idx, prev_layer_neuron_idx;
+ 287:network.c     ****     volatile float dum_op = 12.3412f;
+ 2223              		.loc 1 287 20 view .LVU636
+ 2224 000c 774B     		ldr	r3, .L129
+ 2225 000e 0793     		str	r3, [sp, #28]	@ float
+ 2226              	.LBB98:
+ 2227              	.LBB99:
+ 288:network.c     ****     // for each layer
+ 289:network.c     ****     for (curr_layer_idx=1; curr_layer_idx < net.num_layers; curr_layer_idx++){
+ 290:network.c     ****         
+ 291:network.c     ****         int prev_layer_idx = curr_layer_idx - 1;
+ 292:network.c     ****         // for each neuron in this layer
+ 293:network.c     ****         for (curr_neuron_idx=0; curr_neuron_idx < net.layers[ curr_layer_idx ].num_neurons; curr_ne
+ 294:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z = net.layers[ curr_layer_idx 
+ 295:network.c     **** 
+ 296:network.c     ****             for(volatile int ops = 0; ops < 20; ops++){
+ 297:network.c     ****                 dum_op = 12.4f * 0.7823f;
+ 2228              		.loc 1 297 24 view .LVU637
+ 2229 0010 774D     		ldr	r5, .L129+4
+ 2230              	.LBE99:
+ 2231              	.LBE98:
+ 289:network.c     ****         
+ 2232              		.loc 1 289 24 view .LVU638
+ 2233 0012 0123     		movs	r3, #1
+ 285:network.c     ****     volatile int curr_layer_idx, curr_neuron_idx, prev_layer_neuron_idx;
+ 2234              		.loc 1 285 39 view .LVU639
+ 2235 0014 0746     		mov	r7, r0
+ 2236 0016 8946     		mov	r9, r1
+ 2237              	.LVL188:
+ 285:network.c     ****     volatile int curr_layer_idx, curr_neuron_idx, prev_layer_neuron_idx;
+ 2238              		.loc 1 285 39 view .LVU640
+ 2239 0018 1446     		mov	r4, r2
+ 2240              	.LVL189:
+ 286:network.c     ****     volatile float dum_op = 12.3412f;
+ 2241              		.loc 1 286 5 is_stmt 1 view .LVU641
+ 287:network.c     ****     // for each layer
+ 2242              		.loc 1 287 5 view .LVU642
+ 289:network.c     ****         
+ 2243              		.loc 1 289 5 view .LVU643
+ 289:network.c     ****         
+ 2244              		.loc 1 289 24 is_stmt 0 view .LVU644
+ 2245 001a 0493     		str	r3, [sp, #16]
+ 2246              	.LVL190:
+ 2247              	.L111:
+ 289:network.c     ****         
+ 2248              		.loc 1 289 28 is_stmt 1 discriminator 1 view .LVU645
+ 289:network.c     ****         
+ 2249              		.loc 1 289 43 is_stmt 0 discriminator 1 view .LVU646
+ 2250 001c 049B     		ldr	r3, [sp, #16]
+ 289:network.c     ****         
+ 2251              		.loc 1 289 5 discriminator 1 view .LVU647
+ 2252 001e 4B45     		cmp	r3, r9
+ 2253 0020 05DB     		blt	.L124
+ 298:network.c     ****                 dum_op = 12.4f * 0.7823f;
+ 299:network.c     ****                 dum_op = 12.4f * 0.7823f;
+ 300:network.c     ****             }
+ 301:network.c     ****             // for all neurons on the previous layer
+ 302:network.c     ****             for (prev_layer_neuron_idx = 0; prev_layer_neuron_idx < net.layers[ prev_layer_idx ].nu
+ 303:network.c     ****                 int mul_index = net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].mul_indices
+ 304:network.c     ****                 net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z =
+ 305:network.c     ****                     net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z
+ 306:network.c     ****                     +
+ 307:network.c     ****                     (
+ 308:network.c     ****                         (net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].weights[ mul_index
+ 309:network.c     ****                         *
+ 310:network.c     ****                         (net.layers[ prev_layer_idx ].neurons[ mul_index ].a) // CHANGE from forwar
+ 311:network.c     ****                     );
+ 312:network.c     ****                 // We are looking for THIS MULTIPLICATION
+ 313:network.c     ****             }
+ 314:network.c     ****             for(volatile int ops = 0; ops < 20; ops++){
+ 315:network.c     ****                 dum_op = 12.4f * 0.7823f;
+ 316:network.c     ****                 dum_op = 12.4f * 0.7823f;
+ 317:network.c     ****                 dum_op = 12.4f * 0.7823f;
+ 318:network.c     ****             }
+ 319:network.c     ****             //get a values
+ 320:network.c     ****             net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer_idx].ne
+ 321:network.c     ****             //apply relu
+ 322:network.c     ****             if(curr_layer_idx < net.num_layers - 1){
+ 323:network.c     ****                 if((net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].z) < 0)
+ 324:network.c     ****                 {
+ 325:network.c     ****                     net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = 0;
+ 326:network.c     ****                 }
+ 327:network.c     ****                 else
+ 328:network.c     ****                 {
+ 329:network.c     ****                     net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer
+ 330:network.c     ****                 }
+ 331:network.c     ****             }
+ 332:network.c     ****             //apply sigmoid to the last layer
+ 333:network.c     ****             else{
+ 334:network.c     ****                 //for (int i = 0; i < 15; i++) a = a * a;
+ 335:network.c     ****                 net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = 1/(1+exp(-net.layers[curr
+ 336:network.c     ****             }
+ 337:network.c     ****         }
+ 338:network.c     ****     }
+ 339:network.c     ****     return net;
+ 2254              		.loc 1 339 5 is_stmt 1 view .LVU648
+ 340:network.c     **** }...
+ 2255              		.loc 1 340 1 is_stmt 0 view .LVU649
+ 2256 0022 3846     		mov	r0, r7
+ 339:network.c     ****     return net;
+ 2257              		.loc 1 339 12 view .LVU650
+ 2258 0024 C7E90094 		strd	r9, r4, [r7]
+ 2259              		.loc 1 340 1 view .LVU651
+ 2260 0028 0BB0     		add	sp, sp, #44
+ 2261              	.LCFI37:
+ 2262              		.cfi_remember_state
+ 2263              		.cfi_def_cfa_offset 36
+ 2264              		@ sp needed
+ 2265 002a BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 2266              	.LVL191:
+ 2267              	.L124:
+ 2268              	.LCFI38:
+ 2269              		.cfi_restore_state
+ 2270              	.LBB107:
+ 291:network.c     ****         int prev_layer_idx = curr_layer_idx - 1;
+ 2271              		.loc 1 291 9 is_stmt 1 view .LVU652
+ 291:network.c     ****         int prev_layer_idx = curr_layer_idx - 1;
+ 2272              		.loc 1 291 45 is_stmt 0 view .LVU653
+ 2273 002e 049E     		ldr	r6, [sp, #16]
+ 2274              	.LVL192:
+ 293:network.c     ****         for (curr_neuron_idx=0; curr_neuron_idx < net.layers[ curr_layer_idx ].num_neurons; curr_ne
+ 2275              		.loc 1 293 9 is_stmt 1 view .LVU654
+ 293:network.c     ****         for (curr_neuron_idx=0; curr_neuron_idx < net.layers[ curr_layer_idx ].num_neurons; curr_ne
+ 2276              		.loc 1 293 29 is_stmt 0 view .LVU655
+ 2277 0030 0023     		movs	r3, #0
+ 291:network.c     ****         int prev_layer_idx = curr_layer_idx - 1;
+ 2278              		.loc 1 291 13 view .LVU656
+ 2279 0032 013E     		subs	r6, r6, #1
+ 2280              	.LVL193:
+ 293:network.c     ****         for (curr_neuron_idx=0; curr_neuron_idx < net.layers[ curr_layer_idx ].num_neurons; curr_ne
+ 2281              		.loc 1 293 29 view .LVU657
+ 2282 0034 0593     		str	r3, [sp, #20]
+ 302:network.c     ****             for (prev_layer_neuron_idx = 0; prev_layer_neuron_idx < net.layers[ prev_layer_idx ].nu
+ 2283              		.loc 1 302 79 view .LVU658
+ 2284 0036 04EBC606 		add	r6, r4, r6, lsl #3
+ 2285              	.LVL194:
+ 2286              	.L112:
+ 293:network.c     ****         for (curr_neuron_idx=0; curr_neuron_idx < net.layers[ curr_layer_idx ].num_neurons; curr_ne
+ 2287              		.loc 1 293 33 is_stmt 1 discriminator 1 view .LVU659
+ 293:network.c     ****         for (curr_neuron_idx=0; curr_neuron_idx < net.layers[ curr_layer_idx ].num_neurons; curr_ne
+ 2288              		.loc 1 293 61 is_stmt 0 discriminator 1 view .LVU660
+ 2289 003a 049A     		ldr	r2, [sp, #16]
+ 293:network.c     ****         for (curr_neuron_idx=0; curr_neuron_idx < net.layers[ curr_layer_idx ].num_neurons; curr_ne
+ 2290              		.loc 1 293 49 discriminator 1 view .LVU661
+ 2291 003c 059B     		ldr	r3, [sp, #20]
+ 293:network.c     ****         for (curr_neuron_idx=0; curr_neuron_idx < net.layers[ curr_layer_idx ].num_neurons; curr_ne
+ 2292              		.loc 1 293 9 discriminator 1 view .LVU662
+ 2293 003e 54F83220 		ldr	r2, [r4, r2, lsl #3]
+ 2294 0042 9A42     		cmp	r2, r3
+ 2295 0044 03DC     		bgt	.L123
+ 2296              	.LBE107:
+ 289:network.c     ****     for (curr_layer_idx=1; curr_layer_idx < net.num_layers; curr_layer_idx++){
+ 2297              		.loc 1 289 61 is_stmt 1 discriminator 2 view .LVU663
+ 289:network.c     ****     for (curr_layer_idx=1; curr_layer_idx < net.num_layers; curr_layer_idx++){
+ 2298              		.loc 1 289 75 is_stmt 0 discriminator 2 view .LVU664
+ 2299 0046 049B     		ldr	r3, [sp, #16]
+ 2300 0048 0133     		adds	r3, r3, #1
+ 2301 004a 0493     		str	r3, [sp, #16]
+ 2302 004c E6E7     		b	.L111
+ 2303              	.L123:
+ 2304              	.LBB108:
+ 294:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z = net.layers[ curr_layer_idx 
+ 2305              		.loc 1 294 13 is_stmt 1 view .LVU665
+ 294:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z = net.layers[ curr_layer_idx 
+ 2306              		.loc 1 294 83 is_stmt 0 view .LVU666
+ 2307 004e 0499     		ldr	r1, [sp, #16]
+ 294:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z = net.layers[ curr_layer_idx 
+ 2308              		.loc 1 294 109 view .LVU667
+ 2309 0050 DDF814C0 		ldr	ip, [sp, #20]
+ 294:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z = net.layers[ curr_layer_idx 
+ 2310              		.loc 1 294 23 view .LVU668
+ 2311 0054 0498     		ldr	r0, [sp, #16]
+ 294:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z = net.layers[ curr_layer_idx 
+ 2312              		.loc 1 294 49 view .LVU669
+ 2313 0056 059A     		ldr	r2, [sp, #20]
+ 294:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z = net.layers[ curr_layer_idx 
+ 2314              		.loc 1 294 71 view .LVU670
+ 2315 0058 04EBC000 		add	r0, r4, r0, lsl #3
+ 294:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z = net.layers[ curr_layer_idx 
+ 2316              		.loc 1 294 128 view .LVU671
+ 2317 005c 04EBC101 		add	r1, r4, r1, lsl #3
+ 294:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z = net.layers[ curr_layer_idx 
+ 2318              		.loc 1 294 71 view .LVU672
+ 2319 0060 4368     		ldr	r3, [r0, #4]
+ 2320 0062 1820     		movs	r0, #24
+ 2321 0064 00FB0233 		mla	r3, r0, r2, r3
+ 294:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z = net.layers[ curr_layer_idx 
+ 2322              		.loc 1 294 128 view .LVU673
+ 2323 0068 4A68     		ldr	r2, [r1, #4]
+ 2324 006a 00FB0C22 		mla	r2, r0, ip, r2
+ 294:network.c     ****             net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z = net.layers[ curr_layer_idx 
+ 2325              		.loc 1 294 71 view .LVU674
+ 2326 006e 9268     		ldr	r2, [r2, #8]	@ float
+ 2327 0070 DA60     		str	r2, [r3, #12]	@ float
+ 296:network.c     ****             for(volatile int ops = 0; ops < 20; ops++){
+ 2328              		.loc 1 296 13 is_stmt 1 view .LVU675
+ 2329              	.LBB100:
+ 296:network.c     ****             for(volatile int ops = 0; ops < 20; ops++){
+ 2330              		.loc 1 296 17 view .LVU676
+ 296:network.c     ****             for(volatile int ops = 0; ops < 20; ops++){
+ 2331              		.loc 1 296 30 is_stmt 0 view .LVU677
+ 2332 0072 0023     		movs	r3, #0
+ 2333              	.L127:
+ 296:network.c     ****             for(volatile int ops = 0; ops < 20; ops++){
+ 2334              		.loc 1 296 52 discriminator 3 view .LVU678
+ 2335 0074 0893     		str	r3, [sp, #32]
+ 296:network.c     ****             for(volatile int ops = 0; ops < 20; ops++){
+ 2336              		.loc 1 296 39 is_stmt 1 discriminator 3 view .LVU679
+ 296:network.c     ****             for(volatile int ops = 0; ops < 20; ops++){
+ 2337              		.loc 1 296 43 is_stmt 0 discriminator 3 view .LVU680
+ 2338 0076 089B     		ldr	r3, [sp, #32]
+ 296:network.c     ****             for(volatile int ops = 0; ops < 20; ops++){
+ 2339              		.loc 1 296 13 discriminator 3 view .LVU681
+ 2340 0078 132B     		cmp	r3, #19
+ 2341 007a 42DD     		ble	.L114
+ 2342              	.LBE100:
+ 302:network.c     ****             for (prev_layer_neuron_idx = 0; prev_layer_neuron_idx < net.layers[ prev_layer_idx ].nu
+ 2343              		.loc 1 302 13 is_stmt 1 view .LVU682
+ 302:network.c     ****             for (prev_layer_neuron_idx = 0; prev_layer_neuron_idx < net.layers[ prev_layer_idx ].nu
+ 2344              		.loc 1 302 40 is_stmt 0 view .LVU683
+ 2345 007c 0023     		movs	r3, #0
+ 2346 007e 0693     		str	r3, [sp, #24]
+ 302:network.c     ****             for (prev_layer_neuron_idx = 0; prev_layer_neuron_idx < net.layers[ prev_layer_idx ].nu
+ 2347              		.loc 1 302 97 view .LVU684
+ 2348 0080 3368     		ldr	r3, [r6]
+ 2349 0082 0193     		str	r3, [sp, #4]
+ 2350              	.LBB101:
+ 303:network.c     ****                 int mul_index = net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].mul_indices
+ 2351              		.loc 1 303 88 view .LVU685
+ 2352 0084 4FF01808 		mov	r8, #24
+ 2353              	.L115:
+ 2354              	.LBE101:
+ 302:network.c     ****             for (prev_layer_neuron_idx = 0; prev_layer_neuron_idx < net.layers[ prev_layer_idx ].nu
+ 2355              		.loc 1 302 45 is_stmt 1 discriminator 1 view .LVU686
+ 302:network.c     ****             for (prev_layer_neuron_idx = 0; prev_layer_neuron_idx < net.layers[ prev_layer_idx ].nu
+ 2356              		.loc 1 302 67 is_stmt 0 discriminator 1 view .LVU687
+ 2357 0088 069A     		ldr	r2, [sp, #24]
+ 302:network.c     ****             for (prev_layer_neuron_idx = 0; prev_layer_neuron_idx < net.layers[ prev_layer_idx ].nu
+ 2358              		.loc 1 302 13 discriminator 1 view .LVU688
+ 2359 008a 019B     		ldr	r3, [sp, #4]
+ 2360 008c 9342     		cmp	r3, r2
+ 2361 008e 3EDC     		bgt	.L116
+ 314:network.c     ****             for(volatile int ops = 0; ops < 20; ops++){
+ 2362              		.loc 1 314 13 is_stmt 1 view .LVU689
+ 2363              	.LBB102:
+ 314:network.c     ****             for(volatile int ops = 0; ops < 20; ops++){
+ 2364              		.loc 1 314 17 view .LVU690
+ 314:network.c     ****             for(volatile int ops = 0; ops < 20; ops++){
+ 2365              		.loc 1 314 30 is_stmt 0 view .LVU691
+ 2366 0090 0023     		movs	r3, #0
+ 2367              	.L128:
+ 314:network.c     ****             for(volatile int ops = 0; ops < 20; ops++){
+ 2368              		.loc 1 314 52 discriminator 3 view .LVU692
+ 2369 0092 0993     		str	r3, [sp, #36]
+ 314:network.c     ****             for(volatile int ops = 0; ops < 20; ops++){
+ 2370              		.loc 1 314 39 is_stmt 1 discriminator 3 view .LVU693
+ 314:network.c     ****             for(volatile int ops = 0; ops < 20; ops++){
+ 2371              		.loc 1 314 43 is_stmt 0 discriminator 3 view .LVU694
+ 2372 0094 099B     		ldr	r3, [sp, #36]
+ 314:network.c     ****             for(volatile int ops = 0; ops < 20; ops++){
+ 2373              		.loc 1 314 13 discriminator 3 view .LVU695
+ 2374 0096 132B     		cmp	r3, #19
+ 2375 0098 72DD     		ble	.L118
+ 2376              	.LBE102:
+ 320:network.c     ****             net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer_idx].ne
+ 2377              		.loc 1 320 13 is_stmt 1 view .LVU696
+ 320:network.c     ****             net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer_idx].ne
+ 2378              		.loc 1 320 81 is_stmt 0 view .LVU697
+ 2379 009a 0499     		ldr	r1, [sp, #16]
+ 320:network.c     ****             net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer_idx].ne
+ 2380              		.loc 1 320 105 view .LVU698
+ 2381 009c DDF814C0 		ldr	ip, [sp, #20]
+ 320:network.c     ****             net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer_idx].ne
+ 2382              		.loc 1 320 23 view .LVU699
+ 2383 00a0 0498     		ldr	r0, [sp, #16]
+ 320:network.c     ****             net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer_idx].ne
+ 2384              		.loc 1 320 47 view .LVU700
+ 2385 00a2 059A     		ldr	r2, [sp, #20]
+ 320:network.c     ****             net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer_idx].ne
+ 2386              		.loc 1 320 69 view .LVU701
+ 2387 00a4 04EBC000 		add	r0, r4, r0, lsl #3
+ 320:network.c     ****             net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer_idx].ne
+ 2388              		.loc 1 320 124 view .LVU702
+ 2389 00a8 04EBC101 		add	r1, r4, r1, lsl #3
+ 320:network.c     ****             net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer_idx].ne
+ 2390              		.loc 1 320 69 view .LVU703
+ 2391 00ac 4368     		ldr	r3, [r0, #4]
+ 2392 00ae 4FF01808 		mov	r8, #24
+ 2393 00b2 08FB0233 		mla	r3, r8, r2, r3
+ 320:network.c     ****             net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer_idx].ne
+ 2394              		.loc 1 320 124 view .LVU704
+ 2395 00b6 4A68     		ldr	r2, [r1, #4]
+ 2396 00b8 08FB0C22 		mla	r2, r8, ip, r2
+ 320:network.c     ****             net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer_idx].ne
+ 2397              		.loc 1 320 69 view .LVU705
+ 2398 00bc D268     		ldr	r2, [r2, #12]	@ float
+ 2399 00be 1A61     		str	r2, [r3, #16]	@ float
+ 322:network.c     ****             if(curr_layer_idx < net.num_layers - 1){
+ 2400              		.loc 1 322 13 is_stmt 1 view .LVU706
+ 322:network.c     ****             if(curr_layer_idx < net.num_layers - 1){
+ 2401              		.loc 1 322 31 is_stmt 0 view .LVU707
+ 2402 00c0 049B     		ldr	r3, [sp, #16]
+ 322:network.c     ****             if(curr_layer_idx < net.num_layers - 1){
+ 2403              		.loc 1 322 48 view .LVU708
+ 2404 00c2 09F1FF32 		add	r2, r9, #-1
+ 322:network.c     ****             if(curr_layer_idx < net.num_layers - 1){
+ 2405              		.loc 1 322 15 view .LVU709
+ 2406 00c6 9A42     		cmp	r2, r3
+ 323:network.c     ****                 if((net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].z) < 0)
+ 2407              		.loc 1 323 31 view .LVU710
+ 2408 00c8 049A     		ldr	r2, [sp, #16]
+ 323:network.c     ****                 if((net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].z) < 0)
+ 2409              		.loc 1 323 55 view .LVU711
+ 2410 00ca 0599     		ldr	r1, [sp, #20]
+ 323:network.c     ****                 if((net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].z) < 0)
+ 2411              		.loc 1 323 74 view .LVU712
+ 2412 00cc 04EBC202 		add	r2, r4, r2, lsl #3
+ 2413 00d0 5368     		ldr	r3, [r2, #4]
+ 2414 00d2 08FB0133 		mla	r3, r8, r1, r3
+ 322:network.c     ****             if(curr_layer_idx < net.num_layers - 1){
+ 2415              		.loc 1 322 15 view .LVU713
+ 2416 00d6 6CDD     		ble	.L119
+ 323:network.c     ****                 if((net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].z) < 0)
+ 2417              		.loc 1 323 17 is_stmt 1 view .LVU714
+ 323:network.c     ****                 if((net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].z) < 0)
+ 2418              		.loc 1 323 19 is_stmt 0 view .LVU715
+ 2419 00d8 4FF0000A 		mov	r10, #0
+ 2420 00dc D868     		ldr	r0, [r3, #12]	@ float
+ 2421 00de 5146     		mov	r1, r10
+ 2422 00e0 FFF7FEFF 		bl	__aeabi_fcmplt
+ 2423              	.LVL195:
+ 2424 00e4 0028     		cmp	r0, #0
+ 2425 00e6 51D0     		beq	.L126
+ 325:network.c     ****                     net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = 0;
+ 2426              		.loc 1 325 21 is_stmt 1 view .LVU716
+ 325:network.c     ****                     net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = 0;
+ 2427              		.loc 1 325 31 is_stmt 0 view .LVU717
+ 2428 00e8 049B     		ldr	r3, [sp, #16]
+ 325:network.c     ****                     net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = 0;
+ 2429              		.loc 1 325 55 view .LVU718
+ 2430 00ea 059A     		ldr	r2, [sp, #20]
+ 325:network.c     ****                     net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = 0;
+ 2431              		.loc 1 325 77 view .LVU719
+ 2432 00ec 04EBC303 		add	r3, r4, r3, lsl #3
+ 2433 00f0 5B68     		ldr	r3, [r3, #4]
+ 2434 00f2 08FB0238 		mla	r8, r8, r2, r3
+ 2435 00f6 C8F810A0 		str	r10, [r8, #16]	@ float
+ 2436              	.L122:
+ 293:network.c     ****         for (curr_neuron_idx=0; curr_neuron_idx < net.layers[ curr_layer_idx ].num_neurons; curr_ne
+ 2437              		.loc 1 293 93 is_stmt 1 discriminator 2 view .LVU720
+ 293:network.c     ****         for (curr_neuron_idx=0; curr_neuron_idx < net.layers[ curr_layer_idx ].num_neurons; curr_ne
+ 2438              		.loc 1 293 108 is_stmt 0 discriminator 2 view .LVU721
+ 2439 00fa 059B     		ldr	r3, [sp, #20]
+ 2440 00fc 0133     		adds	r3, r3, #1
+ 2441 00fe 0593     		str	r3, [sp, #20]
+ 2442 0100 9BE7     		b	.L112
+ 2443              	.L114:
+ 2444              	.LBB103:
+ 297:network.c     ****                 dum_op = 12.4f * 0.7823f;
+ 2445              		.loc 1 297 17 is_stmt 1 discriminator 3 view .LVU722
+ 297:network.c     ****                 dum_op = 12.4f * 0.7823f;
+ 2446              		.loc 1 297 24 is_stmt 0 discriminator 3 view .LVU723
+ 2447 0102 0795     		str	r5, [sp, #28]	@ float
+ 298:network.c     ****                 dum_op = 12.4f * 0.7823f;
+ 2448              		.loc 1 298 17 is_stmt 1 discriminator 3 view .LVU724
+ 298:network.c     ****                 dum_op = 12.4f * 0.7823f;
+ 2449              		.loc 1 298 24 is_stmt 0 discriminator 3 view .LVU725
+ 2450 0104 0795     		str	r5, [sp, #28]	@ float
+ 299:network.c     ****                 dum_op = 12.4f * 0.7823f;
+ 2451              		.loc 1 299 17 is_stmt 1 discriminator 3 view .LVU726
+ 299:network.c     ****                 dum_op = 12.4f * 0.7823f;
+ 2452              		.loc 1 299 24 is_stmt 0 discriminator 3 view .LVU727
+ 2453 0106 0795     		str	r5, [sp, #28]	@ float
+ 296:network.c     ****             for(volatile int ops = 0; ops < 20; ops++){
+ 2454              		.loc 1 296 49 is_stmt 1 discriminator 3 view .LVU728
+ 296:network.c     ****             for(volatile int ops = 0; ops < 20; ops++){
+ 2455              		.loc 1 296 52 is_stmt 0 discriminator 3 view .LVU729
+ 2456 0108 089B     		ldr	r3, [sp, #32]
+ 2457 010a 0133     		adds	r3, r3, #1
+ 2458 010c B2E7     		b	.L127
+ 2459              	.L116:
+ 2460              	.LBE103:
+ 2461              	.LBB104:
+ 303:network.c     ****                 int mul_index = net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].mul_indices
+ 2462              		.loc 1 303 17 is_stmt 1 discriminator 3 view .LVU730
+ 303:network.c     ****                 int mul_index = net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].mul_indices
+ 2463              		.loc 1 303 43 is_stmt 0 discriminator 3 view .LVU731
+ 2464 010e 0498     		ldr	r0, [sp, #16]
+ 303:network.c     ****                 int mul_index = net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].mul_indices
+ 2465              		.loc 1 303 69 discriminator 3 view .LVU732
+ 2466 0110 DDF814A0 		ldr	r10, [sp, #20]
+ 303:network.c     ****                 int mul_index = net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].mul_indices
+ 2467              		.loc 1 303 100 discriminator 3 view .LVU733
+ 2468 0114 069B     		ldr	r3, [sp, #24]
+ 2469              	.LVL196:
+ 304:network.c     ****                 net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z =
+ 2470              		.loc 1 304 17 is_stmt 1 discriminator 3 view .LVU734
+ 305:network.c     ****                     net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z
+ 2471              		.loc 1 305 31 is_stmt 0 discriminator 3 view .LVU735
+ 2472 0116 DDF810B0 		ldr	fp, [sp, #16]
+ 305:network.c     ****                     net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z
+ 2473              		.loc 1 305 57 discriminator 3 view .LVU736
+ 2474 011a 059A     		ldr	r2, [sp, #20]
+ 308:network.c     ****                         (net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].weights[ mul_index
+ 2475              		.loc 1 308 36 discriminator 3 view .LVU737
+ 2476 011c 0499     		ldr	r1, [sp, #16]
+ 305:network.c     ****                     net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z
+ 2477              		.loc 1 305 57 discriminator 3 view .LVU738
+ 2478 011e 0092     		str	r2, [sp]
+ 303:network.c     ****                 int mul_index = net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].mul_indices
+ 2479              		.loc 1 303 88 discriminator 3 view .LVU739
+ 2480 0120 04EBC000 		add	r0, r4, r0, lsl #3
+ 2481              	.LVL197:
+ 308:network.c     ****                         (net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].weights[ mul_index
+ 2482              		.loc 1 308 62 discriminator 3 view .LVU740
+ 2483 0124 059A     		ldr	r2, [sp, #20]
+ 303:network.c     ****                 int mul_index = net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].mul_indices
+ 2484              		.loc 1 303 88 discriminator 3 view .LVU741
+ 2485 0126 4068     		ldr	r0, [r0, #4]
+ 2486 0128 08FB0A00 		mla	r0, r8, r10, r0
+ 308:network.c     ****                         (net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].weights[ mul_index
+ 2487              		.loc 1 308 81 discriminator 3 view .LVU742
+ 2488 012c 04EBC101 		add	r1, r4, r1, lsl #3
+ 303:network.c     ****                 int mul_index = net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].mul_indices
+ 2489              		.loc 1 303 21 discriminator 3 view .LVU743
+ 2490 0130 4069     		ldr	r0, [r0, #20]
+ 308:network.c     ****                         (net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].weights[ mul_index
+ 2491              		.loc 1 308 81 discriminator 3 view .LVU744
+ 2492 0132 4968     		ldr	r1, [r1, #4]
+ 308:network.c     ****                         (net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].weights[ mul_index
+ 2493              		.loc 1 308 89 discriminator 3 view .LVU745
+ 2494 0134 50F82330 		ldr	r3, [r0, r3, lsl #2]
+ 304:network.c     ****                 net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z =
+ 2495              		.loc 1 304 27 discriminator 3 view .LVU746
+ 2496 0138 0498     		ldr	r0, [sp, #16]
+ 304:network.c     ****                 net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z =
+ 2497              		.loc 1 304 53 discriminator 3 view .LVU747
+ 2498 013a DDF814A0 		ldr	r10, [sp, #20]
+ 304:network.c     ****                 net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z =
+ 2499              		.loc 1 304 75 discriminator 3 view .LVU748
+ 2500 013e 04EBC000 		add	r0, r4, r0, lsl #3
+ 308:network.c     ****                         (net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].weights[ mul_index
+ 2501              		.loc 1 308 81 discriminator 3 view .LVU749
+ 2502 0142 08FB021E 		mla	lr, r8, r2, r1
+ 304:network.c     ****                 net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z =
+ 2503              		.loc 1 304 75 discriminator 3 view .LVU750
+ 2504 0146 4068     		ldr	r0, [r0, #4]
+ 310:network.c     ****                         (net.layers[ prev_layer_idx ].neurons[ mul_index ].a) // CHANGE from forwar
+ 2505              		.loc 1 310 75 discriminator 3 view .LVU751
+ 2506 0148 7168     		ldr	r1, [r6, #4]
+ 304:network.c     ****                 net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z =
+ 2507              		.loc 1 304 75 discriminator 3 view .LVU752
+ 2508 014a 08FB0A0A 		mla	r10, r8, r10, r0
+ 310:network.c     ****                         (net.layers[ prev_layer_idx ].neurons[ mul_index ].a) // CHANGE from forwar
+ 2509              		.loc 1 310 75 discriminator 3 view .LVU753
+ 2510 014e 08FB0311 		mla	r1, r8, r3, r1
+ 308:network.c     ****                         (net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].weights[ mul_index
+ 2511              		.loc 1 308 89 discriminator 3 view .LVU754
+ 2512 0152 DEF80400 		ldr	r0, [lr, #4]
+ 309:network.c     ****                         *
+ 2513              		.loc 1 309 25 discriminator 3 view .LVU755
+ 2514 0156 0969     		ldr	r1, [r1, #16]	@ float
+ 2515 0158 50F82300 		ldr	r0, [r0, r3, lsl #2]	@ float
+ 305:network.c     ****                     net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z
+ 2516              		.loc 1 305 76 discriminator 3 view .LVU756
+ 2517 015c 04EBCB0B 		add	fp, r4, fp, lsl #3
+ 309:network.c     ****                         *
+ 2518              		.loc 1 309 25 discriminator 3 view .LVU757
+ 2519 0160 FFF7FEFF 		bl	__aeabi_fmul
+ 2520              	.LVL198:
+ 305:network.c     ****                     net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z
+ 2521              		.loc 1 305 76 discriminator 3 view .LVU758
+ 2522 0164 DBF80410 		ldr	r1, [fp, #4]
+ 2523 0168 009B     		ldr	r3, [sp]
+ 2524 016a 08FB0312 		mla	r2, r8, r3, r1
+ 306:network.c     ****                     +
+ 2525              		.loc 1 306 21 discriminator 3 view .LVU759
+ 2526 016e D168     		ldr	r1, [r2, #12]	@ float
+ 2527 0170 FFF7FEFF 		bl	__aeabi_fadd
+ 2528              	.LVL199:
+ 2529              	.LBE104:
+ 302:network.c     ****             for (prev_layer_neuron_idx = 0; prev_layer_neuron_idx < net.layers[ prev_layer_idx ].nu
+ 2530              		.loc 1 302 132 discriminator 3 view .LVU760
+ 2531 0174 069A     		ldr	r2, [sp, #24]
+ 2532              	.LBB105:
+ 304:network.c     ****                 net.layers[ curr_layer_idx ].neurons[ curr_neuron_idx ].z =
+ 2533              		.loc 1 304 75 discriminator 3 view .LVU761
+ 2534 0176 CAF80C00 		str	r0, [r10, #12]	@ float
+ 2535              	.LBE105:
+ 302:network.c     ****             for (prev_layer_neuron_idx = 0; prev_layer_neuron_idx < net.layers[ prev_layer_idx ].nu
+ 2536              		.loc 1 302 111 is_stmt 1 discriminator 3 view .LVU762
+ 302:network.c     ****             for (prev_layer_neuron_idx = 0; prev_layer_neuron_idx < net.layers[ prev_layer_idx ].nu
+ 2537              		.loc 1 302 132 is_stmt 0 discriminator 3 view .LVU763
+ 2538 017a 0132     		adds	r2, r2, #1
+ 2539 017c 0692     		str	r2, [sp, #24]
+ 2540 017e 83E7     		b	.L115
+ 2541              	.L118:
+ 2542              	.LBB106:
+ 315:network.c     ****                 dum_op = 12.4f * 0.7823f;
+ 2543              		.loc 1 315 17 is_stmt 1 discriminator 3 view .LVU764
+ 315:network.c     ****                 dum_op = 12.4f * 0.7823f;
+ 2544              		.loc 1 315 24 is_stmt 0 discriminator 3 view .LVU765
+ 2545 0180 0795     		str	r5, [sp, #28]	@ float
+ 316:network.c     ****                 dum_op = 12.4f * 0.7823f;
+ 2546              		.loc 1 316 17 is_stmt 1 discriminator 3 view .LVU766
+ 316:network.c     ****                 dum_op = 12.4f * 0.7823f;
+ 2547              		.loc 1 316 24 is_stmt 0 discriminator 3 view .LVU767
+ 2548 0182 0795     		str	r5, [sp, #28]	@ float
+ 317:network.c     ****                 dum_op = 12.4f * 0.7823f;
+ 2549              		.loc 1 317 17 is_stmt 1 discriminator 3 view .LVU768
+ 317:network.c     ****                 dum_op = 12.4f * 0.7823f;
+ 2550              		.loc 1 317 24 is_stmt 0 discriminator 3 view .LVU769
+ 2551 0184 0795     		str	r5, [sp, #28]	@ float
+ 314:network.c     ****             for(volatile int ops = 0; ops < 20; ops++){
+ 2552              		.loc 1 314 49 is_stmt 1 discriminator 3 view .LVU770
+ 314:network.c     ****             for(volatile int ops = 0; ops < 20; ops++){
+ 2553              		.loc 1 314 52 is_stmt 0 discriminator 3 view .LVU771
+ 2554 0186 099B     		ldr	r3, [sp, #36]
+ 2555 0188 0133     		adds	r3, r3, #1
+ 2556 018a 82E7     		b	.L128
+ 2557              	.L126:
+ 314:network.c     ****             for(volatile int ops = 0; ops < 20; ops++){
+ 2558              		.loc 1 314 52 discriminator 3 view .LVU772
+ 2559              	.LBE106:
+ 329:network.c     ****                     net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer
+ 2560              		.loc 1 329 21 is_stmt 1 view .LVU773
+ 329:network.c     ****                     net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer
+ 2561              		.loc 1 329 89 is_stmt 0 view .LVU774
+ 2562 018c 049A     		ldr	r2, [sp, #16]
+ 329:network.c     ****                     net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer
+ 2563              		.loc 1 329 113 view .LVU775
+ 2564 018e 0598     		ldr	r0, [sp, #20]
+ 329:network.c     ****                     net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer
+ 2565              		.loc 1 329 31 view .LVU776
+ 2566 0190 0499     		ldr	r1, [sp, #16]
+ 329:network.c     ****                     net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer
+ 2567              		.loc 1 329 55 view .LVU777
+ 2568 0192 DDF814C0 		ldr	ip, [sp, #20]
+ 329:network.c     ****                     net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer
+ 2569              		.loc 1 329 77 view .LVU778
+ 2570 0196 04EBC101 		add	r1, r4, r1, lsl #3
+ 329:network.c     ****                     net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer
+ 2571              		.loc 1 329 132 view .LVU779
+ 2572 019a 04EBC202 		add	r2, r4, r2, lsl #3
+ 329:network.c     ****                     net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer
+ 2573              		.loc 1 329 77 view .LVU780
+ 2574 019e 4B68     		ldr	r3, [r1, #4]
+ 329:network.c     ****                     net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer
+ 2575              		.loc 1 329 132 view .LVU781
+ 2576 01a0 5268     		ldr	r2, [r2, #4]
+ 329:network.c     ****                     net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer
+ 2577              		.loc 1 329 77 view .LVU782
+ 2578 01a2 08FB0C33 		mla	r3, r8, ip, r3
+ 329:network.c     ****                     net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer
+ 2579              		.loc 1 329 132 view .LVU783
+ 2580 01a6 08FB0028 		mla	r8, r8, r0, r2
+ 329:network.c     ****                     net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = net.layers[curr_layer
+ 2581              		.loc 1 329 77 view .LVU784
+ 2582 01aa D8F80C20 		ldr	r2, [r8, #12]	@ float
+ 2583 01ae 1A61     		str	r2, [r3, #16]	@ float
+ 2584 01b0 A3E7     		b	.L122
+ 2585              	.L119:
+ 335:network.c     ****                 net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = 1/(1+exp(-net.layers[curr
+ 2586              		.loc 1 335 17 is_stmt 1 view .LVU785
+ 335:network.c     ****                 net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = 1/(1+exp(-net.layers[curr
+ 2587              		.loc 1 335 84 is_stmt 0 view .LVU786
+ 2588 01b2 D868     		ldr	r0, [r3, #12]
+ 2589 01b4 00F10040 		add	r0, r0, #-2147483648
+ 335:network.c     ****                 net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = 1/(1+exp(-net.layers[curr
+ 2590              		.loc 1 335 80 view .LVU787
+ 2591 01b8 FFF7FEFF 		bl	__aeabi_f2d
+ 2592              	.LVL200:
+ 2593 01bc FFF7FEFF 		bl	exp
+ 2594              	.LVL201:
+ 335:network.c     ****                 net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = 1/(1+exp(-net.layers[curr
+ 2595              		.loc 1 335 27 view .LVU788
+ 2596 01c0 049B     		ldr	r3, [sp, #16]
+ 335:network.c     ****                 net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = 1/(1+exp(-net.layers[curr
+ 2597              		.loc 1 335 51 view .LVU789
+ 2598 01c2 059A     		ldr	r2, [sp, #20]
+ 335:network.c     ****                 net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = 1/(1+exp(-net.layers[curr
+ 2599              		.loc 1 335 73 view .LVU790
+ 2600 01c4 04EBC303 		add	r3, r4, r3, lsl #3
+ 2601 01c8 5B68     		ldr	r3, [r3, #4]
+ 2602 01ca 08FB0238 		mla	r8, r8, r2, r3
+ 335:network.c     ****                 net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = 1/(1+exp(-net.layers[curr
+ 2603              		.loc 1 335 79 view .LVU791
+ 2604 01ce 094B     		ldr	r3, .L129+8
+ 2605 01d0 0022     		movs	r2, #0
+ 2606 01d2 FFF7FEFF 		bl	__aeabi_dadd
+ 2607              	.LVL202:
+ 2608 01d6 0246     		mov	r2, r0
+ 2609 01d8 0B46     		mov	r3, r1
+ 335:network.c     ****                 net.layers[curr_layer_idx].neurons[ curr_neuron_idx ].a = 1/(1+exp(-net.layers[curr
+ 2610              		.loc 1 335 76 view .LVU792
+ 2611 01da 0020     		movs	r0, #0
+ 2612 01dc 0549     		ldr	r1, .L129+8
+ 2613 01de FFF7FEFF 		bl	__aeabi_ddiv
+ 2614              	.LVL203:
+ 2615 01e2 FFF7FEFF 		bl	__aeabi_d2f
+ 2616              	.LVL204:
+ 2617 01e6 C8F81000 		str	r0, [r8, #16]	@ float
+ 2618 01ea 86E7     		b	.L122
+ 2619              	.L130:
+ 2620              		.align	2
+ 2621              	.L129:
+ 2622 01ec 8E754541 		.word	1095071118
+ 2623 01f0 54351B41 		.word	1092302164
+ 2624 01f4 0000F03F 		.word	1072693248
+ 2625              	.LBE108:
+ 2626              		.cfi_endproc
+ 2627              	.LFE20:
+ 2629              		.section	.rodata
+ 2630              		.align	2
+ 2631              		.set	.LANCHOR0,. + 0
+ 2632              	.LC0:
+ 2633 0000 01000000 		.word	1
+ 2634 0004 01000000 		.word	1
+ 2635 0008 01000000 		.word	1
+ 2636 000c 03000000 		.word	3
+ 2637 0010 02000000 		.word	2
+ 2638 0014 01000000 		.word	1
+ 2639 0018 04000000 		.word	4
+ 2640              	.LC1:
+ 2641 001c 01000000 		.word	1
+ 2642 0020 01000000 		.word	1
+ 2643 0024 01000000 		.word	1
+ 2644 0028 03000000 		.word	3
+ 2645 002c 03000000 		.word	3
+ 2646 0030 01000000 		.word	1
+ 2647 0034 02000000 		.word	2
+ 2648              		.text
+ 2649              	.Letext0:
+ 2650              		.file 2 "network.h"
+ 2651              		.file 3 "c:\\users\\leonard\\chipwh~1\\cw\\home\\portable\\armgcc\\arm-none-eabi\\include\\stdlib.
+ 2652              		.file 4 "c:\\users\\leonard\\chipwh~1\\cw\\home\\portable\\armgcc\\arm-none-eabi\\include\\stdio.h
+ 2653              		.file 5 "<built-in>"
+ 2654              		.file 6 "c:\\users\\leonard\\chipwh~1\\cw\\home\\portable\\armgcc\\arm-none-eabi\\include\\math.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 network.c
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:16     .text.blakely:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:24     .text.blakely:00000000 blakely
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:113    .text.modulo_masked:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:120    .text.modulo_masked:00000000 modulo_masked
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:193    .text.fisher_yates_masked:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:200    .text.fisher_yates_masked:00000000 fisher_yates_masked
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:298    .text.swap:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:305    .text.swap:00000000 swap
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:331    .text.fisher_yates:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:338    .text.fisher_yates:00000000 fisher_yates
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:418    .text.fisher_yates_deranged:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:425    .text.fisher_yates_deranged:00000000 fisher_yates_deranged
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:576    .text.get_random_indices:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:583    .text.get_random_indices:00000000 get_random_indices
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:651    .text.free_network:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:658    .text.free_network:00000000 free_network
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:802    .text.print_network:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:809    .text.print_network:00000000 print_network
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:1064   .text.print_network:000000f4 $d
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:1080   .text.create_neuron:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:1087   .text.create_neuron:00000000 create_neuron
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:1204   .text.create_layer:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:1211   .text.create_layer:00000000 create_layer
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:1253   .text.create_network:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:1260   .text.create_network:00000000 create_network
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:1300   .text.init_network:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:1307   .text.init_network:00000000 init_network
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:1496   .text.shuffle_mul_indices_masked:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:1503   .text.shuffle_mul_indices_masked:00000000 shuffle_mul_indices_masked
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:1642   .text.shuffle_mul_indices_masked:00000090 $d
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:1648   .text.shuffle_mul_indices:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:1655   .text.shuffle_mul_indices:00000000 shuffle_mul_indices
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:1745   .text.shuffle_mul_indices_deranged:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:1752   .text.shuffle_mul_indices_deranged:00000000 shuffle_mul_indices_deranged
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:1848   .text.forward:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:1855   .text.forward:00000000 forward
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:2184   .text.forward:0000019c $d
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:2190   .text.forward_shuffled:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:2197   .text.forward_shuffled:00000000 forward_shuffled
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:2622   .text.forward_shuffled:000001ec $d
+C:\Users\Leonard\AppData\Local\Temp\ccT1CcYb.s:2630   .rodata:00000000 $d
+
+UNDEFINED SYMBOLS
+rand
+malloc
+free
+__aeabi_f2d
+putchar
+puts
+printf
+__aeabi_fmul
+__aeabi_fadd
+__aeabi_fcmplt
+__aeabi_dadd
+__aeabi_ddiv
+__aeabi_d2f
+exp

@@ -1,0 +1,885 @@
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 4
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"main.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.handle,"ax",%progbits
+  16              		.align	1
+  17              		.global	handle
+  18              		.arch armv7e-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu softvfp
+  24              	handle:
+  25              	.LVL0:
+  26              	.LFB4:
+  27              		.file 1 "main.c"
+   1:main.c        **** /*
+   2:main.c        ****  * SimpleSerial V2 Template C code
+   3:main.c        ****  * Can be freely used to implement ChipWhisperer target binaries.
+   4:main.c        ****  *
+   5:main.c        ****  * Date: 14th March 2021
+   6:main.c        ****  */
+   7:main.c        **** 
+   8:main.c        **** /*
+   9:main.c        ****  * When debugging locally compile using `gcc -o debug-app.exe main.c network.c debug-source.c -DDEB
+  10:main.c        ****  */
+  11:main.c        **** 
+  12:main.c        **** #include <stdint.h>
+  13:main.c        **** #include <stdlib.h>
+  14:main.c        **** #include <string.h>
+  15:main.c        **** #include "network.h"
+  16:main.c        **** #include "network_config.h"
+  17:main.c        **** 
+  18:main.c        **** #include "hal/hal.h"
+  19:main.c        **** #include "hal/stm32f3/stm32f3_hal.h"
+  20:main.c        **** 
+  21:main.c        **** #define SS_VER SS_VER_2_1
+  22:main.c        **** 
+  23:main.c        **** #include "simpleserial/simpleserial.h"
+  24:main.c        **** 
+  25:main.c        **** #ifdef DEBUGGING  // If debugging import windows for QueryPerformanceCounter() to measure overhead 
+  26:main.c        **** #include <windows.h>
+  27:main.c        **** 
+  28:main.c        **** /// A Debugging test handle 
+  29:main.c        **** uint8_t test_handle(uint8_t cmd, uint8_t scmd, uint8_t len, uint8_t *buf)
+  30:main.c        **** {
+  31:main.c        ****   int arr[7] = {0, 1, 2, 3, 4, 5, 6};
+  32:main.c        ****   unsigned int s1[7] = {1, 1, 1, 3, 2, 1, 4};
+  33:main.c        ****   unsigned int s2[7] = {1, 1, 1, 3, 3, 1, 2};
+  34:main.c        ****   unsigned int length = 0;
+  35:main.c        ****   unsigned int num_of_neurons = 7; 
+  36:main.c        ****   while (num_of_neurons > 0) {
+  37:main.c        ****     num_of_neurons >>= 1;
+  38:main.c        ****     length++;
+  39:main.c        ****   }
+  40:main.c        **** 
+  41:main.c        ****   // fisher_yates_masked(arr, 7, s1, s2, length);
+  42:main.c        **** 
+  43:main.c        ****   // printf("Shuffled array: ");
+  44:main.c        ****   // for (int i = 0; i < 7; i++) {
+  45:main.c        ****   //   printf("%d", arr[i]);
+  46:main.c        ****   // }
+  47:main.c        ****   for (int i=6; i > 1; i--){
+  48:main.c        ****     unsigned int j = modulo_masked(i, s1, s2, length);
+  49:main.c        ****     printf("%d", j);
+  50:main.c        ****   }
+  51:main.c        ****   printf("\n");
+  52:main.c        ****   return 0;
+  53:main.c        **** }
+  54:main.c        **** #endif 
+  55:main.c        **** 
+  56:main.c        **** /// This function will handle the 'p' command send from the capture board.
+  57:main.c        **** uint8_t handle(uint8_t cmd, uint8_t scmd, uint8_t len, uint8_t *buf)
+  58:main.c        **** {
+  28              		.loc 1 58 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 72
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  59:main.c        ****   int num_layers = NET_NUM_LAYERS;
+  32              		.loc 1 59 3 view .LVU1
+  60:main.c        ****   int *num_neurons_arr = NET_NUM_NEURONS;
+  33              		.loc 1 60 3 view .LVU2
+  58:main.c        ****   int num_layers = NET_NUM_LAYERS;
+  34              		.loc 1 58 1 is_stmt 0 view .LVU3
+  35 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 28
+  38              		.cfi_offset 4, -28
+  39              		.cfi_offset 5, -24
+  40              		.cfi_offset 6, -20
+  41              		.cfi_offset 7, -16
+  42              		.cfi_offset 8, -12
+  43              		.cfi_offset 9, -8
+  44              		.cfi_offset 14, -4
+  45              		.loc 1 60 26 view .LVU4
+  46 0004 334C     		ldr	r4, .L9
+  58:main.c        ****   int num_layers = NET_NUM_LAYERS;
+  47              		.loc 1 58 1 view .LVU5
+  48 0006 8946     		mov	r9, r1
+  49 0008 9046     		mov	r8, r2
+  50 000a 1F46     		mov	r7, r3
+  51              		.loc 1 60 26 view .LVU6
+  52 000c 94E80F00 		ldm	r4, {r0, r1, r2, r3}
+  53              	.LVL1:
+  58:main.c        ****   int num_layers = NET_NUM_LAYERS;
+  54              		.loc 1 58 1 view .LVU7
+  55 0010 93B0     		sub	sp, sp, #76
+  56              	.LCFI1:
+  57              		.cfi_def_cfa_offset 104
+  58              		.loc 1 60 26 view .LVU8
+  59 0012 07AE     		add	r6, sp, #28
+  61:main.c        ****   
+  62:main.c        ****   
+  63:main.c        ****   network net = init_network(num_layers, num_neurons_arr, net_config_layer_weights);
+  60              		.loc 1 63 17 view .LVU9
+  61 0014 05AD     		add	r5, sp, #20
+  60:main.c        ****   
+  62              		.loc 1 60 26 view .LVU10
+  63 0016 86E80F00 		stm	r6, {r0, r1, r2, r3}
+  64              	.LVL2:
+  65              		.loc 1 63 3 is_stmt 1 view .LVU11
+  64:main.c        **** 
+  65:main.c        ****   float new_inputs[7] = {
+  66              		.loc 1 65 9 is_stmt 0 view .LVU12
+  67 001a 1034     		adds	r4, r4, #16
+  63:main.c        **** 
+  68              		.loc 1 63 17 view .LVU13
+  69 001c 3246     		mov	r2, r6
+  70 001e 2E4B     		ldr	r3, .L9+4
+  71 0020 0421     		movs	r1, #4
+  72 0022 2846     		mov	r0, r5
+  73 0024 FFF7FEFF 		bl	init_network
+  74              	.LVL3:
+  75              		.loc 1 65 3 is_stmt 1 view .LVU14
+  76              		.loc 1 65 9 is_stmt 0 view .LVU15
+  77 0028 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
+  78 002a 0BAE     		add	r6, sp, #44
+  79              	.LVL4:
+  80              		.loc 1 65 9 view .LVU16
+  81 002c 0FC6     		stmia	r6!, {r0, r1, r2, r3}
+  82 002e 94E80700 		ldm	r4, {r0, r1, r2}
+  83              	.LBB2:
+  66:main.c        ****     -0.039964473300472925,
+  67:main.c        ****     0.3367311187095563,
+  68:main.c        ****     1.034674935250851746,
+  69:main.c        ****     0.7525740869461268,
+  70:main.c        ****     -1.5751881331414292,
+  71:main.c        ****     -0.6688709437380642,
+  72:main.c        ****     -0.9791366791093283
+  73:main.c        ****   };
+  74:main.c        ****   for (int i=0; i < net.layers[0].num_neurons; i++){
+  84              		.loc 1 74 24 view .LVU17
+  85 0032 069B     		ldr	r3, [sp, #24]
+  86              	.LBE2:
+  65:main.c        ****     -0.039964473300472925,
+  87              		.loc 1 65 9 view .LVU18
+  88 0034 86E80700 		stm	r6, {r0, r1, r2}
+  89              		.loc 1 74 3 is_stmt 1 view .LVU19
+  90              	.LBB3:
+  91              		.loc 1 74 8 view .LVU20
+  92              	.LVL5:
+  75:main.c        ****     net.layers[0].neurons[i].a = new_inputs[i];
+  93              		.loc 1 75 32 is_stmt 0 view .LVU21
+  94 0038 1824     		movs	r4, #24
+  74:main.c        ****     net.layers[0].neurons[i].a = new_inputs[i];
+  95              		.loc 1 74 34 view .LVU22
+  96 003a 1868     		ldr	r0, [r3]
+  97              		.loc 1 75 18 view .LVU23
+  98 003c 5A68     		ldr	r2, [r3, #4]
+  99 003e 0BA9     		add	r1, sp, #44
+  74:main.c        ****     net.layers[0].neurons[i].a = new_inputs[i];
+ 100              		.loc 1 74 12 view .LVU24
+ 101 0040 0023     		movs	r3, #0
+ 102              	.LVL6:
+ 103              	.L2:
+  74:main.c        ****     net.layers[0].neurons[i].a = new_inputs[i];
+ 104              		.loc 1 74 17 is_stmt 1 discriminator 1 view .LVU25
+  74:main.c        ****     net.layers[0].neurons[i].a = new_inputs[i];
+ 105              		.loc 1 74 3 is_stmt 0 discriminator 1 view .LVU26
+ 106 0042 9842     		cmp	r0, r3
+ 107 0044 2CDC     		bgt	.L3
+ 108              	.LBE3:
+  76:main.c        ****   }
+  77:main.c        ****   //Change the input of the first neuron in the first layer to the provided number
+  78:main.c        ****   //convert to float
+  79:main.c        ****   float input_value;
+ 109              		.loc 1 79 3 is_stmt 1 view .LVU27
+  80:main.c        ****   uint8_t input_buffer[4] = {buf[0], buf[1], buf[2], buf[3]};
+ 110              		.loc 1 80 3 view .LVU28
+ 111              		.loc 1 80 11 is_stmt 0 view .LVU29
+ 112 0046 3B78     		ldrb	r3, [r7]	@ zero_extendqisi2
+ 113              	.LVL7:
+ 114              		.loc 1 80 11 view .LVU30
+ 115 0048 8DF81030 		strb	r3, [sp, #16]
+ 116 004c 7B78     		ldrb	r3, [r7, #1]	@ zero_extendqisi2
+ 117 004e 8DF81130 		strb	r3, [sp, #17]
+ 118 0052 BB78     		ldrb	r3, [r7, #2]	@ zero_extendqisi2
+ 119 0054 8DF81230 		strb	r3, [sp, #18]
+ 120 0058 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 121 005a 8DF81330 		strb	r3, [sp, #19]
+  81:main.c        ****   memcpy(&input_value, input_buffer, sizeof(float)); 
+ 122              		.loc 1 81 3 is_stmt 1 view .LVU31
+ 123 005e 049B     		ldr	r3, [sp, #16]
+ 124 0060 0393     		str	r3, [sp, #12]
+  82:main.c        ****   net.layers[0].neurons[5].a = input_value;
+ 125              		.loc 1 82 3 view .LVU32
+ 126              		.loc 1 82 30 is_stmt 0 view .LVU33
+ 127 0062 C2F88830 		str	r3, [r2, #136]	@ float
+  83:main.c        ****   //net.layers[0].neurons[1].a = input_value;
+  84:main.c        **** 
+  85:main.c        ****   #ifdef DEBUGGING
+  86:main.c        ****   #if 1
+  87:main.c        ****   LARGE_INTEGER frequency, start, middle, end;
+  88:main.c        ****   double overhead_time, forward_pass_time, overall_time;
+  89:main.c        ****   // Get the frequency of the performance counter
+  90:main.c        ****   QueryPerformanceFrequency(&frequency);
+  91:main.c        ****   QueryPerformanceCounter(&start);
+  92:main.c        ****   #endif
+  93:main.c        ****   #endif
+  94:main.c        **** 
+  95:main.c        ****   if (scmd) {
+ 128              		.loc 1 95 3 is_stmt 1 view .LVU34
+ 129 0066 6C46     		mov	r4, sp
+ 130              		.loc 1 95 6 is_stmt 0 view .LVU35
+ 131 0068 B9F1000F 		cmp	r9, #0
+ 132 006c 2FD1     		bne	.L7
+ 133              	.L6:
+  96:main.c        ****     for (int i = 1; i < net.num_layers; i++) {
+  97:main.c        ****      
+  98:main.c        ****      net = shuffle_mul_indices_deranged(net, i);
+  99:main.c        ****      //net = shuffle_mul_indices_masked(net, i);
+ 100:main.c        ****      //net = shuffle_mul_indices(net, i);
+ 101:main.c        ****     }
+ 102:main.c        ****     //net = shuffle_mul_indices_deranged(net, 1);
+ 103:main.c        ****     //net = shuffle_mul_indices_masked(net, 1);
+ 104:main.c        ****     //net = shuffle_mul_indices(net, 1);
+ 105:main.c        ****   }
+ 106:main.c        **** 
+ 107:main.c        ****   #ifdef DEBUGGING
+ 108:main.c        ****   #if 1
+ 109:main.c        ****   QueryPerformanceCounter(&middle);
+ 110:main.c        ****   #endif
+ 111:main.c        ****   #endif
+ 112:main.c        **** 
+ 113:main.c        ****   // Start Measurement
+ 114:main.c        ****   trigger_high();
+ 134              		.loc 1 114 3 is_stmt 1 view .LVU36
+ 135 006e FFF7FEFF 		bl	trigger_high
+ 136              	.LVL8:
+ 115:main.c        ****   net = forward_shuffled(net);
+ 137              		.loc 1 115 3 view .LVU37
+ 138              		.loc 1 115 9 is_stmt 0 view .LVU38
+ 139 0072 95E80600 		ldm	r5, {r1, r2}
+ 140 0076 2046     		mov	r0, r4
+ 141 0078 FFF7FEFF 		bl	forward_shuffled
+ 142              	.LVL9:
+ 143 007c 94E80300 		ldm	r4, {r0, r1}
+ 144 0080 85E80300 		stm	r5, {r0, r1}
+ 116:main.c        ****   // Stop Measurement
+ 117:main.c        ****   trigger_low();
+ 145              		.loc 1 117 3 is_stmt 1 view .LVU39
+ 146 0084 FFF7FEFF 		bl	trigger_low
+ 147              	.LVL10:
+ 118:main.c        **** 
+ 119:main.c        **** 
+ 120:main.c        ****   #ifdef DEBUGGING
+ 121:main.c        ****   #if 1
+ 122:main.c        ****   QueryPerformanceCounter(&end);
+ 123:main.c        ****   //print_network(net);
+ 124:main.c        ****   overhead_time = (double)(middle.QuadPart - start.QuadPart) / frequency.QuadPart;
+ 125:main.c        ****   overall_time = (double)(end.QuadPart - start.QuadPart) / frequency.QuadPart;
+ 126:main.c        ****   forward_pass_time = (double)(end.QuadPart - middle.QuadPart) / frequency.QuadPart;
+ 127:main.c        ****   double percentage = overhead_time / overall_time * 100; 
+ 128:main.c        ****   printf("Overall Time: %.16f\nForward Pass Time: %.16f\nOverhead Time: %.16f\nOverhead/Total perce
+ 129:main.c        **** 
+ 130:main.c        ****   // printf("weights in the second layer:\n");
+ 131:main.c        ****   // for (int i=0; i<net.layers[0].num_neurons; i++){
+ 132:main.c        ****   //   printf("%f\n", net.layers[1].neurons[0].weights[i]);
+ 133:main.c        ****   // }
+ 134:main.c        ****   // printf("inputs in the first layer:\n");
+ 135:main.c        ****   // for (int i=0; i<net.layers[0].num_neurons; i++){
+ 136:main.c        ****   //   printf("%f\n", net.layers[0].neurons[i].a);
+ 137:main.c        ****   // }
+ 138:main.c        **** 
+ 139:main.c        ****   #endif
+ 140:main.c        ****   #endif
+ 141:main.c        ****   
+ 142:main.c        ****   //free dynamically allocated memory
+ 143:main.c        ****   free_network(&net);
+ 148              		.loc 1 143 3 view .LVU40
+ 149 0088 2846     		mov	r0, r5
+ 150 008a FFF7FEFF 		bl	free_network
+ 151              	.LVL11:
+ 144:main.c        ****   
+ 145:main.c        ****   simpleserial_put('r', len, buf);
+ 152              		.loc 1 145 3 view .LVU41
+ 153 008e 3A46     		mov	r2, r7
+ 154 0090 4146     		mov	r1, r8
+ 155 0092 7220     		movs	r0, #114
+ 156 0094 FFF7FEFF 		bl	simpleserial_put
+ 157              	.LVL12:
+ 146:main.c        **** 
+ 147:main.c        ****   return 0;
+ 158              		.loc 1 147 3 view .LVU42
+ 148:main.c        **** }
+ 159              		.loc 1 148 1 is_stmt 0 view .LVU43
+ 160 0098 0020     		movs	r0, #0
+ 161 009a 13B0     		add	sp, sp, #76
+ 162              	.LCFI2:
+ 163              		.cfi_remember_state
+ 164              		.cfi_def_cfa_offset 28
+ 165              		@ sp needed
+ 166 009c BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 167              	.LVL13:
+ 168              	.L3:
+ 169              	.LCFI3:
+ 170              		.cfi_restore_state
+ 171              	.LBB4:
+  75:main.c        ****   }
+ 172              		.loc 1 75 5 is_stmt 1 discriminator 3 view .LVU44
+  75:main.c        ****   }
+ 173              		.loc 1 75 32 is_stmt 0 discriminator 3 view .LVU45
+ 174 00a0 04FB0326 		mla	r6, r4, r3, r2
+  75:main.c        ****   }
+ 175              		.loc 1 75 44 discriminator 3 view .LVU46
+ 176 00a4 51F804CB 		ldr	ip, [r1], #4	@ float
+  75:main.c        ****   }
+ 177              		.loc 1 75 32 discriminator 3 view .LVU47
+ 178 00a8 C6F810C0 		str	ip, [r6, #16]	@ float
+  74:main.c        ****     net.layers[0].neurons[i].a = new_inputs[i];
+ 179              		.loc 1 74 48 is_stmt 1 discriminator 3 view .LVU48
+  74:main.c        ****     net.layers[0].neurons[i].a = new_inputs[i];
+ 180              		.loc 1 74 49 is_stmt 0 discriminator 3 view .LVU49
+ 181 00ac 0133     		adds	r3, r3, #1
+ 182              	.LVL14:
+  74:main.c        ****     net.layers[0].neurons[i].a = new_inputs[i];
+ 183              		.loc 1 74 49 discriminator 3 view .LVU50
+ 184 00ae C8E7     		b	.L2
+ 185              	.LVL15:
+ 186              	.L5:
+  74:main.c        ****     net.layers[0].neurons[i].a = new_inputs[i];
+ 187              		.loc 1 74 49 discriminator 3 view .LVU51
+ 188              	.LBE4:
+ 189              	.LBB5:
+  98:main.c        ****      //net = shuffle_mul_indices_masked(net, i);
+ 190              		.loc 1 98 6 is_stmt 1 discriminator 3 view .LVU52
+  98:main.c        ****      //net = shuffle_mul_indices_masked(net, i);
+ 191              		.loc 1 98 12 is_stmt 0 discriminator 3 view .LVU53
+ 192 00b0 95E80600 		ldm	r5, {r1, r2}
+ 193 00b4 3346     		mov	r3, r6
+ 194 00b6 2046     		mov	r0, r4
+ 195 00b8 FFF7FEFF 		bl	shuffle_mul_indices_deranged
+ 196              	.LVL16:
+ 197 00bc 94E80300 		ldm	r4, {r0, r1}
+ 198 00c0 85E80300 		stm	r5, {r0, r1}
+  96:main.c        ****      
+ 199              		.loc 1 96 41 is_stmt 1 discriminator 3 view .LVU54
+  96:main.c        ****      
+ 200              		.loc 1 96 42 is_stmt 0 discriminator 3 view .LVU55
+ 201 00c4 0136     		adds	r6, r6, #1
+ 202              	.LVL17:
+ 203              	.L4:
+  96:main.c        ****      
+ 204              		.loc 1 96 21 is_stmt 1 discriminator 1 view .LVU56
+  96:main.c        ****      
+ 205              		.loc 1 96 5 is_stmt 0 discriminator 1 view .LVU57
+ 206 00c6 059B     		ldr	r3, [sp, #20]
+ 207 00c8 B342     		cmp	r3, r6
+ 208 00ca F1DC     		bgt	.L5
+ 209 00cc CFE7     		b	.L6
+ 210              	.LVL18:
+ 211              	.L7:
+  96:main.c        ****      
+ 212              		.loc 1 96 14 view .LVU58
+ 213 00ce 0126     		movs	r6, #1
+ 214 00d0 F9E7     		b	.L4
+ 215              	.L10:
+ 216 00d2 00BF     		.align	2
+ 217              	.L9:
+ 218 00d4 00000000 		.word	.LANCHOR0
+ 219 00d8 00000000 		.word	.LANCHOR1
+ 220              	.LBE5:
+ 221              		.cfi_endproc
+ 222              	.LFE4:
+ 224              		.section	.text.init_weights,"ax",%progbits
+ 225              		.align	1
+ 226              		.global	init_weights
+ 227              		.syntax unified
+ 228              		.thumb
+ 229              		.thumb_func
+ 230              		.fpu softvfp
+ 232              	init_weights:
+ 233              	.LFB3:
+ 234              		.file 2 "network_config.h"
+   1:network_config.h **** 
+   2:network_config.h **** // #define NET_NUM_LAYERS 5
+   3:network_config.h **** // #define NET_NUM_NEURONS ((int[]){7,5,4,3,5})
+   4:network_config.h **** 
+   5:network_config.h **** // struct {
+   6:network_config.h **** //     float lay0_weights[7][1];
+   7:network_config.h **** //     float lay1_weights[5][7];
+   8:network_config.h **** //     float lay2_weights[4][5];
+   9:network_config.h **** //     float lay3_weights[3][4];
+  10:network_config.h **** //     float lay4_weights[5][3];
+  11:network_config.h **** // } net_config_weights;
+  12:network_config.h **** 
+  13:network_config.h **** #define NET_NUM_LAYERS 4
+  14:network_config.h **** #define NET_NUM_NEURONS ((int[]){7,5,4,3})
+  15:network_config.h **** 
+  16:network_config.h **** struct {
+  17:network_config.h ****     float lay0_weights[7][1];
+  18:network_config.h ****     float lay1_weights[5][7];
+  19:network_config.h ****     float lay2_weights[4][5];
+  20:network_config.h ****     float lay3_weights[3][4];
+  21:network_config.h **** } net_config_weights;
+  22:network_config.h **** 
+  23:network_config.h **** void *net_config_layer_weights[NET_NUM_LAYERS];
+  24:network_config.h **** 
+  25:network_config.h **** void init_weights() {
+ 235              		.loc 2 25 21 is_stmt 1 view -0
+ 236              		.cfi_startproc
+ 237              		@ args = 0, pretend = 0, frame = 272
+ 238              		@ frame_needed = 0, uses_anonymous_args = 0
+  26:network_config.h ****     float lay1_weights[5][7] = 
+ 239              		.loc 2 26 5 view .LVU60
+  25:network_config.h ****     float lay1_weights[5][7] = 
+ 240              		.loc 2 25 21 is_stmt 0 view .LVU61
+ 241 0000 30B5     		push	{r4, r5, lr}
+ 242              	.LCFI4:
+ 243              		.cfi_def_cfa_offset 12
+ 244              		.cfi_offset 4, -12
+ 245              		.cfi_offset 5, -8
+ 246              		.cfi_offset 14, -4
+ 247 0002 C5B0     		sub	sp, sp, #276
+ 248              	.LCFI5:
+ 249              		.cfi_def_cfa_offset 288
+ 250              		.loc 2 26 11 view .LVU62
+ 251 0004 1E49     		ldr	r1, .L14
+  27:network_config.h ****     {
+  28:network_config.h ****         {1.43, -0.49, 0.99, -0.21, 0.12, 0.02, -0.06},
+  29:network_config.h ****         {-0.31, 1.66, -1.09, 0.92, 1.45, -0.67, 1.02},
+  30:network_config.h ****         {0.75, -0.89, 1.03, -1.45, 1.12, -0.58, 1.72},
+  31:network_config.h ****         {-1.91, 1.25, 0.46, 1.88, -0.43, -1.14, 0.99},
+  32:network_config.h ****         {1.39, -0.57, -1.66, 0.31, 0.98, 1.01, -0.76}
+  33:network_config.h ****     };
+  34:network_config.h ****     // {
+  35:network_config.h ****     // {0.12, -1.36, 0.78, -0.44, 1.87, 0.55, -1.98},
+  36:network_config.h ****     // {-0.31, 1.66, -1.09, 0.92, 1.45, -0.67, 1.02},
+  37:network_config.h ****     // {0.75, -0.89, 1.03, -1.45, 1.12, -0.58, 1.72},
+  38:network_config.h ****     // {-1.91, 1.25, 0.46, 1.88, -0.43, -1.14, 0.99},
+  39:network_config.h ****     // {1.39, -0.57, -1.66, 0.31, 0.98, 1.01, -0.76}
+  40:network_config.h ****     // };
+  41:network_config.h ****     float lay2_weights[4][5] = {
+  42:network_config.h ****     {-1.47, 0.56, 1.85, -0.91, 0.23},
+  43:network_config.h ****     {1.17, -1.38, 0.97, 0.63, -0.14},
+  44:network_config.h ****     {-0.88, 1.09, -1.72, 0.21, 1.57},
+  45:network_config.h ****     {1.86, -1.06, 0.45, -0.75, 1.02}
+  46:network_config.h ****     };
+  47:network_config.h ****     float lay3_weights[3][4] = {
+ 252              		.loc 2 47 11 view .LVU63
+ 253 0006 1F4D     		ldr	r5, .L14+4
+  26:network_config.h ****     {
+ 254              		.loc 2 26 11 view .LVU64
+ 255 0008 8C22     		movs	r2, #140
+ 256 000a 21A8     		add	r0, sp, #132
+ 257 000c FFF7FEFF 		bl	memcpy
+ 258              	.LVL19:
+  41:network_config.h ****     {-1.47, 0.56, 1.85, -0.91, 0.23},
+ 259              		.loc 2 41 5 is_stmt 1 view .LVU65
+  41:network_config.h ****     {-1.47, 0.56, 1.85, -0.91, 0.23},
+ 260              		.loc 2 41 11 is_stmt 0 view .LVU66
+ 261 0010 1D49     		ldr	r1, .L14+8
+ 262 0012 5022     		movs	r2, #80
+ 263 0014 0DA8     		add	r0, sp, #52
+ 264 0016 FFF7FEFF 		bl	memcpy
+ 265              	.LVL20:
+ 266              		.loc 2 47 5 is_stmt 1 view .LVU67
+ 267              		.loc 2 47 11 is_stmt 0 view .LVU68
+ 268 001a 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 269 001c 01AC     		add	r4, sp, #4
+ 270 001e 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 271 0020 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 272 0022 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 273 0024 95E80F00 		ldm	r5, {r0, r1, r2, r3}
+ 274 0028 84E80F00 		stm	r4, {r0, r1, r2, r3}
+  48:network_config.h ****     {0.45, -1.89, 1.68, 0.94},
+  49:network_config.h ****     {-0.29, 1.23, -1.47, 0.33},
+  50:network_config.h ****     {1.54, 0.11, -0.88, 1.77},
+  51:network_config.h ****     };
+  52:network_config.h ****     // float lay4_weights[5][3] =  {
+  53:network_config.h ****     // {1.24, -1.57, 0.89},
+  54:network_config.h ****     // {-0.43, 1.91, -1.04},
+  55:network_config.h ****     // {0.12, 1.39, -1.76},
+  56:network_config.h ****     // {-1.32, 0.98, -0.47},
+  57:network_config.h ****     // {1.05, -0.19, 1.72}
+  58:network_config.h ****     // };
+  59:network_config.h **** 
+  60:network_config.h ****     // for (int i = 0; i < 7; i++) {
+  61:network_config.h ****     //     for (int j = 0; j < 1; j++) {
+  62:network_config.h ****     //         net_config_weights.lay0_weights[i][j] = lay0_weights[i][j];
+  63:network_config.h ****     //     }
+  64:network_config.h ****     // }
+  65:network_config.h ****     for (int i = 0; i < 5; i++) {
+ 275              		.loc 2 65 5 is_stmt 1 view .LVU69
+ 276              	.LBB6:
+ 277              		.loc 2 65 10 view .LVU70
+ 278              	.LVL21:
+ 279              		.loc 2 65 21 view .LVU71
+ 280              	.LBB7:
+  66:network_config.h ****         for (int j = 0; j < 7; j++) {
+  67:network_config.h ****             net_config_weights.lay1_weights[i][j] = lay1_weights[i][j];
+ 281              		.loc 2 67 51 is_stmt 0 view .LVU72
+ 282 002c 8C22     		movs	r2, #140
+ 283 002e 21A9     		add	r1, sp, #132
+ 284 0030 1648     		ldr	r0, .L14+12
+ 285 0032 FFF7FEFF 		bl	memcpy
+ 286              	.LVL22:
+ 287              		.loc 2 67 51 view .LVU73
+ 288              	.LBE7:
+ 289              	.LBE6:
+ 290              	.LBB8:
+ 291              	.LBB9:
+  68:network_config.h ****         }
+  69:network_config.h ****     }
+  70:network_config.h ****     for (int i = 0; i < 4; i++) {
+  71:network_config.h ****         for (int j = 0; j < 5; j++) {
+  72:network_config.h ****             net_config_weights.lay2_weights[i][j] = lay2_weights[i][j];
+ 292              		.loc 2 72 51 view .LVU74
+ 293 0036 5022     		movs	r2, #80
+ 294 0038 0DA9     		add	r1, sp, #52
+ 295 003a 1548     		ldr	r0, .L14+16
+ 296 003c FFF7FEFF 		bl	memcpy
+ 297              	.LVL23:
+ 298 0040 144A     		ldr	r2, .L14+20
+ 299 0042 01AB     		add	r3, sp, #4
+ 300 0044 0321     		movs	r1, #3
+ 301 0046 1046     		mov	r0, r2
+ 302              	.L12:
+ 303              	.LVL24:
+ 304              		.loc 2 72 51 view .LVU75
+ 305              	.LBE9:
+ 306              	.LBE8:
+ 307              	.LBB10:
+ 308              	.LBB11:
+  73:network_config.h ****         }
+  74:network_config.h ****     }
+  75:network_config.h ****     for (int i = 0; i < 3; i++) {
+  76:network_config.h ****         for (int j = 0; j < 3; j++) {
+ 309              		.loc 2 76 25 is_stmt 1 view .LVU76
+  77:network_config.h ****             net_config_weights.lay3_weights[i][j] = lay3_weights[i][j];
+ 310              		.loc 2 77 13 view .LVU77
+ 311              		.loc 2 77 51 is_stmt 0 view .LVU78
+ 312 0048 1C68     		ldr	r4, [r3]	@ float
+ 313 004a C2F8F840 		str	r4, [r2, #248]	@ float
+  76:network_config.h ****             net_config_weights.lay3_weights[i][j] = lay3_weights[i][j];
+ 314              		.loc 2 76 32 is_stmt 1 view .LVU79
+ 315              	.LVL25:
+  76:network_config.h ****             net_config_weights.lay3_weights[i][j] = lay3_weights[i][j];
+ 316              		.loc 2 76 25 view .LVU80
+ 317              		.loc 2 77 13 view .LVU81
+ 318              		.loc 2 77 51 is_stmt 0 view .LVU82
+ 319 004e 5C68     		ldr	r4, [r3, #4]	@ float
+ 320 0050 C2F8FC40 		str	r4, [r2, #252]	@ float
+  76:network_config.h ****             net_config_weights.lay3_weights[i][j] = lay3_weights[i][j];
+ 321              		.loc 2 76 32 is_stmt 1 view .LVU83
+ 322              	.LVL26:
+  76:network_config.h ****             net_config_weights.lay3_weights[i][j] = lay3_weights[i][j];
+ 323              		.loc 2 76 25 view .LVU84
+ 324              		.loc 2 77 13 view .LVU85
+ 325              	.LBE11:
+  75:network_config.h ****         for (int j = 0; j < 3; j++) {
+ 326              		.loc 2 75 5 is_stmt 0 view .LVU86
+ 327 0054 0139     		subs	r1, r1, #1
+ 328              	.LVL27:
+ 329              	.LBB12:
+ 330              		.loc 2 77 51 view .LVU87
+ 331 0056 9C68     		ldr	r4, [r3, #8]	@ float
+ 332 0058 C2F80041 		str	r4, [r2, #256]	@ float
+  76:network_config.h ****             net_config_weights.lay3_weights[i][j] = lay3_weights[i][j];
+ 333              		.loc 2 76 32 is_stmt 1 view .LVU88
+ 334              	.LVL28:
+  76:network_config.h ****             net_config_weights.lay3_weights[i][j] = lay3_weights[i][j];
+ 335              		.loc 2 76 25 view .LVU89
+ 336              	.LBE12:
+  75:network_config.h ****         for (int j = 0; j < 3; j++) {
+ 337              		.loc 2 75 28 view .LVU90
+  75:network_config.h ****         for (int j = 0; j < 3; j++) {
+ 338              		.loc 2 75 21 view .LVU91
+  75:network_config.h ****         for (int j = 0; j < 3; j++) {
+ 339              		.loc 2 75 5 is_stmt 0 view .LVU92
+ 340 005c 03F11003 		add	r3, r3, #16
+ 341 0060 02F11002 		add	r2, r2, #16
+ 342 0064 F0D1     		bne	.L12
+ 343              	.LBE10:
+  78:network_config.h ****         }
+  79:network_config.h ****     }
+  80:network_config.h ****     // for (int i = 0; i < 5; i++) {
+  81:network_config.h ****     //     for (int j = 0; j < 3; j++) {
+  82:network_config.h ****     //         net_config_weights.lay4_weights[i][j] = lay4_weights[i][j];
+  83:network_config.h ****     //     }
+  84:network_config.h ****     // }
+  85:network_config.h **** 
+  86:network_config.h ****     net_config_layer_weights[0] = (void*)net_config_weights.lay0_weights;
+ 344              		.loc 2 86 5 is_stmt 1 view .LVU93
+ 345              		.loc 2 86 33 is_stmt 0 view .LVU94
+ 346 0066 0C4B     		ldr	r3, .L14+24
+ 347 0068 1A46     		mov	r2, r3
+ 348 006a 42F82C0B 		str	r0, [r2], #44
+  87:network_config.h ****     net_config_layer_weights[1] = (void*)net_config_weights.lay1_weights;
+ 349              		.loc 2 87 5 is_stmt 1 view .LVU95
+ 350              		.loc 2 87 33 is_stmt 0 view .LVU96
+ 351 006e 5A60     		str	r2, [r3, #4]
+  88:network_config.h ****     net_config_layer_weights[2] = (void*)net_config_weights.lay2_weights;
+ 352              		.loc 2 88 5 is_stmt 1 view .LVU97
+ 353              		.loc 2 88 33 is_stmt 0 view .LVU98
+ 354 0070 03F1B802 		add	r2, r3, #184
+ 355 0074 9A60     		str	r2, [r3, #8]
+  89:network_config.h ****     net_config_layer_weights[3] = (void*)net_config_weights.lay3_weights;
+ 356              		.loc 2 89 5 is_stmt 1 view .LVU99
+ 357              		.loc 2 89 33 is_stmt 0 view .LVU100
+ 358 0076 03F58472 		add	r2, r3, #264
+ 359 007a DA60     		str	r2, [r3, #12]
+  90:network_config.h ****     //net_config_layer_weights[4] = (void*)net_config_weights.lay4_weights;
+  91:network_config.h **** }
+ 360              		.loc 2 91 1 view .LVU101
+ 361 007c 45B0     		add	sp, sp, #276
+ 362              	.LCFI6:
+ 363              		.cfi_def_cfa_offset 12
+ 364              		@ sp needed
+ 365 007e 30BD     		pop	{r4, r5, pc}
+ 366              	.L15:
+ 367              		.align	2
+ 368              	.L14:
+ 369 0080 2C000000 		.word	.LANCHOR0+44
+ 370 0084 08010000 		.word	.LANCHOR0+264
+ 371 0088 B8000000 		.word	.LANCHOR0+184
+ 372 008c 2C000000 		.word	.LANCHOR1+44
+ 373 0090 B8000000 		.word	.LANCHOR1+184
+ 374 0094 10000000 		.word	.LANCHOR1+16
+ 375 0098 00000000 		.word	.LANCHOR1
+ 376              		.cfi_endproc
+ 377              	.LFE3:
+ 379              		.section	.text.startup.main,"ax",%progbits
+ 380              		.align	1
+ 381              		.global	main
+ 382              		.syntax unified
+ 383              		.thumb
+ 384              		.thumb_func
+ 385              		.fpu softvfp
+ 387              	main:
+ 388              	.LFB5:
+ 149:main.c        **** 
+ 150:main.c        **** int main(void) {
+ 389              		.loc 1 150 16 is_stmt 1 view -0
+ 390              		.cfi_startproc
+ 391              		@ Volatile: function does not return.
+ 392              		@ args = 0, pretend = 0, frame = 0
+ 393              		@ frame_needed = 0, uses_anonymous_args = 0
+ 151:main.c        ****   srand(time(NULL));
+ 394              		.loc 1 151 3 view .LVU103
+ 150:main.c        ****   srand(time(NULL));
+ 395              		.loc 1 150 16 is_stmt 0 view .LVU104
+ 396 0000 08B5     		push	{r3, lr}
+ 397              	.LCFI7:
+ 398              		.cfi_def_cfa_offset 8
+ 399              		.cfi_offset 3, -8
+ 400              		.cfi_offset 14, -4
+ 401              		.loc 1 151 9 view .LVU105
+ 402 0002 0020     		movs	r0, #0
+ 403 0004 FFF7FEFF 		bl	time
+ 404              	.LVL29:
+ 405              		.loc 1 151 3 view .LVU106
+ 406 0008 FFF7FEFF 		bl	srand
+ 407              	.LVL30:
+ 152:main.c        ****   //Initialize network weights
+ 153:main.c        ****   init_weights();
+ 408              		.loc 1 153 3 is_stmt 1 view .LVU107
+ 409 000c FFF7FEFF 		bl	init_weights
+ 410              	.LVL31:
+ 154:main.c        ****   // Setup the specific chipset.
+ 155:main.c        ****   platform_init();
+ 411              		.loc 1 155 3 view .LVU108
+ 412 0010 FFF7FEFF 		bl	platform_init
+ 413              	.LVL32:
+ 156:main.c        ****   // Setup serial communication line.
+ 157:main.c        ****   init_uart();
+ 414              		.loc 1 157 3 view .LVU109
+ 415 0014 FFF7FEFF 		bl	init_uart
+ 416              	.LVL33:
+ 158:main.c        ****   // Setup measurement trigger.
+ 159:main.c        ****   trigger_setup();
+ 417              		.loc 1 159 3 view .LVU110
+ 418 0018 FFF7FEFF 		bl	trigger_setup
+ 419              	.LVL34:
+ 160:main.c        **** 
+ 161:main.c        ****   simpleserial_init();
+ 420              		.loc 1 161 3 view .LVU111
+ 421 001c FFF7FEFF 		bl	simpleserial_init
+ 422              	.LVL35:
+ 162:main.c        **** 
+ 163:main.c        ****   // Insert your handlers here.
+ 164:main.c        ****   simpleserial_addcmd('p', 16, handle);
+ 423              		.loc 1 164 3 view .LVU112
+ 424 0020 034A     		ldr	r2, .L18
+ 425 0022 1021     		movs	r1, #16
+ 426 0024 7020     		movs	r0, #112
+ 427 0026 FFF7FEFF 		bl	simpleserial_addcmd
+ 428              	.LVL36:
+ 429              	.L17:
+ 165:main.c        **** 
+ 166:main.c        **** #ifdef DEBUGGING
+ 167:main.c        ****   simpleserial_addcmd('t', 16, test_handle);
+ 168:main.c        **** #endif
+ 169:main.c        ****   // What for the capture board to send commands and handle them.
+ 170:main.c        ****   while (1)
+ 430              		.loc 1 170 3 discriminator 1 view .LVU113
+ 171:main.c        ****     simpleserial_get();
+ 431              		.loc 1 171 5 discriminator 1 view .LVU114
+ 432 002a FFF7FEFF 		bl	simpleserial_get
+ 433              	.LVL37:
+ 170:main.c        ****     simpleserial_get();
+ 434              		.loc 1 170 9 discriminator 1 view .LVU115
+ 435 002e FCE7     		b	.L17
+ 436              	.L19:
+ 437              		.align	2
+ 438              	.L18:
+ 439 0030 00000000 		.word	handle
+ 440              		.cfi_endproc
+ 441              	.LFE5:
+ 443              		.global	net_config_layer_weights
+ 444              		.global	net_config_weights
+ 445              		.section	.rodata
+ 446              		.align	2
+ 447              		.set	.LANCHOR0,. + 0
+ 448              	.LC3:
+ 449 0000 07000000 		.word	7
+ 450 0004 05000000 		.word	5
+ 451 0008 04000000 		.word	4
+ 452 000c 03000000 		.word	3
+ 453              	.LC4:
+ 454 0010 CAB123BD 		.word	-1121734198
+ 455 0014 0568AC3E 		.word	1051486213
+ 456 0018 3A70843F 		.word	1065644090
+ 457 001c B2A8403F 		.word	1061202098
+ 458 0020 C49FC9BF 		.word	-1077305404
+ 459 0024 203B2BBF 		.word	-1087685856
+ 460 0028 B4A87ABF 		.word	-1082480460
+ 461              	.LC0:
+ 462 002c 3D0AB73F 		.word	1068960317
+ 463 0030 48E1FABE 		.word	-1090854584
+ 464 0034 A4707D3F 		.word	1065185444
+ 465 0038 3D0A57BE 		.word	-1101592003
+ 466 003c 8FC2F53D 		.word	1039516303
+ 467 0040 0AD7A33C 		.word	1017370378
+ 468 0044 8FC275BD 		.word	-1116355953
+ 469 0048 52B89EBE 		.word	-1096894382
+ 470 004c E17AD43F 		.word	1070889697
+ 471 0050 1F858BBF 		.word	-1081375457
+ 472 0054 1F856B3F 		.word	1064011039
+ 473 0058 9A99B93F 		.word	1069128090
+ 474 005c 1F852BBF 		.word	-1087666913
+ 475 0060 5C8F823F 		.word	1065520988
+ 476 0064 0000403F 		.word	1061158912
+ 477 0068 0AD763BF 		.word	-1083975926
+ 478 006c 0AD7833F 		.word	1065604874
+ 479 0070 9A99B9BF 		.word	-1078355558
+ 480 0074 295C8F3F 		.word	1066359849
+ 481 0078 E17A14BF 		.word	-1089176863
+ 482 007c F628DC3F 		.word	1071393014
+ 483 0080 E17AF4BF 		.word	-1074496799
+ 484 0084 0000A03F 		.word	1067450368
+ 485 0088 1F85EB3E 		.word	1055622431
+ 486 008c D7A3F03F 		.word	1072735191
+ 487 0090 F628DCBE 		.word	-1092867850
+ 488 0094 85EB91BF 		.word	-1080956027
+ 489 0098 A4707D3F 		.word	1065185444
+ 490 009c 85EBB13F 		.word	1068624773
+ 491 00a0 85EB11BF 		.word	-1089344635
+ 492 00a4 E17AD4BF 		.word	-1076593951
+ 493 00a8 52B89E3E 		.word	1050589266
+ 494 00ac 48E17A3F 		.word	1065017672
+ 495 00b0 AE47813F 		.word	1065437102
+ 496 00b4 5C8F42BF 		.word	-1086156964
+ 497              	.LC1:
+ 498 00b8 F628BCBF 		.word	-1078187786
+ 499 00bc 295C0F3F 		.word	1057971241
+ 500 00c0 CDCCEC3F 		.word	1072483533
+ 501 00c4 C3F568BF 		.word	-1083640381
+ 502 00c8 1F856B3E 		.word	1047233823
+ 503 00cc 8FC2953F 		.word	1066779279
+ 504 00d0 D7A3B0BF 		.word	-1078942761
+ 505 00d4 EC51783F 		.word	1064849900
+ 506 00d8 AE47213F 		.word	1059145646
+ 507 00dc 295C0FBE 		.word	-1106289623
+ 508 00e0 AE4761BF 		.word	-1084143698
+ 509 00e4 1F858B3F 		.word	1066108191
+ 510 00e8 F628DCBF 		.word	-1076090634
+ 511 00ec 3D0A573E 		.word	1045891645
+ 512 00f0 C3F5C83F 		.word	1070134723
+ 513 00f4 7B14EE3F 		.word	1072567419
+ 514 00f8 14AE87BF 		.word	-1081627116
+ 515 00fc 6666E63E 		.word	1055286886
+ 516 0100 000040BF 		.word	-1086324736
+ 517 0104 5C8F823F 		.word	1065520988
+ 518              	.LC2:
+ 519 0108 6666E63E 		.word	1055286886
+ 520 010c 85EBF1BF 		.word	-1074664571
+ 521 0110 3D0AD73F 		.word	1071057469
+ 522 0114 D7A3703F 		.word	1064346583
+ 523 0118 E17A94BE 		.word	-1097565471
+ 524 011c A4709D3F 		.word	1067282596
+ 525 0120 F628BCBF 		.word	-1078187786
+ 526 0124 C3F5A83E 		.word	1051260355
+ 527 0128 B81EC53F 		.word	1069883064
+ 528 012c AE47E13D 		.word	1038174126
+ 529 0130 AE4761BF 		.word	-1084143698
+ 530 0134 5C8FE23F 		.word	1071812444
+ 531              		.bss
+ 532              		.align	2
+ 533              		.set	.LANCHOR1,. + 0
+ 536              	net_config_layer_weights:
+ 537 0000 00000000 		.space	16
+ 537      00000000 
+ 537      00000000 
+ 537      00000000 
+ 540              	net_config_weights:
+ 541 0010 00000000 		.space	296
+ 541      00000000 
+ 541      00000000 
+ 541      00000000 
+ 541      00000000 
+ 542              		.text
+ 543              	.Letext0:
+ 544              		.file 3 "c:\\users\\leonard\\chipwh~1\\cw\\home\\portable\\armgcc\\arm-none-eabi\\include\\machine
+ 545              		.file 4 "c:\\users\\leonard\\chipwh~1\\cw\\home\\portable\\armgcc\\arm-none-eabi\\include\\sys\\_s
+ 546              		.file 5 "network.h"
+ 547              		.file 6 "c:\\users\\leonard\\chipwh~1\\cw\\home\\portable\\armgcc\\arm-none-eabi\\include\\time.h"
+ 548              		.file 7 "c:\\users\\leonard\\chipwh~1\\cw\\home\\portable\\armgcc\\arm-none-eabi\\include\\stdlib.
+ 549              		.file 8 "hal/hal.h"
+ 550              		.file 9 "hal/stm32f3/stm32f3_hal.h"
+ 551              		.file 10 "simpleserial/simpleserial.h"
+ 552              		.file 11 "<built-in>"
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\Leonard\AppData\Local\Temp\ccWBz4le.s:16     .text.handle:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccWBz4le.s:24     .text.handle:00000000 handle
+C:\Users\Leonard\AppData\Local\Temp\ccWBz4le.s:218    .text.handle:000000d4 $d
+C:\Users\Leonard\AppData\Local\Temp\ccWBz4le.s:225    .text.init_weights:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccWBz4le.s:232    .text.init_weights:00000000 init_weights
+C:\Users\Leonard\AppData\Local\Temp\ccWBz4le.s:369    .text.init_weights:00000080 $d
+C:\Users\Leonard\AppData\Local\Temp\ccWBz4le.s:380    .text.startup.main:00000000 $t
+C:\Users\Leonard\AppData\Local\Temp\ccWBz4le.s:387    .text.startup.main:00000000 main
+C:\Users\Leonard\AppData\Local\Temp\ccWBz4le.s:439    .text.startup.main:00000030 $d
+C:\Users\Leonard\AppData\Local\Temp\ccWBz4le.s:536    .bss:00000000 net_config_layer_weights
+C:\Users\Leonard\AppData\Local\Temp\ccWBz4le.s:540    .bss:00000010 net_config_weights
+C:\Users\Leonard\AppData\Local\Temp\ccWBz4le.s:446    .rodata:00000000 $d
+C:\Users\Leonard\AppData\Local\Temp\ccWBz4le.s:532    .bss:00000000 $d
+
+UNDEFINED SYMBOLS
+init_network
+trigger_high
+forward_shuffled
+trigger_low
+free_network
+simpleserial_put
+shuffle_mul_indices_deranged
+memcpy
+time
+srand
+platform_init
+init_uart
+trigger_setup
+simpleserial_init
+simpleserial_addcmd
+simpleserial_get
